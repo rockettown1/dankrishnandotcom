@@ -1,6 +1,25 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
+
+async function redirects() {
+  return [
+    {
+      source: "/",
+      destination: "/hello",
+      has: [
+        {
+          type: "header",
+          key: "User-Agent",
+          value: ".*(Mobile|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini).*",
+        },
+      ],
+      permanent: true,
+    },
+  ];
 }
 
-module.exports = nextConfig
+const nextConfig = {
+  reactStrictMode: true,
+  redirects,
+};
+
+module.exports = nextConfig;

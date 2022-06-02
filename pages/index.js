@@ -1,145 +1,276 @@
 import { useRef, useEffect, useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 import styled from "styled-components";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { useBottom } from "../utils/useBottom";
 import { moveToWork, moveToNoise } from "../utils/timelines";
+import withTransition from "../components/hocs/withTransition";
+import { motion } from "framer-motion";
+import Circle from "../components/hero/Circle";
+import Footer from "../components/layout/Footer";
+import Arrow from "../components/layout/Arrow.svg";
 
-export default function Home() {
-  const [current, setCurrent] = useState({ title: 1, image: 2 });
+function Home() {
+  const [current, setCurrent] = useState({ title: 0, image: 2 });
+  const [currentSection, setCurrentSection] = useState("second");
+  const [progress, setProgress] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+  const conRef = useRef(null);
   const titlesRef = useRef(null);
   const sectionRef = useRef(null);
   const lastRef = useRef(null);
   const imagesRef = useRef(null);
+  const sections = ["first", "second", "third"];
+  // const { width } = useWindowSize();
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-    const titlesEl = titlesRef.current;
-    const imagesEl = imagesRef.current;
 
-    moveToWork(sectionRef.current).to(titlesEl, { x: "-75vw" });
-    moveToWork(sectionRef.current).to(imagesEl, {
-      x: "50vw",
-      onComplete: () => setCurrent({ title: 2, image: 1 }),
-      onReverseComplete: () => setCurrent({ title: 1, image: 2 }),
-      onStart: () => setCurrent({ title: null, image: null }),
+    gsap.to(titlesRef.current, {
+      x: "-100vw",
+      ease: "none",
+      scrollTrigger: {
+        trigger: conRef.current,
+        scrub: 1,
+        pin: true,
+        start: "+=0px",
+        end: "+=10px",
+        snap: 1,
+      },
+      onComplete: () => {
+        setCurrent({ title: 1, image: 1 });
+        console.log("ended");
+      },
     });
-    moveToNoise(lastRef.current).to(titlesEl, { x: "-125vw" });
-    moveToNoise(lastRef.current).to(imagesEl, {
-      x: "100vw",
-      onStart: () => setCurrent({ title: null, image: null }),
-      onComplete: () => setCurrent({ title: 3, image: 0 }),
-      onReverseComplete: () => setCurrent({ title: 2, image: 1 }),
+
+    gsap.to(imagesRef.current, {
+      x: "-25vw",
+      ease: "none",
+      scrollTrigger: {
+        trigger: titlesRef.current,
+        scrub: 1,
+        pin: true,
+        start: "+=0.5px",
+        end: "+=9px",
+      },
+      onReverseComplete: () => {
+        setCurrent({ title: 0, image: 2 });
+        console.log("reverse");
+      },
     });
+
+    return () => {
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+    };
   }, []);
 
   return (
-    <Container>
-      <Head>
-        <title>DK Portfolio</title>
-        <meta name="description" content="DK Home" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <div>
+      <Container
+        className="wrapper"
+        key="wrapper"
+        ref={conRef}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, ease: "easeInOut" }}
+      >
+        <Head>
+          <title>DK Portfolio</title>
+          <meta name="description" content="DK Home" />
+          <link rel="icon" href="/favicon.ico" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+        </Head>
+        <motion.div
+          key="innerdiv"
+          exit={{ opacity: 0.5, translateY: -800 }}
+          transition={{ duration: 1, ease: "easeInOut", delay: 1.3 }}
+        >
+          <ShapeContainer>
+            <Circle isHovered={isHovered} />
+          </ShapeContainer>
 
-      <Main>
-        <Images ref={imagesRef}>
-          {["/duck.jpg", "/duck.jpg", "/xander.jpg"].map((pic, index) => {
-            return (
-              <ImgContainer key={index} focus={index === current.image}>
-                <Img src={pic} />
-                <Back />
-              </ImgContainer>
-            );
-          })}
-        </Images>
-        <Titles ref={titlesRef}>
-          {["", "Hello", "Work", "Noise"].map((title, index) => {
-            return <h1 key={index}>{title}</h1>;
-          })}
-        </Titles>
-        <Info>Scroll for more</Info>
-      </Main>
-      <ScrollDiv ref={sectionRef} />
-      <ScrollDiv ref={lastRef} />
-      <ScrollDiv />
-    </Container>
+          <DogWrapper ref={imagesRef}>
+            {["/xander_logo.png", "/xander_logo.png", "/xander_logo2.png", "/xander_logo2.png"].map((pic, index) => {
+              return (
+                <ImgContainer className="dog" key={index} focus={index === current.image}>
+                  <Img src={pic} alt="A picture of my dog" />
+                </ImgContainer>
+              );
+            })}
+          </DogWrapper>
+          <TitlesWrapper ref={titlesRef}>
+            {["Hello", "Work"].map((title, index) => {
+              if (index === current.title) {
+                return (
+                  <Sec
+                    key={`option${index}`}
+                    exit={{ scale: 0.4, translateY: "31vh" }}
+                    transition={{ duration: 0.3, ease: "easeInOut", delay: 0.6 }}
+                    ready={index === current.title}
+                  >
+                    <StyledLink scroll={false} href={`/${title.toLowerCase()}`} passHref>
+                      <a>
+                        <h1
+                          onMouseOver={() => setIsHovered(true)}
+                          onMouseOut={() => setIsHovered(false)}
+                          onClick={() => setIsHovered(false)}
+                        >
+                          {title}
+                        </h1>
+                      </a>
+                    </StyledLink>
+                  </Sec>
+                );
+              } else {
+                return (
+                  <Sec key={index}>
+                    <h1>{title}</h1>
+                  </Sec>
+                );
+              }
+            })}
+          </TitlesWrapper>
+        </motion.div>
+      </Container>
+      <Foot>
+        <div>
+          <h4>{current.image === 1 ? "Scroll up" : "Scroll down"}</h4>
+          <Arrow spin={current.image === 1} />
+        </div>
+      </Foot>
+    </div>
   );
 }
 
-const Container = styled.div`
+export default Home;
+
+const Container = styled(motion.div)`
+  transition: all 0.3s;
+  /* position: relative; */
+  height: 100vh;
+  width: 200vw;
+  display: flex;
+  overflow: hidden;
+`;
+
+const TitlesWrapper = styled(motion.div)`
+  height: 100vh;
+  display: flex;
+  position: relative;
+  z-index: 10;
+`;
+
+const DogWrapper = styled(motion.div)`
+  width: 200vw;
+  height: 100vh;
+  position: absolute;
+  display: flex;
+  box-sizing: border-box;
+  transform: translateX(-75vw);
+  @media screen and (max-width: 1000px) {
+    margin-top: -200px;
+  }
+`;
+
+const Sec = styled(motion.div)`
   height: 100vh;
   width: 100vw;
   position: relative;
-  /* overflow: scroll;
-  scroll-snap-type: mandatory;
-  scroll-snap-points-y: repeat(100vh);
-  scroll-snap-type: y mandatory; */
-`;
-
-const Main = styled.main`
-  position: fixed;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-`;
-
-const Titles = styled.div`
-  position: absolute;
-  display: flex;
-  box-sizing: border-box;
-  transform: translateX(-25vw); //default -25vw
-
-  h1 {
-    position: relative;
-    z-index: 20;
-    width: 50vw;
-    text-align: center;
-    font-size: 200px;
-    font-weight: 400;
-    @media screen and (max-width: 1100px) {
-      font-size: 150px;
-    }
-  }
-`;
-const Images = styled.div`
-  position: absolute;
-  display: flex;
-  box-sizing: border-box;
-  transform: translateX(-75vw); //default -25vw
-`;
-
-const ScrollDiv = styled.div`
-  position: relative;
-  height: 100vh;
-  scroll-snap-align: start;
-`;
-
-const ImgContainer = styled.div`
-  width: 50vw;
+  z-index: 20;
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: ${({ focus }) => (focus ? 0.8 : 0.1)};
-  transition: all 0.3s;
+
+  h1 {
+    position: relative;
+    user-select: none;
+    text-align: center;
+
+    font-size: 200px;
+    font-weight: 400;
+    transition: all 0.5s;
+
+    &:hover {
+      cursor: ${({ ready }) => ready && "pointer"};
+      color: ${({ theme, ready }) => ready && theme.highlight};
+    }
+
+    @media screen and (max-width: 1000px) {
+      font-size: 90px;
+    }
+
+    &::before {
+      content: "DK.";
+      font-size: 20px;
+      font-weight: 600;
+      margin-left: -20px;
+    }
+  }
+  a,
+  a:hover,
+  a:focus,
+  a:active {
+    text-decoration: none;
+    color: inherit;
+  }
+`;
+
+const ImgContainer = styled(motion.div)`
+  margin-top: -60px;
+  width: 33%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  opacity: ${({ focus }) => (focus ? 0.5 : 0.05)};
+  transition: all 0.5s;
 `;
 
 const Img = styled.img`
-  position: absolute;
-  z-index: 10;
-  height: 400px;
+  position: relative;
+  z-index: 12;
+  height: 600px;
+  @media screen and (max-width: 1000px) {
+    height: 200px;
+  }
 `;
 
-const Back = styled.div`
-  height: 400px;
-  width: 320px;
-  position: absolute;
-  background-color: red;
+const StyledLink = styled(Link)`
+  width: max-content;
 `;
 
-const Info = styled.p`
+const ShapeContainer = styled.div`
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
   position: fixed;
-  bottom: 40px;
-  left: 75px;
-  color: rgba(255, 255, 255, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @media screen and (max-width: 1000px) {
+    display: none;
+  }
+`;
+
+const Foot = styled.div`
+  position: fixed;
+  bottom: 10px;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  left: 30px;
+  color: ${({ theme }) => theme.secondary_text};
+  div {
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  h4 {
+    margin: 0;
+  }
 `;
