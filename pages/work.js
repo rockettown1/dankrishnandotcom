@@ -25,7 +25,7 @@ function Work() {
   }
 
   const handleFindMore = (link) => {
-    router.push(link);
+    router.push(link, link, { scroll: false });
     sessionStorage.setItem("scrollPosition", container.current.scrollTop);
   };
 
@@ -60,9 +60,9 @@ export default Work;
 const Container = styled.div`
   width: 100vw;
   /* padding-top: 100px; */
-  height: ${({ width }) => (width > 1000 ? "100vh" : "auto")};
+  height: 100vh;
   /* scroll-behavior: smooth; */
   overflow-y: scroll;
-  scroll-snap-type: ${({ width }) => (width > 1000 ? "y mandatory" : "none")};
+  scroll-snap-type: y mandatory;
   transition: all 0.3s;
 `;

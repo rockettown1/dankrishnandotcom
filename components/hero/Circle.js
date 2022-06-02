@@ -1,14 +1,15 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
 import { motion } from "framer-motion";
 
 export default function Circle({ isHovered }) {
+  const theme = useTheme();
   return (
     <Svg viewBox="0 0 500 500" isHovered={isHovered}>
       <motion.circle
         initial={{ pathLength: 0 }}
         animate={{ pathLength: isHovered ? 1 : 0 }}
-        exit={{ stroke: "rgba(255, 172, 20,0.5)" }}
+        exit={{ stroke: theme.highlight }}
         transition={{ duration: 1, ease: "easeInOut" }}
         cx="250"
         cy="250"

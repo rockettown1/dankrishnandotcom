@@ -13,7 +13,7 @@ export default function Frontend() {
   return (
     <Container>
       <Section data={data[1]} main />
-      <Link href="/work#section2" scroll={false}>
+      <Link href="/work" scroll={false}>
         Tester
       </Link>
       <div style={{ height: "200vh" }}>

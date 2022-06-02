@@ -70,8 +70,8 @@ const Container = styled.nav`
     height: 40px;
     width: 40px;
 
+    background-color: ${({ theme }) => theme.highlight};
     &:hover {
-      background-color: ${({ theme }) => theme.highlight};
     }
   }
 
