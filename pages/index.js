@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useLayoutEffect, useState, Profiler } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,6 +12,8 @@ import { motion } from "framer-motion";
 import Circle from "../components/hero/Circle";
 import Footer from "../components/layout/Footer";
 import Arrow from "../components/layout/Arrow.svg";
+import x1 from "../public/xander_logo.png";
+import x2 from "../public/xander_logo2.png";
 
 function Home() {
   const [current, setCurrent] = useState({ title: 0, image: 2 });
@@ -26,7 +28,7 @@ function Home() {
   const sections = ["first", "second", "third"];
   // const { width } = useWindowSize();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
     gsap.to(titlesRef.current, {
@@ -83,6 +85,7 @@ function Home() {
           <link rel="icon" href="/favicon.ico" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
         </Head>
+
         <motion.div
           key="innerdiv"
           exit={{ opacity: 0.5, translateY: -800 }}
@@ -93,10 +96,10 @@ function Home() {
           </ShapeContainer>
 
           <DogWrapper ref={imagesRef}>
-            {["/xander_logo.png", "/xander_logo.png", "/xander_logo2.png", "/xander_logo2.png"].map((pic, index) => {
+            {[x1, x1, x2, x2].map((pic, index) => {
               return (
                 <ImgContainer className="dog" key={index} focus={index === current.image}>
-                  <Img src={pic} alt="A picture of my dog" />
+                  <Img src={pic} height="600px" objectFit="contain" alt="A picture of my dog" placeholder="blur" />
                 </ImgContainer>
               );
             })}
@@ -230,7 +233,7 @@ const ImgContainer = styled(motion.div)`
   transition: all 0.5s;
 `;
 
-const Img = styled.img`
+const Img = styled(Image)`
   position: relative;
   z-index: 12;
   height: 600px;
@@ -258,7 +261,8 @@ const ShapeContainer = styled.div`
 
 const Foot = styled.div`
   position: fixed;
-  bottom: 10px;
+  z-index: 101;
+  bottom: 30px;
   width: 100vw;
   display: flex;
   flex-direction: column;

@@ -1,9 +1,0 @@
-@font-face {
-  font-family: "Cal Sans";
-  src: url("/fonts/calsans-semibold-webfont.woff2") format("woff2"),
-    url("/fonts/calsans-semibold-webfont.woff") format("woff");
-}
-@font-face {
-  font-family: "AllianceNo1-Light";
-  src: url("/fonts/AllianceNo1Light.woff2") format("woff2"), url("/fonts/AllianceNo1Light.woff") format("woff");
-}

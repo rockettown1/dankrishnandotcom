@@ -4,9 +4,9 @@ import styled from "styled-components";
 
 export default function Social() {
   const socialButtons = [
-    { icon: BsInstagram, link: "http://google.com" },
-    { icon: BsGithub, link: "http://google.com" },
-    { icon: BsLinkedin, link: "http://google.com" },
+    { icon: BsInstagram, link: "https://www.instagram.com/rockettown/" },
+    { icon: BsGithub, link: "https://github.com/rockettown1" },
+    { icon: BsLinkedin, link: "https://www.linkedin.com/in/dan-krishnan-1595a3172/" },
   ];
   return (
     <>

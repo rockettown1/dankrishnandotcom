@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
+import Head from "next/head";
 import withTransition from "../components/hocs/withTransition";
 import styled from "styled-components";
 import Image from "next/image";
@@ -15,49 +16,54 @@ function Hello() {
   const { width } = useWindowSize();
 
   return (
-    <Container
-      ref={conRef}
-      id="hellocontainer"
-      key="hellocontainer"
-      exit={{ opacity: 0, translateY: 1000 }}
-      transition={{ duration: 0.8, ease: "easeInOut" }}
-      width={width}
-    >
-      <div id="landing">
-        <Section id="hellofirst">
-          <motion.h1
-            key="hellotitle"
-            initial={{ opacity: 0, y: 400 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeInOut" }}
-          >
-            <motion.span id="hello">Hello</motion.span>{" "}
-            <motion.span
-              key="hellosentence"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, ease: "easeInOut", delay: 1 }}
+    <>
+      <Head>
+        <title>Hello there...</title>
+      </Head>
+      <Container
+        ref={conRef}
+        id="hellocontainer"
+        key="hellocontainer"
+        exit={{ opacity: 0, translateY: 1000 }}
+        transition={{ duration: 0.8, ease: "easeInOut" }}
+        width={width}
+      >
+        <div id="landing">
+          <Section id="hellofirst">
+            <motion.h1
+              key="hellotitle"
+              initial={{ opacity: 0, y: 400 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, ease: "easeInOut" }}
             >
-              I'm Dan. A <span className="highlight">software engineer</span>, designer and technical director based in
-              the UK.
-            </motion.span>
-          </motion.h1>
-        </Section>
-        <Img
-          src="xander_logo2.png"
-          key="bigxander"
-          initial={{ x: 300 }}
-          animate={{ x: 0 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 1, ease: "easeInOut" }}
-        />
-      </div>
-      {data.map((item, index) => {
-        return <MainSection key={index} section={item} />;
-      })}
-      <Section />
-      {/* <Footer isBottom={isBottom} /> */}
-    </Container>
+              <motion.span id="hello">Hello</motion.span>{" "}
+              <motion.span
+                key="hellosentence"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1, ease: "easeInOut", delay: 1 }}
+              >
+                I'm Dan. A <span className="highlight">software engineer</span>, designer and technical director based
+                in the UK.
+              </motion.span>
+            </motion.h1>
+          </Section>
+          <Img
+            src="xander_logo2.png"
+            key="bigxander"
+            initial={{ x: 300 }}
+            animate={{ x: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1, ease: "easeInOut" }}
+          />
+        </div>
+        {data.map((item, index) => {
+          return <MainSection key={index} section={item} />;
+        })}
+        {/* <Section /> */}
+        {/* <Footer isBottom={isBottom} /> */}
+      </Container>
+    </>
   );
 }
 

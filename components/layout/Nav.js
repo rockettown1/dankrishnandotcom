@@ -16,17 +16,6 @@ export default function Nav({ notHome, toggleTheme }) {
         <Social />
       </div>
       <div id="right">
-        <div
-          id="toggle-container"
-          role="button"
-          aria-label="darktheme toggle"
-          onClick={toggleTheme}
-          onKeyDown={(e) => handleKeyboardSelect(e, toggleTheme)}
-          tabindex="5"
-          aria-pressed={theme.name === "light"}
-        >
-          {theme.name === "light" ? <MdDarkMode size={35} /> : <MdLightMode size={35} />}
-        </div>
         {notHome && (
           <Link href="/">
             <a name="home">
@@ -34,6 +23,17 @@ export default function Nav({ notHome, toggleTheme }) {
             </a>
           </Link>
         )}
+        <div
+          id="toggle-container"
+          role="button"
+          aria-label="darktheme toggle"
+          onClick={toggleTheme}
+          onKeyDown={(e) => handleKeyboardSelect(e, toggleTheme)}
+          tabIndex="5"
+          aria-pressed={theme.name === "light"}
+        >
+          {theme.name === "light" ? <MdDarkMode size={35} /> : <MdLightMode size={35} />}
+        </div>
       </div>
     </Container>
   );

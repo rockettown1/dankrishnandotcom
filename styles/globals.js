@@ -18,6 +18,7 @@ export const GlobalStyle = createGlobalStyle`
 } */
 
 :root{
+  
   --primary_highlight:rgb(255, 172, 20);
   --primary_font: "Cal Sans";
   --secondary_font: "AllianceNo1-Light";
@@ -25,6 +26,13 @@ export const GlobalStyle = createGlobalStyle`
 * {
   box-sizing: border-box;
 }
+
+html {
+  /* background-color: ${({ theme }) => theme.background};
+    color: ${({ theme }) => theme.primary_text}; */
+    
+}
+
  body {
     padding: 0;
     margin: 0;

@@ -30,11 +30,12 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head lang="en">
-          <link rel="stylesheet" href="/styles/fonts.css" />
+          <link rel="stylesheet" href="fonts.css" />
         </Head>
         <body>
           <Main />
           <NextScript />
+          <script> </script>
         </body>
       </Html>
     );

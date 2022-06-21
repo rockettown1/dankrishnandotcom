@@ -87,7 +87,7 @@ const Block = styled.div`
   #name {
     font-size: 2vw;
     font-weight: 600;
-    margin-top: 20px;
+    margin-top: 30px;
   }
 
   #desc {

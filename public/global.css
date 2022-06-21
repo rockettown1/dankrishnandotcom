@@ -1,0 +1,41 @@
+:root {
+  --primary_highlight: rgb(255, 172, 20);
+  --primary_font: "Cal Sans";
+  --secondary_font: "AllianceNo1-Light";
+  --background: #080c11;
+  --secondary_background: #000;
+  --primary_text: #fff;
+}
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-synthesis: none;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: var(--background);
+  color: var(--primary_text);
+  font-family: var(--primary_font);
+  overscroll-behavior-y: none;
+  overscroll-behavior: none;
+  transition: all 0.5s linear;
+  overflow-x: hidden;
+  /* &::-webkit-scrollbar {
+    display: none;
+  } */
+}
+
+p {
+  font-family: var(--secondary_font);
+  font-size: 2.5vh !important;
+  line-height: 4vh !important;
+
+  @media screen and (max-width: 1300px) {
+    font-size: 17px !important;
+    line-height: 20px !important;
+  }
+}

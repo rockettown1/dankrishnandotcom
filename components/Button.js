@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useRouter } from "next/router";
 import { motion } from "framer-motion";
 
-export default function Button({ primary, secondary, link, children, handleClick }) {
+export default function Button({ primary, secondary, link, children, handleClick, toDisable }) {
   const router = useRouter();
   // const clickHandler = () => {
   //   router.push(link);
@@ -13,10 +13,12 @@ export default function Button({ primary, secondary, link, children, handleClick
     return (
       <Primary
         onClick={() => handleClick(link)}
-        initial={{ x: "-300px" }}
+        initial={{ x: "-400px" }}
         animate={{ x: 0 }}
         exit={{ x: "-300px" }}
         transition={{ duration: 0.5 }}
+        toDisable={toDisable}
+        disabled={toDisable}
       >
         {children}
       </Primary>
@@ -29,7 +31,13 @@ export default function Button({ primary, secondary, link, children, handleClick
     );
   } else {
     return (
-      <Standard onClick={() => handleClick(link)} initial={{ x: "-300px" }} animate={{ x: 0 }} exit={{ x: "-300px" }}>
+      <Standard
+        onClick={() => handleClick(link)}
+        initial={{ x: "-300px" }}
+        animate={{ x: 0 }}
+        exit={{ x: "-300px" }}
+        toDisable={toDisable}
+      >
         {children}
       </Standard>
     );
@@ -44,7 +52,7 @@ const Standard = styled(motion.button)`
   background-color: ${({ theme }) => theme.primary_text};
   color: ${({ theme }) => theme.background};
   transition: all 0.3s;
-  cursor: pointer;
+  cursor: ${({ toDisable }) => (toDisable ? "not-allowed" : "pointer")};
   box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.2);
   font-size: 17px;
   &:active {
@@ -55,6 +63,11 @@ const Standard = styled(motion.button)`
 const Primary = styled(Standard)`
   background-color: ${({ theme }) => theme.highlight};
   color: ${({ theme }) => theme.background};
+  ${({ toDisable, theme }) =>
+    toDisable &&
+    `background-color: ${theme.disabled};
+     color: ${theme.secondary_text};
+  `}
 `;
 
 const Secondary = styled(Standard)`

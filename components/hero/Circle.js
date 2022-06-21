@@ -21,9 +21,9 @@ export default function Circle({ isHovered }) {
 
 const Svg = styled.svg`
   fill: rgba(0, 0, 0, 0.05);
-  height: 1000px;
-  width: 1000px;
-  stroke: ${({ theme }) => (theme.name == "dark" ? "rgba(255, 255, 255, 0.03)" : theme.highlight)};
+  height: 900px;
+  width: 900px;
+  stroke: ${({ theme }) => theme.highlight};
   stroke-width: 2px;
   transition: all 0.3s;
 `;

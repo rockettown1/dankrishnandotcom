@@ -5,55 +5,54 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import Arrow from "../layout/Arrow.svg";
 import withTransition from "../hocs/withTransition";
+import { useTheme } from "styled-components";
+import { useRouter } from "next/router";
 
-export default function Section({ data, main, id, handleClick }) {
-  const { item, title, desc, link } = data;
+export default function Section({ data, main, id, handleClick, exitToMain }) {
+  const { item, title, desc, link, img } = data;
+
+  const notHome = useRouter().pathname !== "/";
 
   const image = {
     isMain: {
       width: ["50vw", "50vw", "40vw"],
       height: ["100vh", "50vh", "50vh"],
-      filter: ["brightness(40%)", "brightness(100%)", "brightness(100%)"],
+      filter: ["brightness(20%)", "brightness(100%)", "brightness(100%)"],
     },
     notMain: {
       width: ["40vw", "40vw", "50vw"],
       height: ["50vh", "100vh", "100vh"],
-      filter: ["brightness(100%)", "brightness(100%)", "brightness(40%)"],
+      filter: ["brightness(100%)", "brightness(100%)", "brightness(20%)"],
     },
   };
 
   return (
     <Container main={main} id={`section${id}`}>
-      <Details
-        key="details"
-        initial={!main && { opacity: 0 }}
-        animate={!main && { opacity: 1 }}
-        exit={main && { opacity: 0 }}
-        transition={{ delay: 0.5 }}
-      >
+      <Details>
         <h1 id="number">{item}</h1>
         <h1 id="title">{title}</h1>
         <p>{desc}</p>
         {!main && (
-          <Button primary link={link} handleClick={handleClick}>
-            Find out more
+          <Button primary link={link} handleClick={handleClick} toDisable={item !== "01" && item !== "02"}>
+            {item !== "01" && item !== "02" ? "Coming soon" : "Find out more"}
           </Button>
         )}
       </Details>
       <ImgWrapper
         key={`imgwrapper${id}`}
         main={main}
-        initial={!main && { height: "100vh", width: "50vw", filter: "brightness(40%)" }}
-        animate={!main && image.isMain}
-        exit={!main && image.notMain}
+        // initial={!main && { height: "100vh", width: "50vw", filter: "brightness(40%)" }}
+        // animate={!main && image.isMain}
+        //if the path is NOT home, and NOT beyond the projects list pages then animate:
+        exit={notHome && exitToMain && (!main ? image.notMain : image.isMain)}
         transition={{ duration: 1, ease: "easeInOut" }}
       >
-        <Image src="/sample.jpg" layout="fill" objectFit="cover" />
+        <Image src={img} layout="fill" objectFit="cover" />
       </ImgWrapper>
       {main && (
-        <ScrollPrompt initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+        <ScrollPrompt initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={notHome && exitToMain && { opacity: 0 }}>
           <div>
-            <h4>Scroll Down</h4>
+            <h4>Scroll</h4>
             <Arrow />
           </div>
         </ScrollPrompt>
@@ -63,11 +62,12 @@ export default function Section({ data, main, id, handleClick }) {
 }
 
 const Container = styled(motion.section)`
-  /* padding: ${({ main }) => (main ? "0 0 0 20px" : "20px")}; */
   padding-left: 20px;
   display: flex;
   align-items: center;
   height: 100vh;
+  background-color: transparent;
+  transition: all 1s;
   scroll-snap-align: start;
   position: relative;
   @media screen and (max-width: 1000px) {
@@ -80,7 +80,7 @@ const Container = styled(motion.section)`
 const Details = styled(motion.div)`
   height: 500px;
   width: 50%;
-  padding: 0 50px;
+  padding: 0 90px;
 
   #number {
     font-size: 100px;
@@ -98,7 +98,7 @@ const Details = styled(motion.div)`
     width: 100%;
     margin-top: -55px;
     z-index: 20;
-    padding: 0 30px;
+    padding: 0 50px;
 
     #number {
       font-size: 70px;
@@ -108,6 +108,7 @@ const Details = styled(motion.div)`
 
     #title {
       font-size: 45px;
+      line-height: 40px;
       margin: 0;
     }
   }
@@ -116,7 +117,7 @@ const Details = styled(motion.div)`
 const ImgWrapper = styled(motion.div)`
   height: ${({ main }) => (main ? "100vh" : "50vh")};
   width: ${({ main }) => (main ? "50vw" : "40vw")};
-  filter: ${({ main }) => (main ? "brightness(40%)" : "brightness(100%)")};
+  filter: ${({ main }) => (main ? "brightness(20%)" : "brightness(100%)")};
   overflow: hidden;
   position: relative;
   display: flex;

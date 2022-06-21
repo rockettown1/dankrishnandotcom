@@ -1,22 +1,45 @@
 import React from "react";
 import Section from "../../components/work/Section";
+import Link from "next/link";
 import { data } from "../../data/work";
 import styled from "styled-components";
-import Arrow from "../../components/layout/Arrow.svg";
-import { motion } from "framer-motion";
-import Link from "next/link";
 import { useRouter } from "next/router";
+import { motion } from "framer-motion";
+import Contents from "../../components/work/Contents";
+import { countSlash } from "../../utils/countSlash";
+import { client } from "../../utils/contentfulClient";
 
-export default function Fullstack() {
+export async function getStaticProps() {
+  const { items } = await client.getEntries({ content_type: "project", "fields.type": "fullstack" });
+  return {
+    props: {
+      projects: items,
+    },
+  };
+}
+
+export default function Fullstack({ projects }) {
+  const router = useRouter();
+  console.log(projects);
   return (
     <Container>
-      <Section data={data[0]} main />
-      <div style={{ height: "200vh" }}>
-        {" "}
-        <h1>More stuff</h1>
-      </div>
+      <Section data={data[0]} main exitToMain={countSlash(router.pathname) < 2} />
+      <Contents>
+        <h6>Selected Projects</h6>
+        {projects.map((project, index) => {
+          return (
+            <StyledLink href={`/work/fullstack/${project.fields.slug}`} key={index}>
+              <h1>{project.fields.name}</h1>
+            </StyledLink>
+          );
+        })}
+      </Contents>
     </Container>
   );
 }
 
-const Container = styled.div``;
+const Container = styled(motion.div)``;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`;

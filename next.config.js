@@ -20,6 +20,9 @@ async function redirects() {
 const nextConfig = {
   reactStrictMode: true,
   redirects,
+  images: {
+    domains: ["images.ctfassets.net"],
+  },
 };
 
 module.exports = nextConfig;
