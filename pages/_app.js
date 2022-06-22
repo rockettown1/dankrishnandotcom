@@ -11,7 +11,7 @@ import "../public/global.css";
 function MyApp({ Component, pageProps, router }) {
   //used to render the home icon in the layout
   const notHome = router.pathname !== "/";
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState("light");
 
   const themeToggler = () => {
     const root = window.document.documentElement;

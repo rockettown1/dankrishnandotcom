@@ -2,9 +2,9 @@
   --primary_highlight: rgb(255, 172, 20);
   --primary_font: "Cal Sans";
   --secondary_font: "AllianceNo1-Light";
-  --background: #080c11;
-  --secondary_background: #000;
-  --primary_text: #fff;
+  --background: #fff;
+  --secondary_background: #fffaf2;
+  --primary_text: rgb(43, 43, 43);
 }
 * {
   box-sizing: border-box;
@@ -31,11 +31,22 @@ body {
 
 p {
   font-family: var(--secondary_font);
-  font-size: 2.5vh !important;
-  line-height: 4vh !important;
+  font-size: 2.3vh !important;
+  line-height: 3.7vh !important;
 
   @media screen and (max-width: 1300px) {
     font-size: 17px !important;
     line-height: 20px !important;
   }
 }
+
+/*
+name: "light",
+  background: "#fff",
+  secondary_background: "#fffaf2",
+  primary_text: "rgb(43, 43, 43)",
+  secondary_text: "rgba(0,0,0,0.5)",
+  highlight: "rgb(44, 185, 232)",
+  disabled: "rgba(0,0,0,0.1)",
+
+*/

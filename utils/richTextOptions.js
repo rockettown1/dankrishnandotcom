@@ -5,9 +5,6 @@ import NextImage from "next/image";
 import ReactMarkdown from "react-markdown";
 import "prismjs/components/prism-jsx";
 import "prismjs/components/prism-typescript";
-// import "@deckdeckgo/highlight-code";
-// import { defineCustomElements as deckDeckGoHighlightElement } from "@deckdeckgo/highlight-code/dist/loader";
-// deckDeckGoHighlightElement();
 
 const Bold = ({ children }) => <BoldMark>{children}</BoldMark>;
 const Underline = ({ children }) => <UnderlineMark>{children}</UnderlineMark>;
@@ -88,6 +85,13 @@ export const richTextOptions = {
               <div id="shadow"></div>
             </div>
           </MocksContainer>
+        );
+      }
+      if (node.data.target.sys.contentType.sys.id === "videoWithPoster") {
+        return (
+          <Video controls poster={node.data.target.fields.poster.fields.file.url}>
+            <source src={node.data.target.fields.video.fields.file.url} type="video/mp4" />
+          </Video>
         );
       }
     },

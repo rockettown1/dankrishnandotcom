@@ -24,11 +24,7 @@ export default function Button({ primary, secondary, link, children, handleClick
       </Primary>
     );
   } else if (secondary) {
-    return (
-      <Secondary onClick={() => handleClick(link)} initial={{ x: "-300px" }} animate={{ x: 0 }} exit={{ x: "-300px" }}>
-        {children}
-      </Secondary>
-    );
+    return <Secondary onClick={() => handleClick(link)}>{children}</Secondary>;
   } else {
     return (
       <Standard
@@ -53,7 +49,6 @@ const Standard = styled(motion.button)`
   color: ${({ theme }) => theme.background};
   transition: all 0.3s;
   cursor: ${({ toDisable }) => (toDisable ? "not-allowed" : "pointer")};
-  box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.2);
   font-size: 17px;
   &:active {
     transform: scale(0.9);

@@ -162,7 +162,7 @@ const ShapeContainer = styled.div`
 const Img = styled(motion.img)`
   height: 90vh;
   margin-right: -25vw;
-  opacity: 0.2;
+  opacity: 0.8;
   @media screen and (max-width: 800px) {
     display: none;
   }

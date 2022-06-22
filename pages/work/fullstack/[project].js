@@ -3,8 +3,8 @@ import ProjectHero from "../../../components/work/ProjectHero";
 import { client } from "../../../utils/contentfulClient";
 import { richTextOptions } from "../../../utils/richTextOptions";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import NextImage from "next/image";
 import Markdown from "react-markdown";
+import FeaturedImage from "../../../components/work/project/FeaturedImage";
 
 export async function getStaticPaths() {
   const response = await client.getEntries({ content_type: "project", "fields.type": "fullstack" });
@@ -39,15 +39,7 @@ const Project = ({ project }) => {
     <Container>
       <ProjectHero project={project} />
       <div id="body-container">
-        <div id="img-container">
-          <Image
-            src={`http:${featuredImage.fields.file.url}`}
-            height={featuredImage.fields.file.details.image.height}
-            width={featuredImage.fields.file.details.image.width}
-            objectFit="contain"
-            alt={featuredImage.fields.description}
-          />
-        </div>
+        {featuredImage && <FeaturedImage project={project} />}
         <TextSection>
           <div id="heading">
             <h2>{textblock[0].fields.heading}</h2>
@@ -79,16 +71,6 @@ const Container = styled.section`
     align-items: center;
     justify-content: center;
     background-color: ${({ theme }) => theme.secondary_background};
-  }
-
-  #img-container {
-    position: relative;
-    height: 700px;
-    width: 120vw;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 `;
 
@@ -129,8 +111,4 @@ const TextSection = styled.section`
     width: 100%;
     padding-left: 40px;
   }
-`;
-
-const Image = styled(NextImage)`
-  width: 100%;
 `;

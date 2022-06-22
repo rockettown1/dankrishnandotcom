@@ -20,6 +20,7 @@ export default function Section({ section }) {
         <Block>
           <h3 id="name">{name}</h3>
           <p id="desc" dangerouslySetInnerHTML={{ __html: desc }}></p>
+          {subsec === "iii" && <Img src="pheasant.JPG" />}
         </Block>
       </Wrapper>
     </Container>
@@ -49,6 +50,7 @@ const Wrapper = styled.div`
     flex-direction: column;
   }
 `;
+
 const Block = styled.div`
   width: 50%;
   position: relative;
@@ -87,7 +89,7 @@ const Block = styled.div`
   #name {
     font-size: 2vw;
     font-weight: 600;
-    margin-top: 30px;
+    margin-top: 20px;
   }
 
   #desc {
@@ -123,4 +125,10 @@ const Block = styled.div`
       flex-wrap: wrap;
     }
   }
+`;
+
+const Img = styled.img`
+  width: 400px;
+  margin-left: 25px;
+  filter: brightness(1.3);
 `;

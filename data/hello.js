@@ -4,7 +4,7 @@ export const data = [
     subsec: "",
     title: "Introduction",
     name: "About this site",
-    desc: `This (probably over-engineered) website is designed as a place for me to keep track of my work, ideas and learning, but also to act as a bit of a playground to mess around with design ideas or front-end tech. I expect it to change often and will try to keep the content as up to date as possible.<br/><br/>Information on what tech was used to build it can be found in the main menu.`,
+    desc: `This (probably over-engineered) website is designed as a place for me to keep track of my work, ideas and learning, but also to act as a bit of a playground to mess around with design ideas or front-end tech. I expect it to change often and will try to keep the content as up to date as possible.<br/><br/>Information on what tech was used to build it can be found in the Frontend section of Work.`,
   },
   {
     sec: "02",
@@ -18,40 +18,28 @@ export const data = [
     subsec: "i",
     title: "What I do",
     name: "Technology",
-    desc: ` I currently spend most of my time in the world of JavaScript (TypeScript). The front-end work I do is mostly
-    written with React (client side, Next or Gatsby), most API work I do is written for
+    desc: ` I currently spend most of my time in the world of JavaScript (TypeScript). The front-end work I do is almost always
+    written with React (client side, Next or Gatsby), most backend/API work I do is written for
     the Node.js ecosystem (e.g Express servers), and the cloud systems I am
     most familiar with are built with AWS services.
     <br /> <br />
-    That being said, I am consistently trying to work with different technologies and have spent a significant
-    amount time with Go, C# dotnet. For a more comprehensive list of tech I've worked with  click <span class="underline">here</span>.`,
+    That being said, I am consistently trying to work with different technologies, and in the past have touched on different languages as Go, Java, Python & Swift. My day to day however is at the moment JS/TS (I'd be happy to change that though!). For a more comprehensive list of tech I've worked with  click <span class="underline">here</span>.`,
   },
   {
     sec: "03",
     subsec: "ii",
     title: "What I do",
     name: "Education",
-    desc: ` I currently spend most of my time in the JavaScript world. Most of the front-end work I do is often
-    written with
-    <span class="highlight"> React</span> (client side, Next or Gatsby), most API work I do is written for
-    the <span class="highlight">Node.js</span> ecosystem (REST or GraphQL), and the cloud systems I am
-    most familiar with are built with <span class="highlight">AWS</span> services.
-    <br /> <br />
-    That being said, I am consistently trying to work with different technologies and have spent a significant
-    amount time with Go, C# dotnet and <span class="highlight">TypeScript</span>.`,
+    desc: `I have spent a lot of my professional life in and around education, having worked at both university and high school level. My last teaching position was a Teacher of Physics (and sometimes Maths) at a grammar school in the south of Manchester (Years 7 - 13 UK == Grades 6 - 12 US).
+    <br/><br/>
+    Upon deciding to change careers into software engineering I joined Code Nation (a private training school) as a Senior Software Instructor, which seemed like a natural step as I was still able to teach (which I enjoyed a lot) but would be surrounded by code on a daily basis (which is what I wanted). I then moved from a senior instructor, to the managing instructor, and then to the Technical Director role where I now primarily work on curriculum design, internal software engineering and working with clients on talent needs. 
+    `,
   },
   {
     sec: "03",
     subsec: "iii",
     title: "What I do",
     name: "Other creative stuff",
-    desc: ` I currently spend most of my time in the JavaScript world. Most of the front-end work I do is often
-    written with
-    <span class="highlight"> React</span> (client side, Next or Gatsby), most API work I do is written for
-    the <span class="highlight">Node.js</span> ecosystem (REST or GraphQL), and the cloud systems I am
-    most familiar with are built with <span class="highlight">AWS</span> services.
-    <br /> <br />
-    That being said, I am consistently trying to work with different technologies and have spent a significant
-    amount time with Go, C# dotnet and <span class="highlight">TypeScript</span>.`,
+    desc: ` In the (near) future I hope to have a page dedicated to artistic endeavours, but for now here's a watercolour pheasant 🤷‍♂️`,
   },
 ];

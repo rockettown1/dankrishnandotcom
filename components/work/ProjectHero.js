@@ -1,9 +1,15 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { BiSubdirectoryRight } from "react-icons/bi";
+import Button from "../Button";
 
 const ProjectHero = ({ project }) => {
   console.log(project);
+
+  const openProjectNewTab = (link) => {
+    parent.open(link);
+  };
+
   return (
     <Container>
       <div id="wrapper">
@@ -39,6 +45,18 @@ const ProjectHero = ({ project }) => {
         <motion.div id="col2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
           <h1>{project.fields.headline}</h1>
           <p>{project.fields.description}</p>
+          <Links>
+            {project.fields.link && (
+              <Button secondary handleClick={openProjectNewTab} link={project.fields.link}>
+                Launch Project
+              </Button>
+            )}
+            {project.fields.github && (
+              <Button secondary handleClick={openProjectNewTab} link={project.fields.github}>
+                View Source
+              </Button>
+            )}
+          </Links>
         </motion.div>
       </div>
     </Container>
@@ -105,5 +123,13 @@ const Sub = styled.div`
   align-items: center;
   h4 {
     margin: 2px !important;
+  }
+`;
+
+const Links = styled.div`
+  margin-top: 50px;
+  display: flex;
+  button {
+    margin-right: 30px;
   }
 `;

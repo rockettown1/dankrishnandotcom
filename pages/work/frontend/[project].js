@@ -3,8 +3,8 @@ import ProjectHero from "../../../components/work/ProjectHero";
 import { client } from "../../../utils/contentfulClient";
 import { richTextOptions } from "../../../utils/richTextOptions";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import NextImage from "next/image";
 import Markdown from "react-markdown";
+import FeaturedImage from "../../../components/work/project/FeaturedImage";
 
 export async function getStaticPaths() {
   const response = await client.getEntries({ content_type: "project", "fields.type": "frontend" });
@@ -34,31 +34,21 @@ export async function getStaticProps(ctx) {
 }
 
 const Project = ({ project }) => {
+  const { featuredImage, textblock, body } = project.fields;
   return (
-    <Container project={project}>
+    <Container>
       <ProjectHero project={project} />
       <div id="body-container">
-        {project.fields.featuredImage && (
-          <div id="img-container">
-            <Image
-              src={`http:${project.fields.featuredImage.fields.file.url}`}
-              height={project.fields.featuredImage.fields.file.details.image.height}
-              width={project.fields.featuredImage.fields.file.details.image.width}
-              objectFit="contain"
-              alt={project.fields.featuredImage.fields.description}
-            />
-            <span id="shadow"></span>
-          </div>
-        )}
+        {featuredImage && <FeaturedImage project={project} />}
         <TextSection>
           <div id="heading">
-            <h2>{project.fields.textblock[0].fields.heading}</h2>
+            <h2>{textblock[0].fields.heading}</h2>
           </div>
           <div id="paragraph">
-            <Markdown>{project.fields.textblock[0].fields.paragraph}</Markdown>
+            <Markdown>{textblock[0].fields.paragraph}</Markdown>
           </div>
         </TextSection>
-        <Body>{documentToReactComponents(project.fields.body, richTextOptions)}</Body>
+        <Body>{documentToReactComponents(body, richTextOptions)}</Body>
       </div>
     </Container>
   );
@@ -82,26 +72,6 @@ const Container = styled.section`
     align-items: center;
     justify-content: center;
     background-color: ${({ theme }) => theme.secondary_background};
-  }
-
-  #img-container {
-    position: relative;
-    height: 700px;
-    width: 100vw;
-    background: ${({ project }) => project.fields.backgroundColor};
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    #shadow {
-      height: 80px;
-      width: ${({ project }) => `${project.fields.featuredImage.fields.file.details.image.width - 100}px`};
-      background: radial-gradient(rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.05) 60%);
-      border-radius: 50%;
-      transform: rotateX(60deg);
-      filter: blur(10px);
-    }
   }
 `;
 
@@ -142,8 +112,4 @@ const TextSection = styled.section`
     width: 100%;
     padding-left: 40px;
   }
-`;
-
-const Image = styled(NextImage)`
-  width: 100%;
 `;
