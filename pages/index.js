@@ -1,4 +1,4 @@
-import { useRef, useLayoutEffect, useState, Profiler } from "react";
+import { useRef, useLayoutEffect, useState, useEffect } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,16 +13,10 @@ import x2 from "../public/xander_logo2.png";
 
 function Home() {
   const [current, setCurrent] = useState({ title: 0, image: 2 });
-  const [currentSection, setCurrentSection] = useState("second");
-  const [progress, setProgress] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const conRef = useRef(null);
   const titlesRef = useRef(null);
-  const sectionRef = useRef(null);
-  const lastRef = useRef(null);
   const imagesRef = useRef(null);
-  const sections = ["first", "second", "third"];
-  // const { width } = useWindowSize();
 
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);

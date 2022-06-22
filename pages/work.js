@@ -13,7 +13,6 @@ function Work() {
   const [position, setPosition] = useState(null);
   const { width } = useWindowSize();
   const router = useRouter();
-  const theme = useTheme();
   const container = useRef(null);
   const element = container.current;
 

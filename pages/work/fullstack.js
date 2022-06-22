@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import { motion } from "framer-motion";
 import Contents from "../../components/work/Contents";
 import { countSlash } from "../../utils/countSlash";
-import { client } from "../../utils/contentfulClient";
+import { client } from "../../cms/contentfulClient";
 
 export async function getStaticProps() {
   const { items } = await client.getEntries({ content_type: "project", "fields.type": "fullstack" });
