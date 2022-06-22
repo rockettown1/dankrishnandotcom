@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import ProjectHero from "../../../components/work/ProjectHero";
-import { client } from "../../../utils/contentfulClient";
+import { client } from "../../../cms/contentfulClient";
 import { richTextOptions } from "../../../utils/richTextOptions";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import Markdown from "react-markdown";
