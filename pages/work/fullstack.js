@@ -26,7 +26,7 @@ export default function Fullstack({ projects }) {
       <Section data={data[0]} main exitToMain={countSlash(router.pathname) < 2} />
       <Contents>
         <h6>Selected Projects</h6>
-        {projects.map((project, index) => {
+        {projects.reverse().map((project, index) => {
           return (
             <StyledLink href={`/work/fullstack/${project.fields.slug}`} key={index}>
               <h1>{project.fields.name}</h1>

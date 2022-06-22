@@ -164,7 +164,7 @@ const Ol = styled.ol`
   }
 `;
 const Ul = styled.ul`
-  padding-left: 20px;
+  /* padding-left: 20px; */
   p {
     margin: 0;
   }

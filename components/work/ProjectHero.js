@@ -66,7 +66,7 @@ const ProjectHero = ({ project }) => {
 export default ProjectHero;
 
 const Container = styled.section`
-  height: 80vh;
+  min-height: 80vh;
   width: 100vw;
   display: flex;
   justify-content: center;
@@ -88,7 +88,7 @@ const Container = styled.section`
   }
   #col2 {
     width: 40vw;
-    height: 400px;
+    min-height: 400px;
 
     h1 {
       font-size: 5vh;
