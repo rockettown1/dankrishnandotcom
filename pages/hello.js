@@ -1,18 +1,24 @@
-import React, { useState, useEffect, useRef, useContext } from "react";
+import React, { useRef } from "react";
 import Head from "next/head";
-import withTransition from "../components/hocs/withTransition";
 import styled from "styled-components";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import MainSection from "../components/hello/Section";
 import { data } from "../data/hello.js";
-import { useBottom } from "../utils/useBottom";
+import { client } from "../cms/contentfulClient";
 import { useWindowSize } from "../utils/useWindowSize";
-import Footer from "../components/layout/Footer";
 
-function Hello() {
+export async function getStaticProps() {
+  const response = await client.getEntries({ content_type: "techList" });
+  return {
+    props: {
+      techList: response.items[0],
+    },
+  };
+}
+
+function Hello({ techList }) {
   const conRef = useRef(null);
-  // const isBottom = useBottom(conRef);
   const { width } = useWindowSize();
 
   return (
@@ -43,8 +49,8 @@ function Hello() {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1, ease: "easeInOut", delay: 1 }}
               >
-                I'm Dan. A <span className="highlight">software engineer</span>, designer and technical director based
-                in the UK.
+                , I'm Dan. A <span className="highlight">software engineer</span> and technical director based in the
+                UK.
               </motion.span>
             </motion.h1>
           </Section>
@@ -58,10 +64,11 @@ function Hello() {
           />
         </div>
         {data.map((item, index) => {
-          return <MainSection key={index} section={item} />;
+          return <MainSection key={index} section={item} techList={techList} />;
         })}
-        {/* <Section /> */}
-        {/* <Footer isBottom={isBottom} /> */}
+        {/* <Section>
+          <Tech techList={techList} />
+        </Section> */}
       </Container>
     </>
   );

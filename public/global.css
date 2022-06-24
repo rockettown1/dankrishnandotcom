@@ -5,6 +5,7 @@
   --background: #fff;
   --secondary_background: #fffaf2;
   --primary_text: rgb(43, 43, 43);
+  --secondary_text: #adadad;
 }
 * {
   box-sizing: border-box;
@@ -24,6 +25,7 @@ body {
   overscroll-behavior: none;
   transition: all 0.5s linear;
   overflow-x: hidden;
+
   /* &::-webkit-scrollbar {
     display: none;
   } */
@@ -31,6 +33,7 @@ body {
 
 p {
   font-family: var(--secondary_font);
+  color: var(--secondary_text);
   font-size: 2.3vh !important;
   line-height: 3.7vh !important;
 

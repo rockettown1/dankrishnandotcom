@@ -24,6 +24,7 @@ export default function Social() {
 const External = styled.a`
   text-decoration: none;
   color: inherit;
+  height: 20px;
   &::focus,
   &::active {
     text-decoration: none;

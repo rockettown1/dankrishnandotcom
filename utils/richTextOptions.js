@@ -19,7 +19,10 @@ export const richTextOptions = {
   },
   renderNode: {
     [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
-    [BLOCKS.HEADING_1]: (node, children) => <Heading1>{children}</Heading1>,
+    [BLOCKS.HEADING_1]: (node, children) => {
+      if (children[0] === "Technical Discussion") return <Heading1 id="discuss">{children}</Heading1>;
+      return <Heading1>{children}</Heading1>;
+    },
     [BLOCKS.HEADING_2]: (node, children) => <Heading2>{children}</Heading2>,
     [BLOCKS.HEADING_3]: (node, children) => <Heading3>{children}</Heading3>,
     [BLOCKS.HEADING_4]: (node, children) => <Heading4>{children}</Heading4>,
@@ -225,15 +228,15 @@ const SubText = styled.section`
 
 const MocksContainer = styled.section`
   position: relative;
-  padding-left: 35vw;
+  padding-left: 45vw;
   padding-bottom: 50px;
   display: flex;
   background-color: ${({ theme }) => theme.background};
 
   #desktop-container {
     position: relative;
-    height: 1200px;
-    width: 1700px;
+    height: 1100px;
+    width: 1500px;
   }
 
   #mobile-container {

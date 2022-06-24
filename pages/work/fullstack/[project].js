@@ -57,8 +57,8 @@ const Project = ({ project }) => {
 export default Project;
 
 const Container = styled.section`
-  height: 100vh;
   width: 100vw;
+
   p {
     font-size: 20px !important;
     line-height: 30px !important;

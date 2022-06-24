@@ -57,7 +57,6 @@ const Project = ({ project }) => {
 export default Project;
 
 const Container = styled.section`
-  height: 100vh;
   width: 100vw;
 
   p {

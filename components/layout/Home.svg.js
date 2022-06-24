@@ -31,7 +31,7 @@ const Container = styled.div`
   transition: background-color 1s;
 
   path {
-    stroke: ${({ use }) => use && "rgba(255,255,255,0.5)"};
+    stroke: ${({ theme, use }) => use && theme.secondary_text};
   }
   @media screen and (max-width: 800px) {
     height: 30px;

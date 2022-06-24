@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { data } from "../../data/hello";
+import Tech from "./Tech";
+import { motion } from "framer-motion";
 
-export default function Section({ section }) {
+export default function Section({ section, techList }) {
+  const [tech, setTech] = useState(false);
   const { sec, subsec, title, name, desc } = section;
   return (
     <Container>
@@ -19,7 +21,28 @@ export default function Section({ section }) {
         </Block>
         <Block>
           <h3 id="name">{name}</h3>
-          <p id="desc" dangerouslySetInnerHTML={{ __html: desc }}></p>
+          {subsec === "i" && tech ? (
+            <Tech techList={techList} setTech={setTech} />
+          ) : (
+            <motion.p
+              initial={{ x: -100 }}
+              animate={{ x: 0 }}
+              exit={{ x: -100, opacity: 0 }}
+              id="desc"
+              dangerouslySetInnerHTML={{ __html: desc }}
+            ></motion.p>
+          )}
+
+          {subsec === "i" && !tech && (
+            <p>
+              For a more comprehensive list of tech I've worked with click{" "}
+              <span onClick={() => setTech((prev) => !prev)} className="underline">
+                here
+              </span>
+              .
+            </p>
+          )}
+
           {subsec === "iii" && <Img src="pheasant.JPG" />}
         </Block>
       </Wrapper>

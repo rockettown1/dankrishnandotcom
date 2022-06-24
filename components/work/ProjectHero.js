@@ -1,7 +1,10 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { BiSubdirectoryRight } from "react-icons/bi";
+import { BsArrowDown } from "react-icons/bs";
 import Button from "../Button";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 const ProjectHero = ({ project }) => {
   console.log(project);
@@ -41,6 +44,12 @@ const ProjectHero = ({ project }) => {
               );
             })}
           </ul>
+          <Link href="#discuss" style={{ textDecoration: "none" }} replace={true}>
+            <Jump>
+              <h5>Jump to Technical Discussion</h5>
+              <BsArrowDown />
+            </Jump>
+          </Link>
         </motion.div>
         <motion.div id="col2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
           <h1>{project.fields.headline}</h1>
@@ -131,5 +140,19 @@ const Links = styled.div`
   display: flex;
   button {
     margin-right: 30px;
+  }
+`;
+
+const Jump = styled.div`
+  display: flex;
+  align-items: center;
+  color: ${({ theme }) => theme.highlight};
+
+  h5 {
+    margin-right: 10px;
+    &:hover {
+      text-decoration: underline;
+      cursor: pointer;
+    }
   }
 `;

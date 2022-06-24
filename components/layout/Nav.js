@@ -3,17 +3,36 @@ import styled from "styled-components";
 import HomeSVG from "./Home.svg";
 import Link from "next/link";
 import { useTheme } from "styled-components";
-import { BsInstagram, BsGithub, BsLinkedin, BsInfoCircle } from "react-icons/bs";
+import { useRouter } from "next/router";
 import { MdLightMode, MdDarkMode } from "react-icons/md";
 import { handleKeyboardSelect } from "../../utils/handleKeyboardSelect";
 import Social from "./Social";
 
 export default function Nav({ notHome, toggleTheme }) {
+  const router = useRouter();
   const theme = useTheme();
+  let position = "fixed";
+
+  switch (router.pathname) {
+    case "/":
+    case "/work":
+      position = "fixed";
+      break;
+    default:
+      position = "absolute";
+  }
+
   return (
-    <Container>
+    <Container position={position}>
       <div id="icon-container">
         <Social />
+        <Link href="/hello" scroll={false}>
+          <Option active={router.pathname.includes("hello")}>Hello</Option>
+        </Link>
+        <Link href="/work" scroll={false}>
+          <Option active={router.pathname.includes("work")}>Work</Option>
+        </Link>
+        <Option>Blog</Option>
       </div>
       <div id="right">
         {notHome && (
@@ -40,7 +59,7 @@ export default function Nav({ notHome, toggleTheme }) {
 }
 
 const Container = styled.nav`
-  position: fixed;
+  position: ${({ position }) => position};
   width: 100vw;
   height: 100px;
   z-index: 150;
@@ -49,15 +68,24 @@ const Container = styled.nav`
   justify-content: space-between;
   box-sizing: border-box;
   align-items: center;
+  transition: background-color 0.5s;
 
   #icon-container {
-    font-size: 30px;
-    width: 150px;
+    font-size: 20px;
+    width: 400px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-left: 20px;
     color: ${({ theme }) => theme.secondary_text};
+
+    h2 {
+      margin: 0;
+      &:hover {
+        color: ${({ theme }) => theme.highlight};
+        cursor: pointer;
+      }
+    }
   }
 
   #toggle-container {
@@ -89,4 +117,9 @@ const Container = styled.nav`
     padding-right: 15px;
     height: 10vh;
   }
+`;
+
+const Option = styled.h2`
+  color: ${({ theme, active }) => (active ? theme.primary_text : theme.secondary_text)};
+  border-bottom: 1px solid ${({ theme, active }) => (active ? theme.primary_text : "none")};
 `;

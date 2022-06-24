@@ -12,7 +12,7 @@ export default function Layout({ children, notHome, toggleTheme }) {
     Prism.highlightAll();
   }, []);
   return (
-    <div>
+    <div style={{ scrollBehavior: "smooth" }}>
       <Nav notHome={notHome} toggleTheme={() => (theme === "dark" ? toggleTheme("light") : toggleTheme("dark"))} />
       {children}
     </div>
