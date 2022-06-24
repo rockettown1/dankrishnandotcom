@@ -4,7 +4,7 @@ export default function Blog() {
   return (
     <Container>
       <h1>Blog Page</h1>
-      <p>Content will go here</p>
+      <p>Testing release-please github action.</p>
     </Container>
   );
 }
