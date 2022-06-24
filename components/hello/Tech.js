@@ -33,7 +33,7 @@ export default function Tech({ techList, setTech }) {
           );
         })}
       </Container>
-      <div style={{ display: "flex", justifyContent: "flex-end", paddingRight: "100px" }}>
+      <div style={{ display: "flex", justifyContent: "flex-end", paddingRight: "150px" }}>
         <Return onClick={() => setTech(false)}>
           <AiFillCloseCircle size={35} style={{}} />
         </Return>
