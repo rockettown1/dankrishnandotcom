@@ -32,7 +32,9 @@ export default function Nav({ notHome, toggleTheme }) {
         <Link href="/work" scroll={false}>
           <Option active={router.pathname.includes("work")}>Work</Option>
         </Link>
-        <Option>Blog</Option>
+        <Link href="/blog" scroll={false}>
+          <Option active={router.pathname.includes("blog")}>Blog</Option>
+        </Link>
       </div>
       <div id="right">
         {notHome && (
