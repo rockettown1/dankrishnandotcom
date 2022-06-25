@@ -25,10 +25,6 @@ body {
   overscroll-behavior: none;
   transition: all 0.5s linear;
   overflow-x: hidden;
-
-  /* &::-webkit-scrollbar {
-    display: none;
-  } */
 }
 
 p {
@@ -43,13 +39,18 @@ p {
   }
 }
 
-/*
-name: "light",
-  background: "#fff",
-  secondary_background: "#fffaf2",
-  primary_text: "rgb(43, 43, 43)",
-  secondary_text: "rgba(0,0,0,0.5)",
-  highlight: "rgb(44, 185, 232)",
-  disabled: "rgba(0,0,0,0.1)",
+h1 {
+  font-size: 50px;
+}
 
-*/
+li {
+  font-family: var(--secondary_font);
+  color: var(--secondary_text);
+  font-size: 2vh !important;
+  line-height: 3.4vh !important;
+
+  @media screen and (max-width: 1300px) {
+    font-size: 17px !important;
+    line-height: 20px !important;
+  }
+}

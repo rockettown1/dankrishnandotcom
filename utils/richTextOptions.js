@@ -33,11 +33,8 @@ export const richTextOptions = {
         <p>{children}</p>
       </Ol>
     ),
-    [BLOCKS.UL_LIST]: (node, children) => (
-      <Ul>
-        <p>{children}</p>
-      </Ul>
-    ),
+    [BLOCKS.UL_LIST]: (node, children) => <Ul>{children}</Ul>,
+    [BLOCKS.LIST_ITEM]: (node, children) => <li>{children}</li>,
     [BLOCKS.QUOTE]: (node, children) => <Quote>{children}</Quote>,
     [BLOCKS.EMBEDDED_ENTRY]: (node) => {
       if (node.data.target.fields.code) {
@@ -167,8 +164,10 @@ const Ol = styled.ol`
   }
 `;
 const Ul = styled.ul`
-  /* padding-left: 20px; */
+  padding-left: 150px;
+  width: 100%;
   p {
+    color: red;
     margin: 0;
   }
 `;
