@@ -11,7 +11,7 @@ export const data = [
     subsec: "",
     title: "Who am I",
     name: "Dan Krishnan",
-    desc: `I'm a self-taught software engineer, a qualified teacher and a bit of a maths and science geek. Sometimes I'll pick up a paintbrush and think I'm an artist, and I have a problem with doing too many things at once. I enjoy anything that forces me to think, learn and solve problems. I currently work at a coding bootcamp where I focus on curriculum design, lead internal software projects and work with clients on their staff training needs.<br /> <br / > I live in Chester with my wife and have a dog called Xander (a long-haired Weimaraner because I'm sure you were wondering). I spend most of my time either learning new things, solving coding problems, building things, travelling or being walked by my dog 🐶`,
+    desc: `I'm a self-taught software engineer, a qualified teacher and a bit of a maths and science geek. Sometimes I'll pick up a paintbrush and think I'm an artist, sometimes I'll pick up a skateboard and forget my knees are 36 years old, and sometimes I'll have a problem with doing too many things at once. I enjoy anything that forces me to think, learn and solve problems. I currently work at a coding bootcamp where I focus on curriculum design, lead internal software projects and work with clients on their staff training needs.<br /> <br / > I live in Chester with my wife and have a dog called Xander (a long-haired Weimaraner because I'm sure you were wondering). I spend most of my time either learning new things, solving coding problems, building things, travelling or being walked by my dog 🐶`,
   },
   {
     sec: "03",
