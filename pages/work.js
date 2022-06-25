@@ -59,11 +59,7 @@ function Work() {
 
   return (
     <Container width={width} ref={container}>
-      <motion.div
-      // initial={prevPath == "/" && { y: "100vh" }}
-      // animate={prevPath == "/" && { y: 0 }}
-      // transition={{ duration: 0.8 }}
-      >
+      <motion.div>
         {data.map((data, index) => (
           <Section data={data} key={index} id={index + 1} handleClick={handleFindMore} exitToMain={true} />
         ))}

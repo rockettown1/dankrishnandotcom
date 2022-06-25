@@ -104,7 +104,7 @@ function Home() {
                     transition={{ duration: 0.3, ease: "easeInOut", delay: 0.6 }}
                     ready={index === current.title}
                   >
-                    <StyledLink scroll={false} href={`/${title.toLowerCase()}`} passHref>
+                    <Link scroll={false} href={`/${title.toLowerCase()}`} passHref>
                       <a>
                         <h1
                           onMouseOver={() => setIsHovered(true)}
@@ -114,7 +114,7 @@ function Home() {
                           {title}
                         </h1>
                       </a>
-                    </StyledLink>
+                    </Link>
                   </Sec>
                 );
               } else {
@@ -232,9 +232,9 @@ const Img = styled(Image)`
   }
 `;
 
-const StyledLink = styled(Link)`
-  width: max-content;
-`;
+// const StyledLink = styled(Link)`
+//   width: max-content;
+// `;
 
 const ShapeContainer = styled.div`
   width: 100vw;

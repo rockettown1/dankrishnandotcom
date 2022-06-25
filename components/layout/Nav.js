@@ -27,13 +27,34 @@ export default function Nav({ notHome, toggleTheme }) {
       <div id="icon-container">
         <Social />
         <Link href="/hello" scroll={false}>
-          <Option active={router.pathname.includes("hello")}>Hello</Option>
+          <Option
+            active={router.pathname.includes("hello")}
+            tabIndex="1"
+            role="link"
+            onKeyDown={(e) => handleKeyboardSelect(e, () => router.push("/hello"))}
+          >
+            Hello
+          </Option>
         </Link>
         <Link href="/work" scroll={false}>
-          <Option active={router.pathname.includes("work")}>Work</Option>
+          <Option
+            active={router.pathname.includes("work")}
+            tabIndex="1"
+            role="link"
+            onKeyDown={(e) => handleKeyboardSelect(e, () => router.push("/work"))}
+          >
+            Work
+          </Option>
         </Link>
         <Link href="/blog" scroll={false}>
-          <Option active={router.pathname.includes("blog")}>Blog</Option>
+          <Option
+            active={router.pathname.includes("blog")}
+            tabIndex="1"
+            role="link"
+            onKeyDown={(e) => handleKeyboardSelect(e, () => router.push("/blog"))}
+          >
+            Blog
+          </Option>
         </Link>
       </div>
       <div id="right">
@@ -51,7 +72,7 @@ export default function Nav({ notHome, toggleTheme }) {
           onClick={toggleTheme}
           onKeyDown={(e) => handleKeyboardSelect(e, toggleTheme)}
           tabIndex="5"
-          aria-pressed={theme.name === "light"}
+          aria-pressed={theme.name === "dark"}
         >
           {theme.name === "light" ? <MdDarkMode size={35} /> : <MdLightMode size={35} />}
         </div>

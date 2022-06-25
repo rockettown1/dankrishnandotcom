@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest --watch"
+    "test": "jest --watch --silent --verbose",
+    "cypress:open": "cypress open"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^15.12.1",
@@ -28,25 +29,20 @@
     "styled-components": "^5.3.3"
   },
   "devDependencies": {
+    "@babel/core": "^7.18.5",
     "@babel/preset-env": "^7.18.2",
     "@babel/preset-react": "^7.17.12",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^14.2.1",
+    "babel-jest": "^28.1.1",
     "babel-plugin-styled-components": "^2.0.6",
+    "chai-colors": "^1.0.1",
+    "cypress": "^10.2.0",
     "eslint": "8.10.0",
     "eslint-config-next": "12.1.0",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^28.1.1",
     "jest-environment-jsdom": "^28.1.1"
-  },
-  "jest": {
-    "testEnvironment": "jsdom",
-    "setupFilesAfterEnv": [
-      "<rootDir>/jest.setup.js"
-    ],
-    "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|svg)$": "<rootDir>/src/__mocks__/fileMock.js",
-      "\\.(css|less)$": "<rootDir>/src/__mocks__/styleMock.js"
-    }
   }
 }

@@ -2,14 +2,10 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { AiFillCloseCircle } from "react-icons/ai";
+import { sortTech } from "../../utils/sortTech";
 
 export default function Tech({ techList, setTech }) {
-  const sortedTech = new Array(6).fill().map(() => []);
-  techList.fields.tech.forEach((tech) => {
-    sortedTech[tech.metadata.tags[0].sys.id.split("h")[1]].push(tech);
-  });
-
-  console.log(sortedTech);
+  const tech = sortTech(techList);
 
   return (
     <Wrapper initial={{ x: 100 }} animate={{ x: 0 }} exit={{ x: 100, opacity: 0 }}>
@@ -26,7 +22,7 @@ export default function Tech({ techList, setTech }) {
         {new Array(6).fill().map((_, index) => {
           return (
             <div key={index} id={`mid${index}`}>
-              {sortedTech[index].map((item) => (
+              {tech[index].map((item) => (
                 <Image key={item.fields.description} src={item.fields.file.url} />
               ))}
             </div>
