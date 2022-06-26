@@ -23,7 +23,7 @@ export default function Nav({ notHome, toggleTheme }) {
   }
 
   return (
-    <Container position={position}>
+    <Container position={position} data-testid="nav">
       <div id="icon-container">
         <Social />
         <Link href="/hello" scroll={false}>
