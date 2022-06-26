@@ -9,7 +9,7 @@ async function redirects() {
         {
           type: "header",
           key: "User-Agent",
-          value: ".*(Mobile|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini).*",
+          value: ".*(Mobile|Android|webOS|iPhone|iPad|iPod|iOS|BlackBerry|IEMobile|Opera Mini).*",
         },
       ],
       permanent: true,
