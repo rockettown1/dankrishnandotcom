@@ -4,6 +4,7 @@ import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "../styles/themes";
 import Layout from "../components/layout/Layout";
 import { AnimatePresence } from "framer-motion";
+import { clearScrollposition } from "../utils/clearScrollposition";
 
 import "../public/fonts.css";
 import "../public/global.css";
@@ -21,9 +22,7 @@ function MyApp({ Component, pageProps, router }) {
 
   //this effect resets the stored scroll position for the work route when the user navigates to a page that doesn't include work
   useEffect(() => {
-    if (router.pathname.search(/work/i) == -1) {
-      sessionStorage.removeItem("scrollPosition");
-    }
+    clearScrollposition(router.pathname, sessionStorage);
   }, [router.pathname]);
 
   return (

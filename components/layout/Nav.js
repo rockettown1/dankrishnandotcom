@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import HomeSVG from "./Home.svg";
+import HomeSVG from "./Home";
 import Link from "next/link";
 import { useTheme } from "styled-components";
 import { useRouter } from "next/router";
