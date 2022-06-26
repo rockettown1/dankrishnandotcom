@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/rockettown1/dankrishnandotcom/compare/v1.1.0...v1.1.1) (2022-06-26)
+
+
+### Bug Fixes
+
+* **pages:** modified pageExtension rule in next config so I could include a tests folder under the pages directory ([62aeaf9](https://github.com/rockettown1/dankrishnandotcom/commit/62aeaf97cc1c2da946789bd5a8e0e42f45c236b2))
+
 ## [1.1.0](https://github.com/rockettown1/dankrishnandotcom/compare/v1.0.1...v1.1.0) (2022-06-24)
 
 
