@@ -246,5 +246,3 @@ const MocksContainer = styled.section`
     bottom: 150px;
   }
 `;
-
-const Desktop = styled(NextImage)``;

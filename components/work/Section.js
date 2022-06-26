@@ -1,11 +1,10 @@
-import React, { useRef } from "react";
+import React from "react";
 import styled from "styled-components";
 import Button from "../Button";
 import Image from "next/image";
-import { AnimatePresence, motion } from "framer-motion";
-import Arrow from "../layout/Arrow.svg";
-import withTransition from "../hocs/withTransition";
-import { useTheme } from "styled-components";
+import { motion } from "framer-motion";
+import Arrow from "../layout/Arrow";
+
 import { useRouter } from "next/router";
 
 export default function Section({ data, main, id, handleClick, exitToMain }) {

@@ -4,14 +4,10 @@ import { useRouter } from "next/router";
 import { motion } from "framer-motion";
 
 export default function Button({ primary, secondary, link, children, handleClick, toDisable }) {
-  const router = useRouter();
-  // const clickHandler = () => {
-  //   router.push(link);
-  // };
-
   if (primary) {
     return (
       <Primary
+        data-testid="primary-button"
         onClick={() => handleClick(link)}
         initial={{ x: "-400px" }}
         animate={{ x: 0 }}

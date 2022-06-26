@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import Footer from "./Footer";
 import Nav from "./Nav";
 import { useTheme } from "styled-components";
 import Prism from "prismjs";

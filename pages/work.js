@@ -72,9 +72,7 @@ export default Work;
 
 const Container = styled.div`
   width: 100vw;
-  /* padding-top: 100px; */
   height: 100vh;
-  /* scroll-behavior: smooth; */
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
   transition: all 0.3s;

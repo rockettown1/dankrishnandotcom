@@ -7,7 +7,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { motion } from "framer-motion";
 import Circle from "../components/hero/Circle";
-import Arrow from "../components/layout/Arrow.svg";
+import Arrow from "../components/layout/Arrow";
 import x1 from "../public/xander_logo.png";
 import x2 from "../public/xander_logo2.png";
 

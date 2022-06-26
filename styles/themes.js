@@ -14,6 +14,6 @@ export const darkTheme = {
   secondary_background: "#0b1016",
   primary_text: "#eaeaea",
   secondary_text: "#97a1a8",
-  highlight: "rgb(255, 172, 20)",
+  highlight: "rgb(255,172,20)",
   disabled: "rgba(255,255,255,0.1)",
 };

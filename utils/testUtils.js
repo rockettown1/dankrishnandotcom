@@ -1,10 +1,10 @@
 import { ThemeProvider } from "styled-components";
-import { lightTheme } from "../../styles/themes";
+import { lightTheme } from "../styles/themes";
 
-export function withTheme(Component) {
+export const withTheme = (Component) => {
   return (
     <ThemeProvider theme={lightTheme}>
       <Component />
     </ThemeProvider>
   );
-}
+};
