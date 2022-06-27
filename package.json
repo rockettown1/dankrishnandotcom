@@ -37,6 +37,7 @@
     "@testing-library/user-event": "^14.2.1",
     "@types/node": "^18.0.0",
     "@types/react": "^18.0.14",
+    "@types/styled-components": "^5.1.25",
     "babel-jest": "^28.1.1",
     "babel-plugin-styled-components": "^2.0.6",
     "chai-colors": "^1.0.1",

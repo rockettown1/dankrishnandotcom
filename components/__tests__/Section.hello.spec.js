@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import user from "@testing-library/user-event";
 import Section from "../hello/Section";
 import { withTheme } from "../../utils/testUtils";
 
@@ -11,7 +12,11 @@ describe("hello/Section Component", () => {
       name: "Testing some stuff",
       desc: "This is a paragraph about testing components",
     },
-    techList: {},
+    techList: {
+      fields: {
+        tech: [],
+      },
+    },
   };
 
   beforeEach(() => {
@@ -33,5 +38,19 @@ describe("hello/Section Component", () => {
   it("should render the paragraph text from the data", () => {
     const paragraph = screen.getByTestId("desc");
     expect(paragraph).toBeVisible();
+  });
+
+  it("should show Tech component when the link is clicked", async () => {
+    const link = screen.getByText("click here");
+    await user.click(link);
+    expect(screen.getByText("Accurate as of June 2022")).toBeVisible();
+  });
+
+  it("should not show Tech component after Tech element is closed", async () => {
+    const link = screen.getByText("click here");
+    await user.click(link);
+    const close = screen.getByTestId("close");
+    await user.click(close);
+    expect(close).not.toBeInTheDocument();
   });
 });

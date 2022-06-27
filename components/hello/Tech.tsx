@@ -3,8 +3,14 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { sortTech } from "../../utils/sortTech";
+import { TechList } from "../../utils/sortTech";
 
-export default function Tech({ techList, setTech }) {
+type TechProps = {
+  techList: TechList;
+  setTech: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export default function Tech({ techList, setTech }: TechProps) {
   const tech = sortTech(techList);
 
   return (
@@ -19,7 +25,7 @@ export default function Tech({ techList, setTech }) {
           <h6>Most used</h6>
           <h6>Least used</h6>
         </Sidebar>
-        {new Array(6).fill().map((_, index) => {
+        {new Array(6).fill(0).map((_, index) => {
           return (
             <div key={index} id={`mid${index}`}>
               {tech[index].map((item) => (
@@ -30,8 +36,8 @@ export default function Tech({ techList, setTech }) {
         })}
       </Container>
       <div style={{ display: "flex", justifyContent: "flex-end", paddingRight: "150px" }}>
-        <Return onClick={() => setTech(false)}>
-          <AiFillCloseCircle size={35} style={{}} />
+        <Return onClick={() => setTech(false)} data-testid="close">
+          <AiFillCloseCircle size={35} />
         </Return>
       </div>
     </Wrapper>
@@ -100,7 +106,6 @@ const Sidebar = styled.div`
   border-right: 3px solid ${({ theme }) => theme.highlight};
   display: flex;
   flex-direction: column;
-  /* align-items: flex-end; */
   justify-content: space-between;
   grid-area: sidebar;
   padding: 20px 0;

@@ -2,10 +2,23 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Tech from "./Tech";
 import { motion } from "framer-motion";
+import { TechList } from "../../utils/sortTech";
 
-export default function Section({ section, techList }) {
+type HelloSectionProps = {
+  section: {
+    sec: string;
+    subsec: string;
+    title: string;
+    name: string;
+    desc: string;
+  };
+  techList: TechList;
+};
+
+export default function Section({ section, techList }: HelloSectionProps) {
   const [tech, setTech] = useState(false);
   const { sec, subsec, title, name, desc } = section;
+  console.log(techList);
   return (
     <Container data-testid="hello/section">
       <Wrapper>
@@ -36,9 +49,9 @@ export default function Section({ section, techList }) {
 
           {subsec === "i" && !tech && (
             <p>
-              For a more comprehensive list of tech I've worked with click{" "}
+              For a more comprehensive list of tech I've worked with{" "}
               <span onClick={() => setTech((prev) => !prev)} className="underline">
-                here
+                click here
               </span>
               .
             </p>

@@ -45,7 +45,11 @@ export default function Button({ primary, secondary, link, children, handleClick
   }
 }
 
-const Standard = styled(motion.button)`
+type StandardProps = {
+  toDisable?: boolean;
+};
+
+const Standard = styled(motion.button)<StandardProps>`
   height: 40px;
   width: 150px;
   border: none;

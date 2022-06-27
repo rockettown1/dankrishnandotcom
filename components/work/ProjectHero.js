@@ -7,8 +7,6 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 const ProjectHero = ({ project }) => {
-  console.log(project);
-
   const openProjectNewTab = (link) => {
     parent.open(link);
   };

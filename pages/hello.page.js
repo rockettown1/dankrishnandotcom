@@ -49,8 +49,8 @@ function Hello({ techList }) {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1, ease: "easeInOut", delay: 1 }}
               >
-                , I'm Dan. A <span className="highlight">software engineer</span> and technical director based in the
-                UK.
+                , I'm Dan. A <span className="highlight">software engineer</span>, teacher and technical director based
+                in the UK.
               </motion.span>
             </motion.h1>
           </Section>

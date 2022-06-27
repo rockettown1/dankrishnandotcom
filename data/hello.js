@@ -11,19 +11,18 @@ export const data = [
     subsec: "",
     title: "Who am I",
     name: "Dan Krishnan",
-    desc: `I'm a self-taught software engineer, a qualified teacher and a bit of a maths and science geek. Sometimes I'll pick up a paintbrush and think I'm an artist, sometimes I'll pick up a skateboard and forget my knees are 36 years old, and sometimes I'll have a problem with doing too many things at once. I enjoy anything that forces me to think, learn and solve problems. I currently work at a coding bootcamp where I focus on curriculum design, lead internal software projects and work with clients on their staff training needs.<br /> <br / > I live in Chester with my wife and have a dog called Xander (a long-haired Weimaraner because I'm sure you were wondering). I spend most of my time either learning new things, solving coding problems, building things, travelling or being walked by my dog 🐶`,
+    desc: `I'm a self-taught software engineer, a qualified teacher and a bit of a maths and science geek. Sometimes I'll pick up a paintbrush and think I'm an artist, sometimes I'll pick up a skateboard and forget my knees are 36 years old, and sometimes I'll have a problem with doing too many things at once. I enjoy anything that allows me to think deeply, learn and get better. I currently work at a coding bootcamp where I focus on curriculum design, lead internal software projects and work with clients on their staff training needs.<br /> <br / > I live in Chester with my wife and have a dog called Xander (a long-haired Weimaraner because I'm sure you were wondering). I spend most of my time either learning new things, solving technical problems, building things, travelling or being walked by my dog 🐶`,
   },
   {
     sec: "03",
     subsec: "i",
     title: "What I do",
     name: "Technology",
-    desc: ` I currently spend most of my time in the world of JavaScript (TypeScript). The front-end work I currently do is almost always
-    written with React (client side, Next or Gatsby), most backend/API work I do is written for
-    the Node.js ecosystem (e.g Express servers), and the cloud systems I am
-    most familiar with are built with AWS services.
+    desc: ` I currently spend most of my time writing JavaScript (or TypeScript). The frontend work I currently do is almost always
+    written with React.js and most server/API work I do is written in the Node.js ecosystem. When developing cloud systems specifically, I am
+    most familiar with AWS services.
     <br /> <br />
-    That being said, I am consistently trying to learn different technologies, and in the past have touched on languages such as Go, Java, Python & Swift. My day to day however is at the moment JS/TS (I'd be happy to change that though!).`,
+    That being said, I am consistently trying to learn different technologies, and in the past have touched on languages such as Go, Java, Python & Swift. My day to day however is most definitely JS/TS at the moment (I'd be happy to change that though!).`,
   },
   {
     sec: "03",
