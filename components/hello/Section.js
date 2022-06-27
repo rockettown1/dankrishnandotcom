@@ -7,7 +7,7 @@ export default function Section({ section, techList }) {
   const [tech, setTech] = useState(false);
   const { sec, subsec, title, name, desc } = section;
   return (
-    <Container>
+    <Container data-testid="hello/section">
       <Wrapper>
         <Block>
           <div id="content">
@@ -29,6 +29,7 @@ export default function Section({ section, techList }) {
               animate={{ x: 0 }}
               exit={{ x: -100, opacity: 0 }}
               id="desc"
+              data-testid="desc"
               dangerouslySetInnerHTML={{ __html: desc }}
             ></motion.p>
           )}

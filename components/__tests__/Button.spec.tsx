@@ -1,27 +1,19 @@
 import { render } from "@testing-library/react";
 import Button from "../Button";
-import { ThemeProvider } from "styled-components";
+import { withTheme } from "../../utils/testUtils";
 import user from "@testing-library/user-event";
 import { lightTheme, darkTheme } from "../../styles/themes";
 import "jest-styled-components";
 
 describe("Button.js", () => {
   it("should render correct styles for primary", () => {
-    const { getByText } = render(
-      <ThemeProvider theme={lightTheme}>
-        <Button primary>Click Me</Button>
-      </ThemeProvider>
-    );
+    const { getByText } = render(withTheme(() => <Button primary>Click Me</Button>));
 
     expect(getByText("Click Me")).toHaveStyle({ backgroundColor: lightTheme.highlight, border: "none" });
   });
 
   it("should render correct styles for secondary", () => {
-    const { getByText } = render(
-      <ThemeProvider theme={darkTheme}>
-        <Button secondary>Click Me</Button>
-      </ThemeProvider>
-    );
+    const { getByText } = render(withTheme(() => <Button secondary>Click Me</Button>, "dark"));
 
     expect(getByText("Click Me")).toHaveStyle({
       border: `2px solid ${darkTheme.highlight}`,

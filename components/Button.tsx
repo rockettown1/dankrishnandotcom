@@ -3,7 +3,16 @@ import styled from "styled-components";
 import { useRouter } from "next/router";
 import { motion } from "framer-motion";
 
-export default function Button({ primary, secondary, link, children, handleClick, toDisable }) {
+interface ButtonProps {
+  primary?: boolean;
+  secondary?: boolean;
+  link?: string;
+  children: string;
+  handleClick?: (link: string) => void;
+  toDisable?: boolean;
+}
+
+export default function Button({ primary, secondary, link, children, handleClick, toDisable }: ButtonProps) {
   if (primary) {
     return (
       <Primary

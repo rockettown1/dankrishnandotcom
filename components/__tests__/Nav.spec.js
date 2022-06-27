@@ -20,6 +20,7 @@ describe("Nav Component", () => {
   //     };
   //   },
   // }));
+
   const useRouter = jest.spyOn(require("next/router"), "useRouter");
 
   useRouter.mockImplementation(() => ({
@@ -36,8 +37,17 @@ describe("Nav Component", () => {
     prefetch: jest.fn(() => null),
   }));
 
-  it("should render", () => {
+  beforeEach(() => {
     render(withTheme(Nav));
+  });
+
+  it("should render", () => {
     expect(screen.getByRole("navigation")).toBeInTheDocument();
+  });
+
+  it("should include links to Hello, Work and Blog", () => {
+    expect(screen.getByText("Hello")).toBeInTheDocument();
+    expect(screen.getByText("Work")).toBeInTheDocument();
+    expect(screen.getByText("Blog")).toBeInTheDocument();
   });
 });

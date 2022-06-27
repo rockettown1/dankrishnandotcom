@@ -4,7 +4,13 @@ import { motion } from "framer-motion";
 
 export default function WorkTracker({ activeLine }) {
   return (
-    <Container key="worktracker" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+    <Container
+      key="worktracker"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      data-testid="tracker"
+    >
       {Array(5)
         .fill(0)
         .map((_, index) => {
