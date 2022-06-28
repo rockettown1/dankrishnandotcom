@@ -14,6 +14,9 @@ module.exports = {
 
     // Handle module aliases
     "^@/components/(.*)$": "<rootDir>/components/$1",
+
+    //Handle React Markdown
+    "react-markdown": "<rootDir>/node_modules/react-markdown/react-markdown.min.js",
   },
   // Add more setup options before each test is run
   // setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
