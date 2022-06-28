@@ -12,7 +12,7 @@ const ProjectHero = ({ project }) => {
   };
 
   return (
-    <Container>
+    <Container data-testid="hero">
       <div id="wrapper">
         <motion.div
           id="col1"

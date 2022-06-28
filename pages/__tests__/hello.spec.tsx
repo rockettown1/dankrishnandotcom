@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { withTheme } from "../../utils/testUtils";
 import user from "@testing-library/user-event";
 import Hello from "../hello.page";
-import { mockTechList } from "../../__mocks__/contentfulMock";
+import { mockTechList } from "../../__mocks__/fixtures";
 
 // jest.mock("../../cms/contentfulClient", () => ({
 //   ...jest.requireActual("../../cms/contentfulClient"),

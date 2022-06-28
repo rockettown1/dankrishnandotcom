@@ -1,5 +1,5 @@
 import { sortTech } from "../sortTech";
-import { mockTechList } from "../../__mocks__/contentfulMock";
+import { mockTechList } from "../../__mocks__/fixtures";
 
 describe("sortTech utility function", () => {
   it("should return an array of length 6", () => {

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import ProjectHero from "../../../components/work/ProjectHero";
 import client from "../../../cms/contentfulClient";
+import Prism from "prismjs";
 import { richTextOptions } from "../../../utils/richTextOptions";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import Markdown from "react-markdown";
@@ -40,7 +41,7 @@ const Project = ({ project }) => {
       <ProjectHero project={project} />
       <div id="body-container">
         {featuredImage && <FeaturedImage project={project} />}
-        <TextSection>
+        <TextSection data-testid="textblock">
           <div id="heading">
             <h2>{textblock[0].fields.heading}</h2>
           </div>
