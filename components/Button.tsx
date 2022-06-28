@@ -38,6 +38,7 @@ export default function Button({ primary, secondary, link, children, handleClick
         animate={{ x: 0 }}
         exit={{ x: "-300px" }}
         toDisable={toDisable}
+        disabled={toDisable}
       >
         {children}
       </Standard>
