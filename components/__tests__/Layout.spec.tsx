@@ -1,37 +1,23 @@
 import { render, screen } from "@testing-library/react";
 import Layout from "../layout/Layout";
-import NextRouter from "next/router";
-import { ThemeProvider } from "styled-components";
-import { lightTheme } from "../../styles/themes";
-
-//This doesn't feel very 'unit' - come back to this
+import { withTheme, withRouter } from "../../utils/testUtils";
+import { compose } from "ramda";
 
 describe("Layout Component", () => {
+  const mockToggle = jest.fn();
+
   beforeEach(() => {
     render(
-      <ThemeProvider theme={lightTheme}>
-        <Layout>
+      compose(
+        withTheme,
+        withRouter
+      )(() => (
+        <Layout notHome={true} toggleTheme={mockToggle}>
           <h1>I'm a child</h1>
         </Layout>
-      </ThemeProvider>
+      ))
     );
   });
-
-  const useRouter = jest.spyOn(NextRouter, "useRouter");
-
-  useRouter.mockImplementation(() => ({
-    route: "/",
-    pathname: "",
-    query: "",
-    asPath: "",
-    push: jest.fn(),
-    events: {
-      on: jest.fn(),
-      off: jest.fn(),
-    },
-    beforePopState: jest.fn(() => null),
-    prefetch: jest.fn(() => null),
-  }));
 
   it("should render without crashing", () => {
     expect(screen.getByTestId("layout")).toBeInTheDocument();

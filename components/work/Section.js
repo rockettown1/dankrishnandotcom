@@ -8,7 +8,7 @@ import Arrow from "../layout/Arrow";
 import { useRouter } from "next/router";
 
 export default function Section({ data, main, id, handleClick, exitToMain }) {
-  const { item, title, desc, link, img } = data;
+  const { item, title, desc, link, img, available } = data;
 
   const notHome = useRouter().pathname !== "/";
 
@@ -26,23 +26,21 @@ export default function Section({ data, main, id, handleClick, exitToMain }) {
   };
 
   return (
-    <Container main={main} id={`section${id}`}>
+    <Container main={main} id={`section${id}`} data-testid="work/section">
       <Details>
         <h1 id="number">{item}</h1>
         <h1 id="title">{title}</h1>
         <p>{desc}</p>
         {!main && (
-          <Button primary link={link} handleClick={handleClick} toDisable={item !== "01" && item !== "02"}>
-            {item !== "01" && item !== "02" ? "Coming soon" : "Find out more"}
+          <Button primary link={link} handleClick={handleClick} toDisable={!available}>
+            {available ? "Find out more" : "Coming soon"}
           </Button>
         )}
       </Details>
       <ImgWrapper
+        data-testid="image-wrapper"
         key={`imgwrapper${id}`}
         main={main}
-        // initial={!main && { height: "100vh", width: "50vw", filter: "brightness(40%)" }}
-        // animate={!main && image.isMain}
-        //if the path is NOT home, and NOT beyond the projects list pages then animate:
         exit={notHome && exitToMain && (!main ? image.notMain : image.isMain)}
         transition={{ duration: 1, ease: "easeInOut" }}
       >
