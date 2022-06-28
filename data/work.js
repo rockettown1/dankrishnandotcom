@@ -8,6 +8,7 @@ export const data = [
     desc: `Projects that involve work across the whole stack and usually some devops/architecture considerations`,
     link: "/work/fullstack",
     img: laptop1,
+    available: true,
   },
   {
     item: "02",
@@ -15,6 +16,7 @@ export const data = [
     desc: `Projects that focus specifically on front-end development`,
     link: "/work/frontend",
     img: laptop3,
+    available: true,
   },
   {
     item: "03",
@@ -22,6 +24,7 @@ export const data = [
     desc: `Any projects that involve design work`,
     link: "/work/design",
     img: laptop1,
+    available: false,
   },
   {
     item: "04",
@@ -29,6 +32,7 @@ export const data = [
     desc: `Projects that involve tooling or processes, mainly CLI development or design systems`,
     link: "/work/tooling",
     img: laptop1,
+    available: false,
   },
   {
     item: "05",
@@ -36,5 +40,6 @@ export const data = [
     desc: `Just random projects, like creating new fonts or npm packages`,
     link: "/work/random",
     img: laptop1,
+    available: false,
   },
 ];
