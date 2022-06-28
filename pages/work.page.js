@@ -1,6 +1,5 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
-import withTransition from "../components/hocs/withTransition";
-import styled, { useTheme } from "styled-components";
+import styled from "styled-components";
 import Section from "../components/work/Section";
 import { useWindowSize } from "../utils/useWindowSize";
 import { data } from "../data/work";
@@ -28,7 +27,7 @@ function Work() {
     sessionStorage.setItem("scrollPosition", container.current.scrollTop);
   };
 
-  const watchScroll = (e) => {
+  const watchScroll = () => {
     if (container.current) {
       const sectionHeight = container.current.scrollHeight / 5 - 100;
       if (container.current.scrollTop < sectionHeight) {

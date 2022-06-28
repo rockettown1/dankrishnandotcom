@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import MainSection from "../components/hello/Section";
 import { data } from "../data/hello.js";
-import { client } from "../cms/contentfulClient";
+import client from "../cms/contentfulClient";
 import { useWindowSize } from "../utils/useWindowSize";
 
 export async function getStaticProps() {
@@ -134,10 +134,10 @@ const Container = styled(motion.div)`
     }
   }
 
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 1000px) {
     h1 {
-      font-size: 12vw;
-      line-height: 12vw;
+      font-size: 10vw;
+      line-height: 10vw;
     }
     h3 {
       line-height: 10vw;
@@ -152,88 +152,17 @@ const Section = styled.section`
   scroll-snap-align: start;
   box-sizing: border-box;
 
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 1000px) {
     align-items: flex-start;
     padding-top: 15vh;
   }
-`;
-
-const ShapeContainer = styled.div`
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;
 
 const Img = styled(motion.img)`
   height: 90vh;
   margin-right: -25vw;
   opacity: 0.8;
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 1000px) {
     display: none;
-  }
-`;
-
-const Wrapper = styled.div`
-  display: flex;
-  box-sizing: border-box;
-  width: 100vw;
-  margin: 0;
-  padding: 0;
-  @media screen and (max-width: 800px) {
-    flex-direction: column;
-  }
-`;
-const Block = styled.div`
-  width: 50%;
-  position: relative;
-
-  #content {
-    display: flex;
-    align-items: center;
-    margin: 0;
-    padding: 0;
-  }
-
-  #line {
-    height: 2px;
-    width: 5vw;
-    background-color: white;
-    margin-top: 1vh;
-  }
-
-  #number,
-  #title {
-    font-size: 4vw;
-    font-weight: 600;
-    margin: 0;
-    margin-left: 20px;
-    padding: 5px;
-  }
-
-  #number {
-    color: var(--primary_highlight);
-  }
-
-  #title {
-    margin-left: 70px;
-  }
-
-  #name {
-    font-size: 2vw;
-    font-weight: 600;
-    margin-top: 20px;
-  }
-
-  #desc {
-    font-size: 1.5vw;
-    font-weight: 400;
-    margin-top: 20px;
-    width: 70%;
-  }
-
-  @media screen and (max-width: 800px) {
-    width: 100%;
   }
 `;

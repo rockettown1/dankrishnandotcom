@@ -43,12 +43,15 @@
     "babel-plugin-styled-components": "^2.0.6",
     "chai-colors": "^1.0.1",
     "cypress": "^10.2.0",
+    "dotenv": "^16.0.1",
     "eslint": "8.10.0",
     "eslint-config-next": "12.1.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^28.1.1",
     "jest-environment-jsdom": "^28.1.1",
     "jest-styled-components": "^7.0.8",
+    "msw": "^0.42.3",
+    "next-page-tester": "^0.32.0",
     "ramda": "^0.28.0",
     "typescript": "^4.7.4"
   }

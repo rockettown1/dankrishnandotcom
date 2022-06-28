@@ -1,44 +1,11 @@
 import { render, screen } from "@testing-library/react";
 import Nav from "../layout/Nav";
-import { withTheme } from "../../utils/testUtils";
+import { withTheme, withRouter } from "../../utils/testUtils";
+import { compose } from "ramda";
 
 describe("Nav Component", () => {
-  // jest.mock("next/router", () => ({
-  //   useRouter() {
-  //     return {
-  //       route: "/",
-  //       pathname: "",
-  //       query: "",
-  //       asPath: "",
-  //       push: jest.fn(),
-  //       events: {
-  //         on: jest.fn(),
-  //         off: jest.fn(),
-  //       },
-  //       beforePopState: jest.fn(() => null),
-  //       prefetch: jest.fn(() => null),
-  //     };
-  //   },
-  // }));
-
-  const useRouter = jest.spyOn(require("next/router"), "useRouter");
-
-  useRouter.mockImplementation(() => ({
-    route: "/",
-    pathname: "",
-    query: "",
-    asPath: "",
-    push: jest.fn(),
-    events: {
-      on: jest.fn(),
-      off: jest.fn(),
-    },
-    beforePopState: jest.fn(() => null),
-    prefetch: jest.fn(() => null),
-  }));
-
   beforeEach(() => {
-    render(withTheme(Nav));
+    render(compose(withTheme, withRouter)(Nav));
   });
 
   it("should render", () => {

@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { motion } from "framer-motion";
 import Contents from "../../components/work/Contents";
 import Link from "next/link";
-import { client } from "../../cms/contentfulClient";
+import client from "../../cms/contentfulClient";
 import { countSlash } from "../../utils/countSlash";
 
 export async function getStaticProps() {

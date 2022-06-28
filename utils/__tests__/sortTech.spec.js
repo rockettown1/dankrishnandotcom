@@ -1,36 +1,5 @@
 import { sortTech } from "../sortTech";
-
-const mockTechList = {
-  fields: {
-    tech: [
-      {
-        metadata: {
-          tags: [{ sys: { id: "tech2" } }],
-        },
-      },
-      {
-        metadata: {
-          tags: [{ sys: { id: "tech3" } }],
-        },
-      },
-      {
-        metadata: {
-          tags: [{ sys: { id: "tech1" } }],
-        },
-      },
-      {
-        metadata: {
-          tags: [{ sys: { id: "tech2" } }],
-        },
-      },
-      {
-        metadata: {
-          tags: [{ sys: { id: "tech5" } }],
-        },
-      },
-    ],
-  },
-};
+import { mockTechList } from "../../__mocks__/contentfulMock";
 
 describe("sortTech utility function", () => {
   it("should return an array of length 6", () => {

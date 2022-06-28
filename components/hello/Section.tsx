@@ -71,7 +71,7 @@ const Container = styled.section`
   scroll-snap-align: start;
   box-sizing: border-box;
 
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 1000px) {
     align-items: flex-start;
     padding-top: 15vh;
   }
@@ -83,7 +83,7 @@ const Wrapper = styled.div`
   width: 100vw;
   margin: 0;
   padding: 0;
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 1000px) {
     flex-direction: column;
   }
 `;
@@ -133,10 +133,10 @@ const Block = styled.div`
     font-size: 1.5vw;
     font-weight: 400;
     margin-top: 20px;
-    width: 70%;
+    width: 80%;
   }
 
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 1000px) {
     width: 100%;
 
     #name {
