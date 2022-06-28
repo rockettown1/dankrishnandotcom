@@ -24,6 +24,7 @@ describe("Button.js", () => {
   //this feels like it's testing implementation details so may remove it later
   const mockHandler = jest.fn();
   const mockLink = "some url";
+
   it("should fire handler prop onClick", async () => {
     const { getByText } = render(
       <Button handleClick={mockHandler} link={mockLink}>
@@ -33,5 +34,10 @@ describe("Button.js", () => {
     await user.click(getByText("Click Me"));
     expect(mockHandler).toBeCalledTimes(1);
     expect(mockHandler).toHaveBeenCalledWith(mockLink);
+  });
+
+  it("should be disabled when passed the toDisable value", () => {
+    const { getByText } = render(withTheme(() => <Button toDisable={true}>Click Me</Button>));
+    expect(getByText("Click Me")).toBeDisabled();
   });
 });
