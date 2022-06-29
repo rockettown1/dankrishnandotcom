@@ -41,13 +41,13 @@ export default function Section({ data, main, id, handleClick, exitToMain }) {
         data-testid="image-wrapper"
         key={`imgwrapper${id}`}
         main={main}
-        exit={notHome && exitToMain && (!main ? image.notMain : image.isMain)}
+        exit={exitToMain && (!main ? image.notMain : image.isMain)}
         transition={{ duration: 1, ease: "easeInOut" }}
       >
         <Image src={img} layout="fill" objectFit="cover" />
       </ImgWrapper>
       {main && (
-        <ScrollPrompt initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={notHome && exitToMain && { opacity: 0 }}>
+        <ScrollPrompt initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
           <div>
             <h4>Scroll</h4>
             <Arrow />
@@ -58,7 +58,7 @@ export default function Section({ data, main, id, handleClick, exitToMain }) {
   );
 }
 
-const Container = styled(motion.section)`
+const Container = styled.section`
   padding-left: 20px;
   display: flex;
   align-items: center;

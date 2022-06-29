@@ -40,4 +40,5 @@ const Container = styled.div`
 
 const Image = styled(NextImage)`
   width: 100%;
+  background: transparent;
 `;

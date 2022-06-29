@@ -13,6 +13,7 @@
 
 html {
   font-synthesis: none;
+  scroll-behavior: auto !important;
 }
 
 body {
@@ -23,6 +24,7 @@ body {
   font-family: var(--primary_font);
   overscroll-behavior-y: none;
   overscroll-behavior: none;
+
   transition: all 0.5s linear;
   overflow-x: hidden;
 }
@@ -48,8 +50,9 @@ li {
   color: var(--secondary_text);
   font-size: 2vh !important;
   line-height: 3.4vh !important;
-
-  @media screen and (max-width: 1300px) {
+}
+@media screen and (max-width: 1300px) {
+  li {
     font-size: 17px !important;
     line-height: 20px !important;
   }

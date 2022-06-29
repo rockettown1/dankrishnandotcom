@@ -34,7 +34,6 @@ function Home() {
       },
       onComplete: () => {
         setCurrent({ title: 1, image: 1 });
-        console.log("ended");
       },
     });
 
@@ -50,7 +49,6 @@ function Home() {
       },
       onReverseComplete: () => {
         setCurrent({ title: 0, image: 2 });
-        console.log("reverse");
       },
     });
 

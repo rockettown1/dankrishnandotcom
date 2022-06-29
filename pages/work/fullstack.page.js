@@ -20,7 +20,7 @@ export async function getStaticProps() {
 
 export default function Fullstack({ projects }) {
   const router = useRouter();
-  console.log(projects);
+
   return (
     <Container>
       <Section data={data[0]} main exitToMain={countSlash(router.pathname) < 2} />

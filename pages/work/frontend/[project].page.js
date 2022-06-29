@@ -1,15 +1,18 @@
+import { useLayoutEffect } from "react";
 import styled from "styled-components";
 import ProjectHero from "../../../components/work/ProjectHero";
 import client from "../../../cms/contentfulClient";
 import Prism from "prismjs";
+import { useRouter } from "next/router";
 import { richTextOptions } from "../../../utils/richTextOptions";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import Markdown from "react-markdown";
+import { motion } from "framer-motion";
 import FeaturedImage from "../../../components/work/project/FeaturedImage";
 
 export async function getStaticPaths() {
   const response = await client.getEntries({ content_type: "project", "fields.type": "frontend" });
-  console.log(response.items);
+
   const paths = response.items.map((item) => ({
     params: {
       project: item.fields.slug,
@@ -35,6 +38,9 @@ export async function getStaticProps(ctx) {
 }
 
 const Project = ({ project }) => {
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const { featuredImage, textblock, body } = project.fields;
   return (
     <Container>

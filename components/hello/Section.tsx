@@ -18,7 +18,7 @@ type HelloSectionProps = {
 export default function Section({ section, techList }: HelloSectionProps) {
   const [tech, setTech] = useState(false);
   const { sec, subsec, title, name, desc } = section;
-  console.log(techList);
+
   return (
     <Container data-testid="hello/section">
       <Wrapper>

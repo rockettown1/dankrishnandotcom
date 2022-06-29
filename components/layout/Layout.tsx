@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import styled from "styled-components";
 import Nav from "./Nav";
 import { useTheme } from "styled-components";
 import Prism from "prismjs";
@@ -18,9 +19,12 @@ export default function Layout({ children, notHome, toggleTheme }: LayoutProps) 
   }, []);
 
   return (
-    <div style={{ scrollBehavior: "smooth" }} data-testid="layout">
+    <Container data-testid="layout">
       <Nav notHome={notHome} toggleTheme={() => (theme === "dark" ? toggleTheme("light") : toggleTheme("dark"))} />
       {children}
-    </div>
+    </Container>
   );
 }
+const Container = styled.div`
+  min-height: 100vh;
+`;
