@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.2](https://github.com/rockettown1/dankrishnandotcom/compare/v1.1.1...v1.1.2) (2022-06-29)
+
+
+### Bug Fixes
+
+* **page transition:** fixed scroll restoration bug when moving between project list > project page and returning via browser back button ([68e8014](https://github.com/rockettown1/dankrishnandotcom/commit/68e8014e0dc849cf96d49cc1083f3483db7d3f1c))
+
 ## [1.1.1](https://github.com/rockettown1/dankrishnandotcom/compare/v1.1.0...v1.1.1) (2022-06-26)
 
 
