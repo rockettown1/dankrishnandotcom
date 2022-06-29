@@ -28,7 +28,7 @@ export default function Fullstack({ projects }) {
         <h6>Selected Projects</h6>
         {projects.reverse().map((project, index) => {
           return (
-            <StyledLink href={`/work/fullstack/${project.fields.slug}`} key={index}>
+            <StyledLink href={`/work/fullstack/${project.fields.slug}`} key={index} scroll={false}>
               <h1>{project.fields.name}</h1>
             </StyledLink>
           );

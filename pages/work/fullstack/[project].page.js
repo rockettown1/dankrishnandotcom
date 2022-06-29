@@ -1,3 +1,4 @@
+import { useLayoutEffect } from "react";
 import styled from "styled-components";
 import ProjectHero from "../../../components/work/ProjectHero";
 import client from "../../../cms/contentfulClient";
@@ -34,6 +35,9 @@ export async function getStaticProps(ctx) {
 }
 
 const Project = ({ project }) => {
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const { featuredImage, textblock, body } = project.fields;
   return (
     <Container>
