@@ -28,11 +28,11 @@ function MyApp({ Component, pageProps, router }) {
 
   return (
     <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
-      <AnimatePresence exitBeforeEnter>
-        <Layout key={router.route} notHome={notHome} toggleTheme={themeToggler}>
-          <Component {...pageProps} />
-        </Layout>
-      </AnimatePresence>
+      <Layout notHome={notHome} toggleTheme={themeToggler}>
+        <AnimatePresence exitBeforeEnter>
+          <Component {...pageProps} key={router.route} />
+        </AnimatePresence>
+      </Layout>
     </ThemeProvider>
   );
 }

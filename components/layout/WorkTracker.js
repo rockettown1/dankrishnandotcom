@@ -32,8 +32,8 @@ const Container = styled(motion.div)`
 `;
 
 const Line = styled.span`
-  height: 1px;
-  width: ${({ active }) => (active ? "40px" : "20px")};
-  border-bottom: ${({ theme }) => `1px solid ${theme.primary_text}`};
+  height: 4px;
+  width: ${({ active }) => (active ? "50px" : "20px")};
+  border-bottom: ${({ theme }) => `4px solid ${theme.secondary_text}`};
   margin: 10px 0;
 `;

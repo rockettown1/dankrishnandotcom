@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useTheme } from "styled-components";
 import { useRouter } from "next/router";
 import { MdLightMode, MdDarkMode } from "react-icons/md";
+import { motion } from "framer-motion";
 import { handleKeyboardSelect } from "../../utils/handleKeyboardSelect";
 import Social from "./Social";
 
@@ -142,7 +143,7 @@ const Container = styled.nav`
   }
 `;
 
-const Option = styled.h2`
+const Option = styled(motion.h2)`
   color: ${({ theme, active }) => (active ? theme.primary_text : theme.secondary_text)};
   border-bottom: 1px solid ${({ theme, active }) => (active ? theme.primary_text : "none")};
 `;
