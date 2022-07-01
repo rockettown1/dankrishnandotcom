@@ -1,16 +1,24 @@
+import { useState } from "react";
 import styled from "styled-components";
+import BlogMain from "../components/blog/BlogMain";
+import BlogRecent from "../components/blog/BlogRecent";
 
 export default function Blog() {
+  const [menuFixed, setMenuFixed] = useState(false);
   return (
     <Container>
-      <h1>Blog Page</h1>
-      <p>Testing release-please github action.</p>
+      <BlogMain menuFixed={menuFixed} setMenuFixed={setMenuFixed} />
+      <BlogRecent menuFixed={menuFixed} setMenuFixed={setMenuFixed} />
     </Container>
   );
 }
 
 const Container = styled.section`
-  padding-top: 100px;
+  height: 100vh;
+  width: 100vw;
+`;
+
+const Section = styled.section`
   height: 100vh;
   width: 100vw;
 `;

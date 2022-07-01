@@ -79,4 +79,7 @@ const Secondary = styled(Standard)`
   border: ${({ theme }) => `2px solid ${theme.highlight}`};
   color: ${({ theme }) => theme.highlight};
   background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 `;

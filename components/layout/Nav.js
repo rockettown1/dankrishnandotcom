@@ -10,6 +10,8 @@ import { handleKeyboardSelect } from "../../utils/handleKeyboardSelect";
 import Social from "./Social";
 
 export default function Nav({ notHome, toggleTheme }) {
+  const [rotation, setRotation] = useState(0);
+
   const router = useRouter();
   const theme = useTheme();
   let position = "fixed";
@@ -22,6 +24,15 @@ export default function Nav({ notHome, toggleTheme }) {
     default:
       position = "absolute";
   }
+
+  const handleThemeToggle = (e) => {
+    if (e.type === "keydown") {
+      const isEnterKey = handleKeyboardSelect(e, toggleTheme);
+      if (!isEnterKey) return;
+    }
+    toggleTheme();
+    setRotation((prev) => prev + 180);
+  };
 
   return (
     <Container position={position} data-testid="nav">
@@ -66,17 +77,21 @@ export default function Nav({ notHome, toggleTheme }) {
             </a>
           </Link>
         )}
-        <div
+        <ModeContainer
           id="toggle-container"
           role="button"
           aria-label="darktheme toggle"
-          onClick={toggleTheme}
-          onKeyDown={(e) => handleKeyboardSelect(e, toggleTheme)}
+          onClick={handleThemeToggle}
+          onKeyDown={handleThemeToggle}
           tabIndex="5"
           aria-pressed={theme.name === "dark"}
+          rotation={rotation}
         >
-          {theme.name === "light" ? <MdDarkMode size={35} /> : <MdLightMode size={35} />}
-        </div>
+          <div id="sunrise">
+            <MdLightMode size={35} />
+            <MdDarkMode size={35} style={{ transform: "rotateZ(-140deg)" }} />
+          </div>
+        </ModeContainer>
       </div>
     </Container>
   );
@@ -112,21 +127,6 @@ const Container = styled.nav`
     }
   }
 
-  #toggle-container {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    padding: 4px;
-    border-radius: 50%;
-    transition: all 1s;
-    height: 40px;
-    width: 40px;
-
-    background-color: ${({ theme }) => theme.highlight};
-    &:hover {
-    }
-  }
-
   #right {
     display: flex;
     padding-right: 20px;
@@ -146,4 +146,29 @@ const Container = styled.nav`
 const Option = styled(motion.h2)`
   color: ${({ theme, active }) => (active ? theme.primary_text : theme.secondary_text)};
   border-bottom: 1px solid ${({ theme, active }) => (active ? theme.primary_text : "none")};
+`;
+
+const ModeContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 50%;
+  transition: all 1s;
+  height: 50px;
+  width: 50px;
+  position: relative;
+  color: black;
+  background-color: ${({ theme }) => theme.highlight};
+  #sunrise {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+    height: 125px;
+    transform-origin: center;
+    transition: all 1s;
+    transform: ${({ rotation }) => `rotateZ(${rotation}deg)`};
+  }
 `;

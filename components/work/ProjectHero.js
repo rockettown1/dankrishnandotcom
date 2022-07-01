@@ -4,7 +4,7 @@ import { BiSubdirectoryRight } from "react-icons/bi";
 import { BsArrowDown } from "react-icons/bs";
 import Button from "../Button";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { BsGithub } from "react-icons/bs";
 
 const ProjectHero = ({ project }) => {
   const openProjectNewTab = (link) => {
@@ -60,7 +60,7 @@ const ProjectHero = ({ project }) => {
             )}
             {project.fields.github && (
               <Button secondary handleClick={openProjectNewTab} link={project.fields.github}>
-                View Source
+                View Source <BsGithub />
               </Button>
             )}
           </Links>
