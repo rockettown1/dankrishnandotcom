@@ -5,6 +5,7 @@ import { lightTheme, darkTheme } from "../styles/themes";
 import Layout from "../components/layout/Layout";
 import { AnimatePresence } from "framer-motion";
 import { clearScrollposition } from "../utils/clearScrollposition";
+import { polyfill } from "smoothscroll-polyfill";
 
 import "../public/fonts.css";
 import "../public/global.css";
@@ -25,6 +26,10 @@ function MyApp({ Component, pageProps, router }) {
     history.scrollRestoration = "manual";
     clearScrollposition(router.pathname, sessionStorage);
   }, [router.pathname]);
+
+  useEffect(() => {
+    polyfill();
+  }, []);
 
   return (
     <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>

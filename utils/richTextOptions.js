@@ -1,4 +1,5 @@
 import React from "react";
+import { v4 as uuidv4 } from "uuid";
 import { BLOCKS, MARKS } from "@contentful/rich-text-types";
 import styled from "styled-components";
 import NextImage from "next/image";
@@ -20,19 +21,24 @@ export const richTextOptions = {
   renderNode: {
     [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
     [BLOCKS.HEADING_1]: (node, children) => {
-      if (children[0] === "Technical Discussion") return <Heading1 id="discuss">{children}</Heading1>;
-      return <Heading1>{children}</Heading1>;
+      console.log(node);
+      let ref = React.createRef();
+      if (children[0] === "Technical Discussion") {
+        return (
+          <Heading1 ref={node} id="discuss">
+            {children}
+          </Heading1>
+        );
+      }
+
+      return <Heading1 ref={node}>{children}</Heading1>;
     },
     [BLOCKS.HEADING_2]: (node, children) => <Heading2>{children}</Heading2>,
     [BLOCKS.HEADING_3]: (node, children) => <Heading3>{children}</Heading3>,
     [BLOCKS.HEADING_4]: (node, children) => <Heading4>{children}</Heading4>,
     [BLOCKS.HEADING_5]: (node, children) => <Heading5>{children}</Heading5>,
     [BLOCKS.HEADING_6]: (node, children) => <Heading6>{children}</Heading6>,
-    [BLOCKS.OL_LIST]: (node, children) => (
-      <Ol>
-        <p>{children}</p>
-      </Ol>
-    ),
+    [BLOCKS.OL_LIST]: (node, children) => <Ol>{children}</Ol>,
     [BLOCKS.UL_LIST]: (node, children) => <Ul>{children}</Ul>,
     [BLOCKS.LIST_ITEM]: (node, children) => <li>{children}</li>,
     [BLOCKS.QUOTE]: (node, children) => <Quote>{children}</Quote>,
@@ -137,7 +143,7 @@ const UnderlineMark = styled.span`
 
 const TextBlock = styled.p`
   /* margin-top: 50px; */
-  width: 80%;
+  /* width: 80%; */
 `;
 
 const Image = styled(NextImage)`
@@ -164,7 +170,6 @@ const Ol = styled.ol`
   }
 `;
 const Ul = styled.ul`
-  padding-left: 150px;
   width: 100%;
   p {
     color: red;

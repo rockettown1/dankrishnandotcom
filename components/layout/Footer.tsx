@@ -3,22 +3,32 @@ import styled from "styled-components";
 
 import Arrow from "./Arrow";
 
-export default function Footer({ isBottom }) {
+export default function Footer() {
   return (
     <Container>
-      <Info>
+      <div style={{ height: "400px" }}>
+        <h3>Welcome to the footer of randomness</h3>
+        <ul>
+          <li>Gallery</li>
+          <li>Music / Spotify</li>
+          <li>Dog stuff</li>
+          <li>Work preferences</li>
+          <li>VS Code theme</li>
+          <li>Setup - macbook pro + keyboard</li>
+          <li>Favourite people to follow in tech</li>
+        </ul>
+      </div>
+      {/* <Info>
         <Arrow spin={isBottom} />
         {isBottom ? "You've reached the end" : "Scroll for more"}
-      </Info>
+      </Info> */}
     </Container>
   );
 }
 
 const Container = styled.div`
-  position: fixed;
-  bottom: 0;
   width: 100vw;
-  height: 10px;
+  height: 100vh;
 
   box-sizing: border-box;
   p {

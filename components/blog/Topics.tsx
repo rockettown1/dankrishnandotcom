@@ -61,9 +61,8 @@ const Wrapper = styled.div<{ selected: boolean }>`
   h4 {
     width: 120px;
     margin: 0;
-    padding: 5px;
+    padding: 6px;
 
-    border: 1px solid transparent;
     border-radius: 5px;
     font-family: var(--secondary_font);
     ${({ theme, selected }) => selected && `color: ${theme.highlight}`};

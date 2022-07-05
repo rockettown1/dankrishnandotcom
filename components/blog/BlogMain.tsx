@@ -12,6 +12,11 @@ const dummyPosts = [
 
 const BlogMain = ({ menuFixed, setMenuFixed }) => {
   const heroRef = useRef(null);
+  const heroOptions = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0,
+  };
 
   const handleUnfix = (entries) => {
     console.log("unfixing");
@@ -22,11 +27,6 @@ const BlogMain = ({ menuFixed, setMenuFixed }) => {
     } else {
       setMenuFixed(true);
     }
-  };
-  const heroOptions = {
-    root: null,
-    rootMargin: "0px",
-    threshold: 0,
   };
 
   useEffect(() => {
@@ -42,7 +42,7 @@ const BlogMain = ({ menuFixed, setMenuFixed }) => {
     <Container ref={heroRef}>
       <Latest>
         <div id="main">
-          <h1 className="title">Understanding the useLayoutEffect hook.</h1>
+          <h1 className="title">Understanding the useLayoutEffect hook</h1>
           <p>Publish date</p>
           <Image src={lp} />
         </div>

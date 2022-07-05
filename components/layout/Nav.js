@@ -70,13 +70,11 @@ export default function Nav({ notHome, toggleTheme }) {
         </Link>
       </div>
       <div id="right">
-        {notHome && (
-          <Link href="/">
-            <a name="home">
-              <HomeSVG use={notHome} />
-            </a>
-          </Link>
-        )}
+        <Link href="/">
+          <a name="home">
+            <HomeSVG use={notHome} />
+          </a>
+        </Link>
         <ModeContainer
           id="toggle-container"
           role="button"
@@ -88,8 +86,8 @@ export default function Nav({ notHome, toggleTheme }) {
           rotation={rotation}
         >
           <div id="sunrise">
-            <MdLightMode size={35} />
-            <MdDarkMode size={35} style={{ transform: "rotateZ(-140deg)" }} />
+            <MdLightMode size={25} />
+            <MdDarkMode size={25} style={{ transform: "rotateZ(-140deg)" }} />
           </div>
         </ModeContainer>
       </div>
@@ -146,6 +144,7 @@ const Container = styled.nav`
 const Option = styled(motion.h2)`
   color: ${({ theme, active }) => (active ? theme.primary_text : theme.secondary_text)};
   border-bottom: 1px solid ${({ theme, active }) => (active ? theme.primary_text : "none")};
+  font-size: 3vh;
 `;
 
 const ModeContainer = styled.div`
@@ -155,8 +154,8 @@ const ModeContainer = styled.div`
   overflow: hidden;
   border-radius: 50%;
   transition: all 1s;
-  height: 50px;
-  width: 50px;
+  height: 40px;
+  width: 40px;
   position: relative;
   color: black;
   background-color: ${({ theme }) => theme.highlight};

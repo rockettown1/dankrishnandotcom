@@ -6,7 +6,6 @@ import { GoSearch } from "react-icons/go";
 import Topics from "./Topics";
 import { AiFillCloseCircle } from "react-icons/ai";
 import Link from "next/link";
-import withScrollTo from "../hocs/withScrollTo";
 
 const topics = ["react", "typescript", "javascript", "aws", "compsci", "animation", "design", "css", "go", "next"];
 
@@ -113,12 +112,7 @@ const Container = styled.section<ContainerProps>`
     position: absolute;
     top: 0;
     right: 0;
-    ${({ isMenuFixed }) =>
-      isMenuFixed &&
-      `
-        position: fixed;
-     
-      `};
+    ${({ isMenuFixed }) => isMenuFixed && `position: fixed;`};
   }
   #recent {
     padding-top: 50px;
@@ -138,7 +132,6 @@ const Container = styled.section<ContainerProps>`
   }
 
   ul {
-    /* list-style: none; */
     padding-left: 0;
     &:hover {
       cursor: pointer;

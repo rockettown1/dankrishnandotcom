@@ -17,8 +17,3 @@ const Container = styled.section`
   height: 100vh;
   width: 100vw;
 `;
-
-const Section = styled.section`
-  height: 100vh;
-  width: 100vw;
-`;

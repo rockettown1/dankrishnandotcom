@@ -13,7 +13,7 @@ export default function Social() {
       {socialButtons.map((item, index) => {
         return (
           <External href={item.link} tabIndex="1" key={index}>
-            <item.icon />
+            <item.icon size={20} />
           </External>
         );
       })}
@@ -25,6 +25,7 @@ const External = styled.a`
   text-decoration: none;
   color: inherit;
   height: 20px;
+
   &::focus,
   &::active {
     text-decoration: none;
