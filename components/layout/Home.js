@@ -21,15 +21,15 @@ function HomeSVG({ use }) {
 export default HomeSVG;
 
 const Container = styled.div`
-  height: 60px;
-  width: 60px !important;
+  height: 55px;
+  width: 55px !important;
   padding: 10px;
   display: flex;
   margin-right: 10px;
   justify-content: center;
   align-items: center;
   transition: background-color 1s;
-
+  visibility: ${({ use }) => (!use ? "hidden" : "visible")};
   path {
     stroke: ${({ theme, use }) => use && theme.secondary_text};
   }

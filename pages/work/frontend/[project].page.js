@@ -1,4 +1,4 @@
-import { useLayoutEffect } from "react";
+import { useLayoutEffect, useEffect } from "react";
 import styled from "styled-components";
 import ProjectHero from "../../../components/work/ProjectHero";
 import client from "../../../cms/contentfulClient";
@@ -42,6 +42,7 @@ const Project = ({ project }) => {
     window.scrollTo(0, 0);
   }, []);
   const { featuredImage, textblock, body } = project.fields;
+
   return (
     <Container>
       <ProjectHero project={project} />

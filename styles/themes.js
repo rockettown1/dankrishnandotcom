@@ -12,7 +12,7 @@ export const darkTheme = {
   name: "dark",
   background: "#080c11",
   secondary_background: "#0b1016",
-  primary_text: "#eaeaea",
+  primary_text: "#d7e3ea",
   secondary_text: "#97a1a8",
   highlight: "rgb(255,172,20)",
   disabled: "rgba(255,255,255,0.1)",

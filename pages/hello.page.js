@@ -7,6 +7,7 @@ import MainSection from "../components/hello/Section";
 import { data } from "../data/hello.js";
 import client from "../cms/contentfulClient";
 import { useWindowSize } from "../utils/useWindowSize";
+import Footer from "../components/layout/Footer";
 
 export async function getStaticProps() {
   const response = await client.getEntries({ content_type: "techList" });
@@ -66,9 +67,9 @@ function Hello({ techList }) {
         {data.map((item, index) => {
           return <MainSection key={index} section={item} techList={techList} />;
         })}
-        {/* <Section>
-          <Tech techList={techList} />
-        </Section> */}
+        <Section>
+          <Footer />
+        </Section>
       </Container>
     </>
   );

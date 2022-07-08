@@ -13,7 +13,8 @@
 
 html {
   font-synthesis: none;
-  scroll-behavior: auto !important;
+  /* scroll-behavior: auto !important; */
+  scroll-behavior: smooth !important;
 }
 
 body {

@@ -47,7 +47,7 @@ export default function Section({ data, main, id, handleClick, exitToMain }) {
         <Image src={img} layout="fill" objectFit="cover" />
       </ImgWrapper>
       {main && (
-        <ScrollPrompt initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+        <ScrollPrompt initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
           <div>
             <h4>Scroll</h4>
             <Arrow />
