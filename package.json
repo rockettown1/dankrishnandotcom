@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest --watch --silent --verbose --coverage",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "contentful-typescript-codegen": "contentful-typescript-codegen --output types/generated/contentful.d.ts"
   },
   "dependencies": {
     "@contentful/rich-text-plain-text-renderer": "^15.12.1",
@@ -17,6 +18,7 @@
     "@deckdeckgo/highlight-code": "^4.3.0",
     "babel-preset-next": "^1.4.0",
     "contentful": "^9.1.32",
+    "contentful-management": "^10.8.0",
     "framer-motion": "^6.2.8",
     "gsap": "^3.9.1",
     "lottie-react": "^2.3.1",
@@ -45,9 +47,11 @@
     "@types/ramda": "^0.28.14",
     "@types/react": "^18.0.14",
     "@types/styled-components": "^5.1.25",
+    "@types/testing-library__jest-dom": "^5.14.5",
     "babel-jest": "^28.1.1",
     "babel-plugin-styled-components": "^2.0.6",
     "chai-colors": "^1.0.1",
+    "contentful-typescript-codegen": "^3.2.3",
     "cypress": "^10.2.0",
     "dotenv": "^16.0.1",
     "eslint": "8.10.0",
@@ -58,6 +62,7 @@
     "jest-styled-components": "^7.0.8",
     "msw": "^0.42.3",
     "next-page-tester": "^0.32.0",
+    "prettier": "^2.7.1",
     "ramda": "^0.28.0",
     "typescript": "^4.7.4"
   }

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
-export default function WorkTracker({ activeLine }) {
+export default function WorkTracker({ activeLine }: { activeLine: number }) {
   return (
     <Container
       key="worktracker"
@@ -31,7 +31,11 @@ const Container = styled(motion.div)`
   justify-content: center;
 `;
 
-const Line = styled.span`
+type LineProps = {
+  active: boolean;
+};
+
+const Line = styled.span<LineProps>`
   height: 4px;
   width: ${({ active }) => (active ? "50px" : "20px")};
   border-bottom: ${({ theme }) => `4px solid ${theme.disabled}`};

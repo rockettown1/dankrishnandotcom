@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import Project from "../work/frontend/[project].page";
-import { withTheme, withRouter } from "../../utils/testUtils";
-import { mockProjects } from "../../__mocks__/fixtures";
+import { withTheme, withRouter } from "utils/testUtils";
+import { mockProjects } from "__mocks__/fixtures";
 import { compose } from "ramda";
 
 describe("Project Page", () => {

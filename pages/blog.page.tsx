@@ -1,9 +1,9 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { BlogMain, BlogRecent } from "../components/blog";
+import { BlogMain, BlogRecent } from "components/blog";
 
 export default function Blog() {
-  const [menuFixed, setMenuFixed] = useState(false);
+  const [menuFixed, setMenuFixed] = useState<boolean>(false);
 
   const props = {
     menuFixed,

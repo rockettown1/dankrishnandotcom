@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import user from "@testing-library/user-event";
 import Section from "../hello/Section";
-import { withTheme } from "../../utils/testUtils";
+import { withTheme } from "utils";
 
 describe("hello/Section Component", () => {
   const testProps = {

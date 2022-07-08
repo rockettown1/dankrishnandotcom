@@ -12,7 +12,7 @@ export default function Social() {
     <>
       {socialButtons.map((item, index) => {
         return (
-          <External href={item.link} tabIndex="1" key={index}>
+          <External href={item.link} tabIndex={1} key={index}>
             <item.icon size={20} />
           </External>
         );

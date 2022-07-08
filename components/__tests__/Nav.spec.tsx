@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import { Nav } from "../layout/";
-import { withTheme, withRouter } from "../../utils/testUtils";
+import { Nav } from "../layout";
+import { withTheme, withRouter } from "utils";
 import { compose } from "ramda";
 
 describe("Nav Component", () => {

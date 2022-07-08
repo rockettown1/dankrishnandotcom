@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import FullStack from "../work/fullstack.page";
-import { withTheme, withRouter } from "../../utils/testUtils";
-import { mockProjects } from "../../__mocks__/fixtures";
+import { withTheme, withRouter } from "utils";
+import { mockProjects } from "__mocks__/fixtures";
 import { compose } from "ramda";
 
 const fullstackProjects = mockProjects.filter((project) => project.fields.type === "fullstack");

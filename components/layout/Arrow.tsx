@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
-export default function Arrow({ spin }) {
+export default function Arrow({ spin }: { spin: boolean }) {
   return (
     <>
       {spin ? (

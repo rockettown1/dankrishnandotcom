@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import WorkSection from "../work/Section";
-import { withTheme, withRouter } from "../../utils/testUtils";
-import { lightTheme } from "../../styles/themes";
+import { withTheme, withRouter } from "utils";
 import { compose } from "ramda";
 
 describe("work/Section Component", () => {
@@ -15,9 +14,9 @@ describe("work/Section Component", () => {
       available: true,
     },
     main: false,
-    id: {},
-    handleClick: {},
-    exitToMain: {},
+    id: 1,
+
+    exitToMain: false,
   });
 
   it("should render without crashing", () => {

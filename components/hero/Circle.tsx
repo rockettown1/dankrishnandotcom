@@ -1,11 +1,12 @@
 import React from "react";
 import styled, { useTheme } from "styled-components";
 import { motion } from "framer-motion";
+import { MyTheme } from "styles/themes";
 
-export default function Circle({ isHovered }) {
-  const theme = useTheme();
+export default function Circle({ isHovered }: { isHovered: boolean }) {
+  const theme = useTheme() as MyTheme;
   return (
-    <Svg viewBox="0 0 500 500" isHovered={isHovered}>
+    <Svg viewBox="0 0 500 500">
       <motion.circle
         initial={{ pathLength: 0 }}
         animate={{ pathLength: isHovered ? 1 : 0 }}

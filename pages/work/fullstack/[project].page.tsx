@@ -1,17 +1,15 @@
-import { useLayoutEffect, useEffect } from "react";
+import { useLayoutEffect } from "react";
 import styled from "styled-components";
-import ProjectHero from "../../../components/work/ProjectHero";
-import client from "../../../cms/contentfulClient";
-import Prism from "prismjs";
-import { useRouter } from "next/router";
-import { richTextOptions } from "../../../utils/richTextOptions";
+import ProjectHero from "components/work/ProjectHero";
+import client from "cms/contentfulClient";
+import { richTextOptions } from "utils";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import Markdown from "react-markdown";
-import { motion } from "framer-motion";
-import FeaturedImage from "../../../components/work/project/FeaturedImage";
+import FeaturedImage from "components/work/project/FeaturedImage";
+import { IProjectFields } from "types/generated/contentful";
 
 export async function getStaticPaths() {
-  const response = await client.getEntries({ content_type: "project", "fields.type": "frontend" });
+  const response = await client.getEntries<IProjectFields>({ content_type: "project", "fields.type": "fullstack" });
 
   const paths = response.items.map((item) => ({
     params: {
@@ -25,7 +23,7 @@ export async function getStaticPaths() {
   };
 }
 export async function getStaticProps(ctx) {
-  const { items } = await client.getEntries({
+  const { items } = await client.getEntries<IProjectFields>({
     content_type: "project",
     "fields.slug": ctx.params.project,
   });
@@ -37,19 +35,17 @@ export async function getStaticProps(ctx) {
   };
 }
 
-const Project = ({ project }) => {
-  console.log(project);
+export default function ProjectPage({ project }) {
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   const { featuredImage, textblock, body } = project.fields;
-
   return (
     <Container>
       <ProjectHero project={project} />
       <div id="body-container">
         {featuredImage && <FeaturedImage project={project} />}
-        <TextSection data-testid="textblock">
+        <TextSection>
           <div id="heading">
             <h2>{textblock[0].fields.heading}</h2>
           </div>
@@ -61,12 +57,11 @@ const Project = ({ project }) => {
       </div>
     </Container>
   );
-};
-
-export default Project;
+}
 
 const Container = styled.section`
   width: 100vw;
+
   p {
     font-size: 20px !important;
     line-height: 30px !important;

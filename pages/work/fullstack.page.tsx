@@ -1,13 +1,14 @@
 import React from "react";
-import Section from "../../components/work/Section";
+import Section from "components/work/Section";
 import Link from "next/link";
-import { data } from "../../static/work_data";
+import { data } from "static/work_data";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 import { motion } from "framer-motion";
-import Contents from "../../components/work/Contents";
-import { countSlash } from "../../utils/countSlash";
-import client from "../../cms/contentfulClient";
+import Contents from "components/work/Contents";
+import { countSlash } from "utils/countSlash";
+import client from "cms/contentfulClient";
+import { Project } from "types/Project";
 
 export async function getStaticProps() {
   const { items } = await client.getEntries({ content_type: "project", "fields.type": "fullstack" });
@@ -18,7 +19,11 @@ export async function getStaticProps() {
   };
 }
 
-export default function Fullstack({ projects }) {
+type Props = {
+  projects: Project[];
+};
+
+export default function Fullstack({ projects }: Props) {
   const router = useRouter();
 
   return (

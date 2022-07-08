@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import ProjectHero from "../work/ProjectHero";
-import { withTheme } from "../../utils/testUtils";
-import { waitForDebugger } from "inspector";
+import { withTheme } from "utils/testUtils";
+import { IProject } from "types/generated/contentful";
 
 describe("ProjectHero Component", () => {
   const mockProject = {
@@ -15,7 +15,7 @@ describe("ProjectHero Component", () => {
         data: [{ type: "AWS", sub: ["API Gateway", "Lambda"] }],
       },
     },
-  };
+  } as unknown as IProject;
 
   it("Should render given props", () => {
     render(withTheme(() => <ProjectHero project={mockProject} />));

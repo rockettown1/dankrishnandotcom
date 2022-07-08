@@ -5,9 +5,14 @@ import { BsArrowDown } from "react-icons/bs";
 import Button from "../shared/Button";
 import Link from "next/link";
 import { BsGithub } from "react-icons/bs";
+import { IProject } from "types/generated/contentful";
 
-const ProjectHero = ({ project }) => {
-  const openProjectNewTab = (link) => {
+type Props = {
+  project: IProject;
+};
+
+const ProjectHero = ({ project }: Props) => {
+  const openProjectNewTab = (link: string) => {
     parent.open(link);
   };
 
@@ -22,7 +27,7 @@ const ProjectHero = ({ project }) => {
         >
           <h6 className="title">Technologies</h6>
           <ul>
-            {project.fields.tech.data.map((tech, index) => {
+            {project.fields.tech.data.map((tech: { type: string; sub: string[] }, index: number) => {
               return (
                 <div key={index}>
                   <h4>{tech.type}</h4>

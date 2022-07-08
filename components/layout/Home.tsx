@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
-function HomeSVG({ use }) {
+function HomeSVG({ use }: { use: boolean }) {
   return (
     <Container use={use}>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="50px" height="50px">
@@ -20,7 +20,11 @@ function HomeSVG({ use }) {
 
 export default HomeSVG;
 
-const Container = styled.div`
+type ContainerProps = {
+  use: boolean;
+};
+
+const Container = styled.div<ContainerProps>`
   height: 55px;
   width: 55px !important;
   padding: 10px;
