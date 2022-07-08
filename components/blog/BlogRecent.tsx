@@ -1,11 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { useRouter } from "next/router";
 import { GoSearch } from "react-icons/go";
 import Topics from "./Topics";
-import { AiFillCloseCircle } from "react-icons/ai";
-import Link from "next/link";
 
 const topics = ["react", "typescript", "javascript", "aws", "compsci", "animation", "design", "css", "go", "next"];
 

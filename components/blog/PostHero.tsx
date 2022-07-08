@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import moment from "moment";
 import readingTime from "reading-time";
 import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
-import floatingLike from "../../public/floatingLikeRed.json";
+import floatingLike from "public/floatingLikeRed.json";
 import Lottie from "lottie-react";
 
 import styled from "styled-components";

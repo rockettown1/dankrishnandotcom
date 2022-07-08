@@ -1,13 +1,13 @@
 import React, { useRef, useEffect, useState } from "react";
 import styled from "styled-components";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import { richTextOptions } from "../../utils/richTextOptions";
-import { useWindowSize } from "../../utils/useWindowSize";
-import floatingLike from "../../public/floatingLikeRed.json";
-import { useScrollDirection } from "../../utils/useScrollDirection";
+import { richTextOptions } from "utils/richTextOptions";
+import { useWindowSize } from "utils/useWindowSize";
+import floatingLike from "public/floatingLikeRed.json";
+import { useScrollDirection } from "utils/useScrollDirection";
 import Lottie, { LottieRef } from "lottie-react";
 
-type PostBodyProps = {
+type Props = {
   body: any;
   menuFixed: boolean;
   headings: string[];
@@ -21,15 +21,7 @@ type PostBodyProps = {
 Well this is a slight embarrasing component. I will try to abstract out all the logic for observing intersections when I get around to refactoring.
 */
 
-export default function PostBody({
-  body,
-  menuFixed,
-  headings,
-  liked,
-  setLiked,
-  likeNumber,
-  setLikeNumber,
-}: PostBodyProps) {
+export default function PostBody({ body, menuFixed, headings, liked, setLiked, likeNumber, setLikeNumber }: Props) {
   const [currentHeading, setCurrentHeading] = useState<number>(0);
   const [startObserving, setStartObserving] = useState<boolean>(false);
   const { height } = useWindowSize();

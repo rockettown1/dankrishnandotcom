@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 import Image from "next/image";
 import styled from "styled-components";
-import lp from "../../public/laptop1.jpg";
+import lp from "public/laptop1.jpg";
 
 const dummyPosts = [
   { title: "Converting a JavaScript app to TypeScript." },

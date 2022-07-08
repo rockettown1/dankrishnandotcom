@@ -1,14 +1,19 @@
 import { useState } from "react";
 import styled from "styled-components";
-import BlogMain from "../components/blog/BlogMain";
-import BlogRecent from "../components/blog/BlogRecent";
+import { BlogMain, BlogRecent } from "../components/blog";
 
 export default function Blog() {
   const [menuFixed, setMenuFixed] = useState(false);
+
+  const props = {
+    menuFixed,
+    setMenuFixed,
+  };
+
   return (
     <Container>
-      <BlogMain menuFixed={menuFixed} setMenuFixed={setMenuFixed} />
-      <BlogRecent menuFixed={menuFixed} setMenuFixed={setMenuFixed} />
+      <BlogMain {...props} />
+      <BlogRecent {...props} />
     </Container>
   );
 }
