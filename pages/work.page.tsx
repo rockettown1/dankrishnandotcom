@@ -1,13 +1,13 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import Section from "../components/work/Section";
-import { useWindowSize } from "../utils/useWindowSize";
-import { data } from "../data/work";
+import Section from "components/work/Section";
+import { useWindowSize } from "utils";
+import { data } from "static/work_data";
 import { useRouter } from "next/router";
 import { motion } from "framer-motion";
-import WorkTracker from "../components/layout/WorkTracker";
+import WorkTracker from "components/layout/WorkTracker";
 
-function Work() {
+export default function Work() {
   const [activeLine, setActiveLine] = useState(0);
   const [position, setPosition] = useState(null);
   const { width } = useWindowSize();
@@ -22,7 +22,7 @@ function Work() {
     }
   }, [position]);
 
-  const handleFindMore = (link) => {
+  const handleFindMore = (link: string) => {
     router.push(link, link, { scroll: false });
     sessionStorage.setItem("scrollPosition", container.current.scrollTop);
   };
@@ -67,9 +67,12 @@ function Work() {
     </Container>
   );
 }
-export default Work;
 
-const Container = styled.div`
+type ContainerProps = {
+  width: number;
+};
+
+const Container = styled.div<ContainerProps>`
   width: 100vw;
   height: 100vh;
   overflow-y: scroll;

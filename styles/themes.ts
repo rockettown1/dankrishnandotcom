@@ -1,4 +1,16 @@
-export const lightTheme = {
+import { DefaultTheme } from "styled-components";
+
+export interface MyTheme extends DefaultTheme {
+  name: string;
+  background: string;
+  secondary_background: string;
+  primary_text: string;
+  secondary_text: string;
+  highlight: string;
+  disabled: string;
+}
+
+export const lightTheme: MyTheme = {
   name: "light",
   background: "#fff",
   secondary_background: "#fffaf2",
@@ -8,7 +20,7 @@ export const lightTheme = {
   disabled: "rgba(0,0,0,0.1)",
 };
 
-export const darkTheme = {
+export const darkTheme: MyTheme = {
   name: "dark",
   background: "#080c11",
   secondary_background: "#0b1016",

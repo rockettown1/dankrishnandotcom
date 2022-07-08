@@ -1,20 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import HomeSVG from "./Home";
 import Link from "next/link";
 import { useTheme } from "styled-components";
 import { useRouter } from "next/router";
 import { MdLightMode, MdDarkMode } from "react-icons/md";
-import { motion } from "framer-motion";
-import { handleKeyboardSelect } from "../../utils/handleKeyboardSelect";
+import { handleKeyboardSelect } from "utils/handleKeyboardSelect";
 import Social from "./Social";
+import { Option } from "components/layout";
+import { MyTheme } from "styles/themes";
 
-export default function Nav({ notHome, toggleTheme }) {
+type Props = {
+  toggleTheme: (mode: string) => void;
+};
+
+export default function Nav({ toggleTheme }: Props) {
   const [rotation, setRotation] = useState(0);
-
   const router = useRouter();
-  const theme = useTheme();
+  const theme = useTheme() as MyTheme;
   let position = "fixed";
+  const notHome = router.pathname !== "/";
 
   switch (router.pathname) {
     case "/":
@@ -25,12 +30,12 @@ export default function Nav({ notHome, toggleTheme }) {
       position = "absolute";
   }
 
-  const handleThemeToggle = (e) => {
+  const handleThemeToggle = (e: React.KeyboardEvent | React.MouseEvent) => {
     if (e.type === "keydown") {
       const isEnterKey = handleKeyboardSelect(e, toggleTheme);
       if (!isEnterKey) return;
     }
-    toggleTheme();
+    theme.name === "dark" ? toggleTheme("light") : toggleTheme("dark");
     setRotation((prev) => prev + 180);
   };
 
@@ -38,40 +43,13 @@ export default function Nav({ notHome, toggleTheme }) {
     <Container position={position} data-testid="nav">
       <div id="icon-container">
         <Social />
-        <Link href="/hello" scroll={false}>
-          <Option
-            active={router.pathname.includes("hello")}
-            tabIndex="1"
-            role="link"
-            onKeyDown={(e) => handleKeyboardSelect(e, () => router.push("/hello"))}
-          >
-            Hello
-          </Option>
-        </Link>
-        <Link href="/work" scroll={false}>
-          <Option
-            active={router.pathname.includes("work")}
-            tabIndex="1"
-            role="link"
-            onKeyDown={(e) => handleKeyboardSelect(e, () => router.push("/work"))}
-          >
-            Work
-          </Option>
-        </Link>
-        <Link href="/blog" scroll={false}>
-          <Option
-            active={router.pathname.includes("blog")}
-            tabIndex="1"
-            role="link"
-            onKeyDown={(e) => handleKeyboardSelect(e, () => router.push("/blog"))}
-          >
-            Blog
-          </Option>
-        </Link>
+        {["Hello", "Work", "Blog"].map((name, index) => {
+          return <Option key={index} linkName={name} />;
+        })}
       </div>
       <div id="right">
         <Link href="/">
-          <a name="home">
+          <a>
             <HomeSVG use={notHome} />
           </a>
         </Link>
@@ -81,7 +59,7 @@ export default function Nav({ notHome, toggleTheme }) {
           aria-label="darktheme toggle"
           onClick={handleThemeToggle}
           onKeyDown={handleThemeToggle}
-          tabIndex="5"
+          tabIndex={5}
           aria-pressed={theme.name === "dark"}
           rotation={rotation}
         >
@@ -95,7 +73,11 @@ export default function Nav({ notHome, toggleTheme }) {
   );
 }
 
-const Container = styled.nav`
+type ContainerProps = {
+  position: string;
+};
+
+const Container = styled.nav<ContainerProps>`
   position: ${({ position }) => position};
   width: 100vw;
   height: 100px;
@@ -141,13 +123,11 @@ const Container = styled.nav`
   }
 `;
 
-const Option = styled(motion.h2)`
-  color: ${({ theme, active }) => (active ? theme.primary_text : theme.secondary_text)};
-  border-bottom: 1px solid ${({ theme, active }) => (active ? theme.primary_text : "none")};
-  font-size: 3vh;
-`;
+type ModeProps = {
+  rotation: number;
+};
 
-const ModeContainer = styled.div`
+const ModeContainer = styled.div<ModeProps>`
   display: flex;
   justify-content: center;
   cursor: pointer;

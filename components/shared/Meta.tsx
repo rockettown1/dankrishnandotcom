@@ -1,7 +1,7 @@
 import React, { Fragment, FunctionComponent } from "react";
 import Head from "next/head";
 
-import { MetaTags } from "../types/Tags";
+import { MetaTags } from "../../types/Tags";
 
 type MetaProps = {
   tags: MetaTags;

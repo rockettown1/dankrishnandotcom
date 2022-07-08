@@ -6,10 +6,10 @@ import styled from "styled-components";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { motion } from "framer-motion";
-import Circle from "../components/hero/Circle";
-import Arrow from "../components/layout/Arrow";
-import x1 from "../public/xander_logo.png";
-import x2 from "../public/xander_logo2.png";
+import Circle from "components/hero/Circle";
+import Arrow from "components/layout/Arrow";
+import x1 from "public/xander_logo.png";
+import x2 from "public/xander_logo2.png";
 
 function Home() {
   const [current, setCurrent] = useState({ title: 0, image: 2 });
@@ -166,7 +166,11 @@ const DogWrapper = styled(motion.div)`
   }
 `;
 
-const Sec = styled(motion.div)`
+type SecProps = {
+  ready?: boolean;
+};
+
+const Sec = styled(motion.div)<SecProps>`
   height: 100vh;
   width: 100vw;
   position: relative;
@@ -209,7 +213,11 @@ const Sec = styled(motion.div)`
   }
 `;
 
-const ImgContainer = styled(motion.div)`
+type ImgContainerProps = {
+  focus: boolean;
+};
+
+const ImgContainer = styled(motion.div)<ImgContainerProps>`
   margin-top: -60px;
   width: 33%;
   height: 100vh;

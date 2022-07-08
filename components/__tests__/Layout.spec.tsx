@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import Layout from "../layout/Layout";
+import { Layout } from "../layout/";
 import { withTheme, withRouter } from "../../utils/testUtils";
 import { compose } from "ramda";
 
@@ -12,7 +12,7 @@ describe("Layout Component", () => {
         withTheme,
         withRouter
       )(() => (
-        <Layout notHome={true} toggleTheme={mockToggle}>
+        <Layout toggleTheme={mockToggle}>
           <h1>I'm a child</h1>
         </Layout>
       ))

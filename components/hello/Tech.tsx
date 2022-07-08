@@ -1,16 +1,15 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { AiFillCloseCircle } from "react-icons/ai";
-import { sortTech } from "../../utils/sortTech";
-import { TechList } from "../../utils/sortTech";
+import { sortTech, TechList } from "utils/sortTech";
 
-type TechProps = {
+type Props = {
   techList: TechList;
   setTech: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export default function Tech({ techList, setTech }: TechProps) {
+export default function Tech({ techList, setTech }: Props) {
   const tech = sortTech(techList);
 
   return (

@@ -1,8 +1,8 @@
 import { render } from "@testing-library/react";
-import Button from "../Button";
-import { withTheme } from "../../utils/testUtils";
+import Button from "../shared/Button";
+import { withTheme } from "utils/testUtils";
 import user from "@testing-library/user-event";
-import { lightTheme, darkTheme } from "../../styles/themes";
+import { lightTheme, darkTheme } from "styles/themes";
 import "jest-styled-components";
 
 describe("Button.js", () => {

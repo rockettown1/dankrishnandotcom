@@ -7,3 +7,8 @@
   font-family: "AllianceNo1-Light";
   src: url("/fonts/AllianceNo1Light.woff2") format("woff2"), url("/fonts/AllianceNo1Light.woff") format("woff");
 }
+
+@font-face {
+  font-family: "SF-Display-Light";
+  src: url("/fonts/SFProDisplayLight.woff2") format("woff2"), url("/fonts/SFProDisplayLight") format("woff");
+}

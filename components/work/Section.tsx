@@ -1,16 +1,30 @@
 import React from "react";
 import styled from "styled-components";
-import Button from "../Button";
+import Button from "../shared/Button";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Arrow from "../layout/Arrow";
+import { StaticImageData } from "next/image";
 
-import { useRouter } from "next/router";
+type Data = {
+  item: string;
+  title: string;
+  desc: string;
+  link: string;
+  img: StaticImageData;
+  available: boolean;
+};
 
-export default function Section({ data, main, id, handleClick, exitToMain }) {
+type SectionProps = {
+  data: Data;
+  main?: boolean;
+  id: number;
+  handleClick: (string) => void;
+  exitToMain: boolean;
+};
+
+export default function Section({ data, main, id, handleClick, exitToMain }: SectionProps) {
   const { item, title, desc, link, img, available } = data;
-
-  const notHome = useRouter().pathname !== "/";
 
   const image = {
     isMain: {
@@ -50,7 +64,7 @@ export default function Section({ data, main, id, handleClick, exitToMain }) {
         <ScrollPrompt initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
           <div>
             <h4>Scroll</h4>
-            <Arrow />
+            <Arrow spin={false} />
           </div>
         </ScrollPrompt>
       )}
@@ -58,7 +72,10 @@ export default function Section({ data, main, id, handleClick, exitToMain }) {
   );
 }
 
-const Container = styled.section`
+type ContainerProps = {
+  main: boolean;
+};
+const Container = styled.section<ContainerProps>`
   padding-left: 20px;
   display: flex;
   align-items: center;
@@ -111,7 +128,11 @@ const Details = styled(motion.div)`
   }
 `;
 
-const ImgWrapper = styled(motion.div)`
+type ImgWrapperProps = {
+  main: boolean;
+};
+
+const ImgWrapper = styled(motion.div)<ImgWrapperProps>`
   height: ${({ main }) => (main ? "100vh" : "50vh")};
   width: ${({ main }) => (main ? "50vw" : "40vw")};
   filter: ${({ main }) => (main ? "brightness(20%)" : "brightness(100%)")};

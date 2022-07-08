@@ -1,13 +1,12 @@
 import React, { useRef } from "react";
 import Head from "next/head";
 import styled from "styled-components";
-import Image from "next/image";
 import { motion } from "framer-motion";
-import MainSection from "../components/hello/Section";
-import { data } from "../data/hello.js";
-import client from "../cms/contentfulClient";
-import { useWindowSize } from "../utils/useWindowSize";
-import Footer from "../components/layout/Footer";
+import MainSection from "components/hello/Section";
+import { data } from "static/hello_data";
+import client from "cms/contentfulClient";
+import { useWindowSize } from "utils";
+import Footer from "components/layout/Footer";
 
 export async function getStaticProps() {
   const response = await client.getEntries({ content_type: "techList" });
@@ -77,7 +76,11 @@ function Hello({ techList }) {
 
 export default Hello;
 
-const Container = styled(motion.div)`
+type ContainerProps = {
+  width: number;
+};
+
+const Container = styled(motion.div)<ContainerProps>`
   width: 100vw;
   justify-content: space-between;
   height: ${({ width }) => (width > 1000 ? "100vh" : "auto")};
