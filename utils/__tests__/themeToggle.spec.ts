@@ -1,5 +1,5 @@
-import { themeToggle } from "../themeToggle";
-import { darkTheme, lightTheme } from "../../styles/themes";
+import { themeToggle } from "utils";
+import { darkTheme, lightTheme } from "styles/themes";
 
 const mockedRoot = {
   style: {

@@ -1,4 +1,4 @@
-import { clearScrollposition } from "../clearScrollposition";
+import { clearScrollposition } from "utils";
 
 describe("clearScrollposition utility", () => {
   const mockRouter1 = { pathname: "/hello" };

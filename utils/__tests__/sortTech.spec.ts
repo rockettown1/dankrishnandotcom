@@ -1,4 +1,4 @@
-import { sortTech } from "../sortTech";
+import { sortTech } from "utils";
 import { mockTechList } from "../../__mocks__/fixtures";
 
 describe("sortTech utility function", () => {

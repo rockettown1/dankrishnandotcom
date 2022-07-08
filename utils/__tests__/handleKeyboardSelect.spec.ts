@@ -1,4 +1,4 @@
-import { handleKeyboardSelect } from "../handleKeyboardSelect";
+import { handleKeyboardSelect } from "utils";
 
 describe("handleKeyboardSelect utility function", () => {
   const mockEvent = { key: "" };

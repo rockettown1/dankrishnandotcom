@@ -1,11 +1,12 @@
 import React from "react";
-import { v4 as uuidv4 } from "uuid";
 import { BLOCKS, MARKS } from "@contentful/rich-text-types";
 import styled from "styled-components";
 import NextImage from "next/image";
 import ReactMarkdown from "react-markdown";
-import "prismjs/components/prism-jsx";
-import "prismjs/components/prism-typescript";
+import { Node } from "@contentful/rich-text-types";
+// import "prismjs/components/prism-jsx";
+// import "prismjs/components/prism-typescript";
+import renderRichText from "./renderRichText";
 
 const Bold = ({ children }) => <BoldMark>{children}</BoldMark>;
 const Underline = ({ children }) => <UnderlineMark>{children}</UnderlineMark>;
@@ -14,15 +15,13 @@ const Text = ({ children }) => <TextBlock>{children}</TextBlock>;
 
 export const richTextOptions = {
   renderMark: {
-    [MARKS.BOLD]: (text) => <Bold>{text}</Bold>,
-    [MARKS.UNDERLINE]: (text) => <Underline>{text}</Underline>,
-    [MARKS.ITALIC]: (text) => <Italic>{text}</Italic>,
+    [MARKS.BOLD]: (text: string) => <Bold>{text}</Bold>,
+    [MARKS.UNDERLINE]: (text: string) => <Underline>{text}</Underline>,
+    [MARKS.ITALIC]: (text: string) => <Italic>{text}</Italic>,
   },
   renderNode: {
-    [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
+    [BLOCKS.PARAGRAPH]: (_, children) => <Text>{children}</Text>,
     [BLOCKS.HEADING_1]: (node, children) => {
-      console.log(node);
-      let ref = React.createRef();
       if (children[0] === "Technical Discussion") {
         return (
           <Heading1 ref={node} id="discuss">
@@ -33,15 +32,15 @@ export const richTextOptions = {
 
       return <Heading1 ref={node}>{children}</Heading1>;
     },
-    [BLOCKS.HEADING_2]: (node, children) => <Heading2>{children}</Heading2>,
-    [BLOCKS.HEADING_3]: (node, children) => <Heading3>{children}</Heading3>,
-    [BLOCKS.HEADING_4]: (node, children) => <Heading4>{children}</Heading4>,
-    [BLOCKS.HEADING_5]: (node, children) => <Heading5>{children}</Heading5>,
-    [BLOCKS.HEADING_6]: (node, children) => <Heading6>{children}</Heading6>,
-    [BLOCKS.OL_LIST]: (node, children) => <Ol>{children}</Ol>,
-    [BLOCKS.UL_LIST]: (node, children) => <Ul>{children}</Ul>,
-    [BLOCKS.LIST_ITEM]: (node, children) => <li>{children}</li>,
-    [BLOCKS.QUOTE]: (node, children) => <Quote>{children}</Quote>,
+    [BLOCKS.HEADING_2]: (_, children) => <Heading2>{children}</Heading2>,
+    [BLOCKS.HEADING_3]: (_, children) => <Heading3>{children}</Heading3>,
+    [BLOCKS.HEADING_4]: (_, children) => <Heading4>{children}</Heading4>,
+    [BLOCKS.HEADING_5]: (_, children) => <Heading5>{children}</Heading5>,
+    [BLOCKS.HEADING_6]: (_, children) => <Heading6>{children}</Heading6>,
+    [BLOCKS.OL_LIST]: (_, children) => <Ol>{children}</Ol>,
+    [BLOCKS.UL_LIST]: (_, children) => <Ul>{children}</Ul>,
+    [BLOCKS.LIST_ITEM]: (_, children) => <li>{children}</li>,
+    [BLOCKS.QUOTE]: (_, children) => <Quote>{children}</Quote>,
     [BLOCKS.EMBEDDED_ENTRY]: (node) => {
       if (node.data.target.fields.code) {
         return <Markdown className="line-numbers">{node.data.target.fields.code}</Markdown>;
@@ -59,14 +58,13 @@ export const richTextOptions = {
         );
       }
       if (node.data.target.fields.type === "subText") {
+        console.log("This", this);
         return (
           <SubText>
             <div id="heading">
-              <h3>{node.data.target.fields.heading}</h3>
+              <h2>{node.data.target.fields.heading}</h2>
             </div>
-            <div id="paragraph">
-              <ReactMarkdown>{node.data.target.fields.paragraph}</ReactMarkdown>
-            </div>
+            <div id="paragraph">{renderRichText(node.data.target.fields.richParagraph)}</div>
           </SubText>
         );
       }
@@ -93,10 +91,11 @@ export const richTextOptions = {
           </MocksContainer>
         );
       }
-      if (node.data.target.sys.contentType.sys.id === "videoWithPoster") {
+      if (node.data.target.sys.contentType.sys.id === "videoWithOptions") {
+        const { poster, video, autoplay } = node.data.target.fields;
         return (
-          <Video controls poster={node.data.target.fields.poster.fields.file.url}>
-            <source src={node.data.target.fields.video.fields.file.url} type="video/mp4" />
+          <Video controls poster={poster.fields.file.url} autoPlay={autoplay}>
+            <source src={video.fields.file.url} type="video/mp4" />
           </Video>
         );
       }
@@ -106,13 +105,14 @@ export const richTextOptions = {
       switch (assetType) {
         case "video/mp4":
           return (
-            <Video controls>
+            <Video controls autoPlay loop muted>
               <source src={node.data.target.fields.file.url} type="video/mp4" />
             </Video>
           );
         case "image/png":
         case "image/jpeg":
         case "image/jpg":
+        case "image/gif":
           return (
             <Image
               src={`https:${node.data.target.fields.file.url}`}
@@ -188,12 +188,12 @@ const Markdown = styled(ReactMarkdown)`
 `;
 
 const Video = styled.video`
-  width: 80%;
+  width: 60%;
   margin: 30px 0;
 `;
 
 const MainText = styled.section`
-  width: 80%;
+  width: 50%;
   margin-top: 30px;
   display: flex;
   margin-bottom: 50px;
@@ -220,7 +220,7 @@ const SubText = styled.section`
   flex-direction: column;
   margin-bottom: 50px;
 
-  h3 {
+  h2 {
     width: 100%;
     margin: 0;
     color: ${({ theme }) => theme.highlight};

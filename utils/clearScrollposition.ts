@@ -1,4 +1,4 @@
-export const clearScrollposition = (path, storage) => {
+export const clearScrollposition = (path: string, storage) => {
   try {
     if (path.search(/work/i) == -1) {
       storage.removeItem("scrollPosition");
