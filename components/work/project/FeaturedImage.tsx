@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import NextImage from "next/image";
+import { IProject } from "types/generated/contentful";
 
-export default function FeaturedImage({ project }) {
+export default function FeaturedImage({ project }: { project: IProject }) {
   const { featuredImage } = project.fields;
   return (
     <Container project={project}>
@@ -18,7 +19,11 @@ export default function FeaturedImage({ project }) {
   );
 }
 
-const Container = styled.div`
+type ContainerProps = {
+  project: IProject;
+};
+
+const Container = styled.div<ContainerProps>`
   position: relative;
   height: 700px;
   width: 100vw;

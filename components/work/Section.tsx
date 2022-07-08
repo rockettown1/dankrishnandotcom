@@ -11,16 +11,16 @@ type Data = {
   title: string;
   desc: string;
   link: string;
-  img: StaticImageData;
+  img: StaticImageData | string;
   available: boolean;
 };
 
-type SectionProps = {
-  data: Data;
+export type SectionProps = {
+  data?: Data;
   main?: boolean;
-  id: number;
-  handleClick: (string) => void;
-  exitToMain: boolean;
+  id?: number;
+  handleClick?: (string) => void;
+  exitToMain?: boolean;
 };
 
 export default function Section({ data, main, id, handleClick, exitToMain }: SectionProps) {

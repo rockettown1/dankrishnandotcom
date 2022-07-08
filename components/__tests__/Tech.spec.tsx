@@ -1,8 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import user from "@testing-library/user-event";
 import Tech from "../hello/Tech";
-import { withTheme } from "../../utils/testUtils";
-import { mockTechList } from "../../__mocks__/fixtures";
+import { withTheme } from "utils/testUtils";
+import { mockTechList } from "__mocks__/fixtures";
 
 describe("Tech Component", () => {
   const mockSetTech = jest.fn();

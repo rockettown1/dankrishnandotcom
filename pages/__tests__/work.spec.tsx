@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import Work from "../work.page";
-import { withTheme, withRouter } from "../../utils/testUtils";
+import { withTheme, withRouter } from "utils";
 import { compose } from "ramda";
 
 describe("Work Page", () => {

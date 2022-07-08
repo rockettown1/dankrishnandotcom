@@ -2,12 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 import { motion } from "framer-motion";
+import { IconType } from "react-icons";
 
 interface Props {
   primary?: boolean;
   secondary?: boolean;
   link?: string;
-  children: string;
+  children: string | any[];
   handleClick?: (link: string) => void;
   toDisable?: boolean;
 }

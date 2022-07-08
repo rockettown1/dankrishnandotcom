@@ -1,13 +1,14 @@
 import React, { useLayoutEffect } from "react";
-import Section from "../../components/work/Section";
-import { data } from "../../static/work_data";
+import Section from "components/work/Section";
+import { data } from "static/work_data";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 import { motion } from "framer-motion";
-import Contents from "../../components/work/Contents";
+import Contents from "components/work/Contents";
 import Link from "next/link";
-import client from "../../cms/contentfulClient";
-import { countSlash } from "../../utils/countSlash";
+import client from "cms/contentfulClient";
+import { countSlash } from "utils/countSlash";
+import { Project } from "types/Project";
 
 export async function getStaticProps() {
   const { items } = await client.getEntries({ content_type: "project", "fields.type": "frontend" });
@@ -18,7 +19,11 @@ export async function getStaticProps() {
   };
 }
 
-export default function Frontend({ projects }) {
+type Props = {
+  projects: Project[];
+};
+
+export default function Frontend({ projects }: Props) {
   const router = useRouter();
 
   return (

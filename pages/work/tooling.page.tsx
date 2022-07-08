@@ -1,16 +1,14 @@
 import React from "react";
-import Section from "../../components/work/Section";
-import { data } from "../../static/work_data";
+import Section from "components/work/Section";
+import { data } from "static/work_data";
 import styled from "styled-components";
-import Arrow from "../../components/layout/Arrow";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { useRouter } from "next/router";
 
-export default function Design() {
+export default function Tooling() {
   return (
     <Container>
-      <Section data={data[2]} main />
+      <Section data={data[3]} main />
       <Link href="/work" scroll={false}>
         Tester
       </Link>
