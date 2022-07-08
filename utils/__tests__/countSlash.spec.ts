@@ -1,4 +1,4 @@
-import { countSlash } from "../countSlash";
+import { countSlash } from "utils";
 
 describe("countSlash utility function", () => {
   const test1 = "/work/fullstack";
