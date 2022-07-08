@@ -1,4 +1,5 @@
 module.exports = {
+  roots: ["."],
   collectCoverageFrom: ["**/*.{js,jsx,ts,tsx}", "!**/*.d.ts", "!**/node_modules/**", "!**/data/**"],
   moduleNameMapper: {
     // Handle CSS imports (with CSS modules)
@@ -29,4 +30,5 @@ module.exports = {
   },
   transformIgnorePatterns: ["/node_modules/", "^.+\\.module\\.(css|sass|scss)$"],
   setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
+  moduleDirectories: ["node_modules", "<rootDir>"],
 };

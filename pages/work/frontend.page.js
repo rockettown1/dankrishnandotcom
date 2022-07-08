@@ -1,6 +1,6 @@
 import React, { useLayoutEffect } from "react";
 import Section from "../../components/work/Section";
-import { data } from "../../data/work";
+import { data } from "../../static/work_data";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 import { motion } from "framer-motion";
@@ -23,7 +23,7 @@ export default function Frontend({ projects }) {
 
   return (
     <Container>
-      <Section data={data[1]} main exitToMain={countSlash(router.pathname) < 2} />
+      <Section data={data[0]} main exitToMain={countSlash(router.pathname) < 2} />
       <Contents>
         <h6>Selected Projects</h6>
         {projects.map((project, index) => {

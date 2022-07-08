@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Tech from "./Tech";
 import { motion } from "framer-motion";
-import { TechList } from "../../utils/sortTech";
+import { TechList } from "utils/sortTech";
 
-type HelloSectionProps = {
+type Props = {
   section: {
     sec: string;
     subsec: string;
@@ -15,7 +15,7 @@ type HelloSectionProps = {
   techList: TechList;
 };
 
-export default function Section({ section, techList }: HelloSectionProps) {
+export default function Section({ section, techList }: Props) {
   const [tech, setTech] = useState(false);
   const { sec, subsec, title, name, desc } = section;
 

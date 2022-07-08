@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useRouter } from "next/router";
 import { motion } from "framer-motion";
 
-interface ButtonProps {
+interface Props {
   primary?: boolean;
   secondary?: boolean;
   link?: string;
@@ -12,7 +12,7 @@ interface ButtonProps {
   toDisable?: boolean;
 }
 
-export default function Button({ primary, secondary, link, children, handleClick, toDisable }: ButtonProps) {
+export default function Button({ primary, secondary, link, children, handleClick, toDisable }: Props) {
   if (primary) {
     return (
       <Primary

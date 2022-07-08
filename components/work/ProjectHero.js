@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import { BiSubdirectoryRight } from "react-icons/bi";
 import { BsArrowDown } from "react-icons/bs";
-import Button from "../Button";
+import Button from "../shared/Button";
 import Link from "next/link";
 import { BsGithub } from "react-icons/bs";
 

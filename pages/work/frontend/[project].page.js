@@ -38,6 +38,7 @@ export async function getStaticProps(ctx) {
 }
 
 const Project = ({ project }) => {
+  console.log(project);
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -66,7 +67,6 @@ export default Project;
 
 const Container = styled.section`
   width: 100vw;
-
   p {
     font-size: 20px !important;
     line-height: 30px !important;
