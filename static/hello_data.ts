@@ -11,7 +11,7 @@ export const data = [
     subsec: "",
     title: "Who am I",
     name: "Dan Krishnan",
-    desc: `I'm a self-taught software engineer, a qualified teacher and a bit of a maths and science geek. Sometimes I'll pick up a paintbrush and think I'm an artist, sometimes I'll pick up a skateboard and forget my knees are 36 years old, and sometimes I'll have a problem with doing too many things at once. I enjoy anything that allows me to think deeply, learn and get better. I currently work at a coding bootcamp where I focus on curriculum design, lead internal software projects and work with clients on their staff training needs.<br /> <br / > I live in Chester with my wife and have a dog called Xander (a long-haired Weimaraner because I'm sure you were wondering). I spend most of my time either learning new things, solving technical problems, building things, travelling or being walked by my dog 🐶`,
+    desc: `I'm a self-taught software engineer, a qualified teacher and a bit of a maths and science geek. Sometimes I'll pick up a paintbrush and think I'm an artist, sometimes I'll pick up a skateboard and forget my knees are 36 years old, and sometimes I'll have a problem with doing too many things at once. I enjoy anything that allows me to think deeply, learn and get better. I'm currently the Technical Director at a coding bootcamp where I focus on curriculum design, lead internal software projects and work with clients on their staff training needs.<br /> <br / > I live in Chester with my wife and have a dog called Xander (a long-haired Weimaraner because I'm sure you were wondering). I spend most of my time either learning new things, solving technical problems, building software, travelling or being walked by my dog 🐶`,
   },
   {
     sec: "03",
@@ -39,6 +39,6 @@ export const data = [
     subsec: "iii",
     title: "What I do",
     name: "Other creative stuff",
-    desc: ` In the (near) future I hope to have a page dedicated to artistic endeavours, but for now here's a watercolour pheasant 🤷‍♂️`,
+    desc: ` In the (near) future I hope to have a page dedicated to artwork, but for now here's a watercolour pheasant 🤷‍♂️`,
   },
 ];

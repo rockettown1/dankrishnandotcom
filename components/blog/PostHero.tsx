@@ -90,6 +90,12 @@ const Container = styled.section`
     color: ${({ theme }) => theme.secondary_text};
     margin-right: 20px;
   }
+  @media screen and (max-width: 700px) {
+    padding: 0 30px;
+    h1 {
+      font-size: 30px;
+    }
+  }
 `;
 
 const Details = styled.div`

@@ -63,7 +63,8 @@ export default function Work() {
           <Section data={data} key={index} id={index + 1} handleClick={handleFindMore} exitToMain={true} />
         ))}
       </motion.div>
-      <WorkTracker activeLine={activeLine} />
+      {width >= 1100 && <WorkTracker activeLine={activeLine} />}
+      <div style={{ height: "500px" }}></div>
     </Container>
   );
 }
