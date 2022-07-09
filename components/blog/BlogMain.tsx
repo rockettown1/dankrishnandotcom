@@ -76,6 +76,9 @@ const Container = styled.div`
   h3 {
     text-transform: uppercase;
   }
+  @media screen and (max-width: 800px) {
+    padding: 0 20px;
+  }
 `;
 
 const Latest = styled.section`
@@ -125,6 +128,34 @@ const Latest = styled.section`
     h2 {
       font-size: 1.7vw;
       margin: 0;
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    flex-direction: column;
+    max-height: none;
+    overflow: hidden;
+    #main {
+      max-width: none;
+      width: 100vw;
+      height: 400px;
+      overflow: hidden;
+      margin-bottom: 20px;
+
+      padding: 0;
+      h1 {
+        width: 70vw;
+        font-size: 30px;
+        line-height: 30px;
+      }
+    }
+
+    #list {
+      max-width: none;
+      padding: 0;
+      h2 {
+        font-size: 17px;
+      }
     }
   }
 `;

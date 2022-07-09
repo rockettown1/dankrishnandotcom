@@ -168,4 +168,8 @@ const Img = styled.img`
   width: 400px;
   margin-left: 25px;
   filter: brightness(1.3);
+  @media screen and (max-width: 500px) {
+    width: 100%;
+    margin-left: 0;
+  }
 `;

@@ -1,10 +1,8 @@
 import React, { useRef, useEffect, useState } from "react";
 import styled from "styled-components";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import { richTextOptions } from "utils/richTextOptions";
-import { useWindowSize } from "utils/useWindowSize";
+import { useWindowSize, richTextOptions, useScrollDirection } from "utils";
 import floatingLike from "public/floatingLikeRed.json";
-import { useScrollDirection } from "utils/useScrollDirection";
 import Lottie, { LottieRef } from "lottie-react";
 
 type Props = {
@@ -24,7 +22,7 @@ Well this is a slight embarrasing component. I will try to abstract out all the 
 export default function PostBody({ body, menuFixed, headings, liked, setLiked, likeNumber, setLikeNumber }: Props) {
   const [currentHeading, setCurrentHeading] = useState<number>(0);
   const [startObserving, setStartObserving] = useState<boolean>(false);
-  const { height } = useWindowSize();
+  const { height, width } = useWindowSize();
   const { scrollDirection } = useScrollDirection();
   const headingRefs = useRef<HTMLHeadingElement[]>([]);
   let likeHeart: LottieRef = useRef();
@@ -131,35 +129,37 @@ export default function PostBody({ body, menuFixed, headings, liked, setLiked, l
       <Content>
         <BodyWrapper>{documentToReactComponents(body, richTextOptions)}</BodyWrapper>
       </Content>
-      <Menu isMenuFixed={menuFixed}>
-        <Sidebar>
-          <h4 id="title">Contents</h4>
-          <ul>
-            {headings.map((heading, index) => {
-              return (
-                <Option
-                  key={index}
-                  current={heading === headings[currentHeading]}
-                  onClick={() => scrollIntoView(index, heading)}
-                >
-                  {heading}
-                </Option>
-              );
-            })}
-          </ul>
-          <Likes onClick={registerLike}>
-            {/* {liked ? <HiHeart size={30} color="red" /> : <HiOutlineHeart size={30} />} */}
-            <Lottie
-              lottieRef={likeHeart}
-              animationData={floatingLike}
-              autoplay={false}
-              loop={false}
-              style={{ height: "50px", marginLeft: "-12px", width: "50px" }}
-            />
-            <h5>{likeNumber}</h5>
-          </Likes>
-        </Sidebar>
-      </Menu>
+      {width >= 750 && (
+        <Menu isMenuFixed={menuFixed}>
+          <Sidebar>
+            <h4 id="title">Contents</h4>
+            <ul>
+              {headings.map((heading, index) => {
+                return (
+                  <Option
+                    key={index}
+                    current={heading === headings[currentHeading]}
+                    onClick={() => scrollIntoView(index, heading)}
+                  >
+                    {heading}
+                  </Option>
+                );
+              })}
+            </ul>
+            <Likes onClick={registerLike}>
+              {/* {liked ? <HiHeart size={30} color="red" /> : <HiOutlineHeart size={30} />} */}
+              <Lottie
+                lottieRef={likeHeart}
+                animationData={floatingLike}
+                autoplay={false}
+                loop={false}
+                style={{ height: "50px", marginLeft: "-12px", width: "50px" }}
+              />
+              <h5>{likeNumber}</h5>
+            </Likes>
+          </Sidebar>
+        </Menu>
+      )}
     </Container>
   );
 }
@@ -175,6 +175,10 @@ const Content = styled.div`
   width: 60vw;
   padding-left: 12vw;
   position: relative;
+  @media screen and (max-width: 700px) {
+    width: 100vw;
+    padding: 0 30px;
+  }
 `;
 
 type MenuProps = {

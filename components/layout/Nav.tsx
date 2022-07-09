@@ -5,7 +5,8 @@ import Link from "next/link";
 import { useTheme } from "styled-components";
 import { useRouter } from "next/router";
 import { MdLightMode, MdDarkMode } from "react-icons/md";
-import { handleKeyboardSelect } from "utils/handleKeyboardSelect";
+import { Divide as Hamburger } from "hamburger-react";
+import { handleKeyboardSelect, useWindowSize } from "utils";
 import Social from "./Social";
 import { Option } from "components/layout";
 import { MyTheme } from "styles/themes";
@@ -18,6 +19,7 @@ export default function Nav({ toggleTheme }: Props) {
   const [rotation, setRotation] = useState(0);
   const router = useRouter();
   const theme = useTheme() as MyTheme;
+  const { width } = useWindowSize();
   let position = "fixed";
   const notHome = router.pathname !== "/";
 
@@ -47,12 +49,15 @@ export default function Nav({ toggleTheme }: Props) {
           return <Option key={index} linkName={name} />;
         })}
       </div>
+
       <div id="right">
-        <Link href="/">
-          <a>
-            <HomeSVG use={notHome} />
-          </a>
-        </Link>
+        {width >= 1100 && (
+          <Link href="/">
+            <a>
+              <HomeSVG use={notHome} />
+            </a>
+          </Link>
+        )}
         <ModeContainer
           id="toggle-container"
           role="button"
@@ -117,9 +122,19 @@ const Container = styled.nav<ContainerProps>`
     font-size: 17px;
     font-weight: 400;
   }
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 1100px) {
     padding-right: 15px;
     height: 10vh;
+
+    #icon-container {
+      display: none;
+    }
+
+    #right {
+      position: absolute;
+      top: 10;
+      right: 10px;
+    }
   }
 `;
 

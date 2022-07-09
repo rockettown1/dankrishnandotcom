@@ -1,8 +1,8 @@
 import { useRef, useState, useEffect } from "react";
-import client from "../../cms/contentfulClient";
+import client from "cms/contentfulClient";
 import styled from "styled-components";
-import PostBody from "../../components/blog/PostBody";
-import PostHero from "../../components/blog/PostHero";
+import PostBody from "components/blog/PostBody";
+import PostHero from "components/blog/PostHero";
 import { GetStaticPropsContext } from "next";
 
 export async function getStaticPaths() {

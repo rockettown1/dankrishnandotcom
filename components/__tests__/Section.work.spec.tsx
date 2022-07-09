@@ -15,7 +15,6 @@ describe("work/Section Component", () => {
     },
     main: false,
     id: 1,
-
     exitToMain: false,
   });
 
