@@ -83,7 +83,7 @@ export const richTextOptions = {
               <NextImage
                 src={`https:${node.data.target.fields.desktop.fields.file.url}`}
                 layout="fill"
-                objectFit="cover"
+                objectFit="contain"
                 alt={node.data.target.fields.desktop.fields.file.title}
               />
               <div id="shadow"></div>
@@ -149,13 +149,16 @@ const TextBlock = styled.p`
 const Image = styled(NextImage)`
   width: 100vw;
   border-radius: 10px;
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 1000px) {
     width: 100%;
   }
 `;
 
 const Heading1 = styled.h1`
   font-size: 50px;
+  @media screen and (max-width: 500px) {
+    font-size: 30px;
+  }
 `;
 const Heading2 = styled.h2``;
 const Heading3 = styled.h3``;
@@ -190,13 +193,15 @@ const Markdown = styled(ReactMarkdown)`
 const Video = styled.video`
   width: 60%;
   margin: 30px 0;
+  @media screen and (max-width: 500px) {
+    width: 100%;
+  }
 `;
 
 const MainText = styled.section`
-  width: 50%;
+  width: 60%;
   margin-top: 30px;
   display: flex;
-  margin-bottom: 50px;
 
   #heading {
     width: 30%;
@@ -210,6 +215,20 @@ const MainText = styled.section`
   p {
     width: 100%;
     padding-left: 40px;
+  }
+  @media screen and (max-width: 1000px) {
+    width: 100vw;
+    padding: 50px;
+  }
+  @media screen and (max-width: 700px) {
+    flex-direction: column;
+    p {
+      padding: 0;
+    }
+    #paragraph,
+    #heading {
+      width: 100%;
+    }
   }
 `;
 
@@ -249,5 +268,29 @@ const MocksContainer = styled.section`
     height: 600px;
     width: 300px;
     bottom: 150px;
+  }
+
+  @media screen and (max-width: 1100px) {
+    width: 100vw;
+    height: 500px;
+    padding-left: 0;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+
+    #desktop-container {
+      width: 400px;
+      height: 300px;
+    }
+
+    #mobile-container {
+      position: relative;
+      bottom: 0;
+      width: 150px;
+      height: 300px;
+    }
+  }
+  @media screen and (max-width: 700px) {
+    flex-direction: column;
   }
 `;

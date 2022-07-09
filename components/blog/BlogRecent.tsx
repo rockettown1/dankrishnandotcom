@@ -134,6 +134,30 @@ const Container = styled.section<ContainerProps>`
       cursor: pointer;
     }
   }
+
+  @media screen and (max-width: 800px) {
+    padding: 0;
+    #wrapper {
+      flex-direction: column;
+    }
+    #col1 {
+      position: relative;
+      order: 1;
+      width: 100vw;
+      padding: 10px 40px;
+      height: max-content;
+
+      ul {
+        display: flex;
+      }
+    }
+
+    #recent {
+      order: 2;
+      width: 100vw;
+      padding: 20px;
+    }
+  }
 `;
 
 const Search = styled.div`

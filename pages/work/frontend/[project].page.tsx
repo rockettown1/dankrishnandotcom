@@ -10,7 +10,6 @@ import { motion } from "framer-motion";
 import FeaturedImage from "components/work/project/FeaturedImage";
 import { IProjectFields } from "types/generated/contentful";
 
-
 export async function getStaticPaths() {
   const response = await client.getEntries<IProjectFields>({
     content_type: "project",
@@ -69,6 +68,7 @@ export default function ProjectPage({ project }) {
 
 const Container = styled.section`
   width: 100vw;
+  overflow: hidden;
   p {
     font-size: 20px !important;
     line-height: 30px !important;
@@ -85,7 +85,6 @@ const Container = styled.section`
 `;
 
 const Body = styled.div`
-  margin-top: 50px;
   position: relative;
   min-height: 100vh;
   max-width: 1200px;
@@ -105,8 +104,8 @@ const Body = styled.div`
 const TextSection = styled.section`
   width: 100vw;
   padding: 60px 20vw;
-  background-color: ${({ theme }) => theme.background};
   display: flex;
+  background-color: ${({ theme }) => theme.seconarday_background};
 
   #heading {
     width: 30%;
@@ -120,5 +119,19 @@ const TextSection = styled.section`
   p {
     width: 100%;
     padding-left: 40px;
+  }
+
+  @media screen and (max-width: 1000px) {
+    padding: 50px;
+  }
+  @media screen and (max-width: 700px) {
+    flex-direction: column;
+    p {
+      padding: 0;
+    }
+    #paragraph,
+    #heading {
+      width: 100%;
+    }
   }
 `;

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import Head from "next/head";
 import styled from "styled-components";
 import { motion } from "framer-motion";
@@ -7,6 +7,7 @@ import { data } from "static/hello_data";
 import client from "cms/contentfulClient";
 import { useWindowSize } from "utils";
 import Footer from "components/layout/Footer";
+import Arrow from "components/layout/Arrow";
 
 export async function getStaticProps() {
   const response = await client.getEntries({ content_type: "techList" });
@@ -20,6 +21,9 @@ export async function getStaticProps() {
 function Hello({ techList }) {
   const conRef = useRef(null);
   const { width } = useWindowSize();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>
@@ -49,9 +53,17 @@ function Hello({ techList }) {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1, ease: "easeInOut", delay: 1 }}
               >
-                , I'm Dan. A <span className="highlight">software engineer</span>, teacher and technical director based
-                in the UK.
+                , I'm Dan. A <span className="highlight">software engineer</span>, and teacher based in the UK.
               </motion.span>
+              <br />
+              <motion.div
+                key="hellosentence"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1, ease: "easeInOut", delay: 1.5 }}
+              >
+                <Arrow spin={false} />
+              </motion.div>
             </motion.h1>
           </Section>
           <Img
@@ -82,7 +94,7 @@ type ContainerProps = {
 
 const Container = styled(motion.div)<ContainerProps>`
   width: 100vw;
-  justify-content: space-between;
+
   height: ${({ width }) => (width > 1000 ? "100vh" : "auto")};
   scroll-behavior: smooth;
   overflow-y: scroll;
@@ -92,6 +104,8 @@ const Container = styled(motion.div)<ContainerProps>`
 
   #landing {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   h1 {
@@ -157,8 +171,8 @@ const Section = styled.section`
   box-sizing: border-box;
 
   @media screen and (max-width: 1000px) {
-    align-items: flex-start;
-    padding-top: 15vh;
+    /* align-items: flex-start;
+    padding-top: 15vh; */
   }
 `;
 

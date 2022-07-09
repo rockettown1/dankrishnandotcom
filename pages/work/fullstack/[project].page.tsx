@@ -114,4 +114,17 @@ const TextSection = styled.section`
     width: 100%;
     padding-left: 40px;
   }
+  @media screen and (max-width: 1000px) {
+    padding: 50px;
+  }
+  @media screen and (max-width: 700px) {
+    flex-direction: column;
+    p {
+      padding: 0;
+    }
+    #paragraph,
+    #heading {
+      width: 100%;
+    }
+  }
 `;
