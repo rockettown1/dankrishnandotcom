@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.3.0](https://github.com/rockettown1/dankrishnandotcom/compare/v1.2.0...v1.3.0) (2022-07-09)
+
+
+### Features
+
+* **mobile:** menu added ([211a785](https://github.com/rockettown1/dankrishnandotcom/commit/211a7857589b9b3e24ef839b9ad7768eb9cdedd5))
+
+## [1.2.0](https://github.com/rockettown1/dankrishnandotcom/compare/v1.1.2...v1.2.0) (2022-07-08)
+
+
+### Features
+
+* **blog:** Add skeleton layout and styling for blog landing ([3ce1573](https://github.com/rockettown1/dankrishnandotcom/commit/3ce1573477b3848b4384303f30ddae57b8e2e8f9))
+* **blog:** added layout/template for main blog landing page and invidiual post pages ([11c4a3f](https://github.com/rockettown1/dankrishnandotcom/commit/11c4a3f14069e57c43b6d6d2d49185d117270d2f))
+
 ## [1.1.2](https://github.com/rockettown1/dankrishnandotcom/compare/v1.1.1...v1.1.2) (2022-06-29)
 
 

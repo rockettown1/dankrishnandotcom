@@ -1,28 +1,22 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import Nav from "./Nav";
-import { useTheme } from "styled-components";
+import { Nav } from "components/layout";
 import Prism from "prismjs";
 import "prismjs/themes/prism-okaidia.css";
-import { AnimatePresence } from "framer-motion";
 
-type LayoutProps = {
+type Props = {
   children: any;
-  notHome: boolean;
-  toggleTheme: React.Dispatch<React.SetStateAction<string>>;
+  toggleTheme: (mode: string) => void;
 };
 
-export default function Layout({ children, notHome, toggleTheme }: LayoutProps) {
-  const theme = useTheme();
-  console.log("Layout rendered");
+export default function Layout({ children, toggleTheme }: Props) {
   useEffect(() => {
     Prism.highlightAll();
   }, []);
 
   return (
     <Container data-testid="layout">
-      <Nav notHome={notHome} toggleTheme={() => (theme === "dark" ? toggleTheme("light") : toggleTheme("dark"))} />
-
+      <Nav toggleTheme={toggleTheme} />
       {children}
     </Container>
   );

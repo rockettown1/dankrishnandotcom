@@ -1,20 +1,18 @@
 import { useState, useEffect } from "react";
-import { themeToggle } from "../utils/themeToggle";
+import { themeToggle } from "utils";
 import { ThemeProvider } from "styled-components";
-import { lightTheme, darkTheme } from "../styles/themes";
-import Layout from "../components/layout/Layout";
+import { lightTheme, darkTheme } from "styles/themes";
+import { Layout } from "components/layout";
 import { AnimatePresence } from "framer-motion";
-import { clearScrollposition } from "../utils/clearScrollposition";
+import { clearScrollposition } from "utils";
 
-import "../public/fonts.css";
-import "../public/global.css";
+import "public/fonts.css";
+import "public/global.css";
 
 function MyApp({ Component, pageProps, router }) {
-  //used to render the home icon in the layout
-  const notHome = router.pathname !== "/";
   const [theme, setTheme] = useState("light");
 
-  const themeToggler = () => {
+  const toggleTheme = () => {
     const root = window.document.documentElement;
     theme === "dark" ? setTheme("light") : setTheme("dark");
     themeToggle(root, theme);
@@ -28,7 +26,7 @@ function MyApp({ Component, pageProps, router }) {
 
   return (
     <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
-      <Layout notHome={notHome} toggleTheme={themeToggler}>
+      <Layout toggleTheme={toggleTheme}>
         <AnimatePresence exitBeforeEnter>
           <Component {...pageProps} key={router.route} />
         </AnimatePresence>

@@ -1,24 +1,23 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { AiFillCloseCircle } from "react-icons/ai";
-import { sortTech } from "../../utils/sortTech";
-import { TechList } from "../../utils/sortTech";
+import { sortTech, TechList } from "utils/sortTech";
 
-type TechProps = {
+type Props = {
   techList: TechList;
   setTech: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export default function Tech({ techList, setTech }: TechProps) {
+export default function Tech({ techList, setTech }: Props) {
   const tech = sortTech(techList);
 
   return (
     <Wrapper initial={{ x: 100 }} animate={{ x: 0 }} exit={{ x: 100, opacity: 0 }}>
       <h2>Accurate as of June 2022</h2>
       <p id="desc">
-        Ranging from least to most used. The most used technologies are what I work with daily, the least used are
-        technologies I've had some exposure to.
+        These are the technologies I've used over the years from least to most. The most used are what I work with
+        daily, the least used are what I've had some exposure to (e.g. on small projects / learning).
       </p>
       <Container>
         <Sidebar>
