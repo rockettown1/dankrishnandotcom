@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/rockettown1/dankrishnandotcom/compare/v1.2.0...v1.3.0) (2022-07-09)
+
+
+### Features
+
+* **mobile:** menu added ([211a785](https://github.com/rockettown1/dankrishnandotcom/commit/211a7857589b9b3e24ef839b9ad7768eb9cdedd5))
+
 ## [1.2.0](https://github.com/rockettown1/dankrishnandotcom/compare/v1.1.2...v1.2.0) (2022-07-08)
 
 
