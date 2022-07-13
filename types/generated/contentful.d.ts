@@ -150,6 +150,9 @@ export interface IPostFields {
     | "Next"
     | "Go"
     | "CompSci";
+
+  /** migrated likes */
+  migratedLikes?: number | undefined;
 }
 
 export interface IPost extends Entry<IPostFields> {

@@ -16,6 +16,7 @@
     "@contentful/rich-text-react-renderer": "^15.12.1",
     "@contentful/rich-text-types": "^15.12.1",
     "@deckdeckgo/highlight-code": "^4.3.0",
+    "@prisma/client": "^4.0.0",
     "babel-preset-next": "^1.4.0",
     "contentful": "^9.1.32",
     "contentful-management": "^10.8.0",
@@ -66,6 +67,10 @@
     "next-page-tester": "^0.32.0",
     "prettier": "^2.7.1",
     "ramda": "^0.28.0",
+    "ts-node": "^10.8.2",
     "typescript": "^4.7.4"
+  },
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   }
 }
