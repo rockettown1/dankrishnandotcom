@@ -1,16 +1,18 @@
-import { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import Image from "next/image";
+import moment from "moment";
 import styled from "styled-components";
-import lp from "public/laptop1.jpg";
+import Link from "next/link";
+import { IPostFields, IPost } from "types/generated/contentful";
 
-const dummyPosts = [
-  { title: "Converting a JavaScript app to TypeScript." },
-  { title: "The amazing world of Nextjs." },
-  { title: "How to use Styled Components in a next app using SSG." },
-  { title: "Some title for the latest blog post." },
-];
+type Props = {
+  menuFixed: boolean;
+  setMenuFixed: React.Dispatch<React.SetStateAction<boolean>>;
+  firstFour: IPost[];
+  featuredPost: IPostFields;
+};
 
-const BlogMain = ({ menuFixed, setMenuFixed }) => {
+const BlogMain = ({ menuFixed, setMenuFixed, firstFour, featuredPost }: Props) => {
   const heroRef = useRef(null);
   const heroOptions = {
     root: null,
@@ -18,10 +20,7 @@ const BlogMain = ({ menuFixed, setMenuFixed }) => {
     threshold: 0,
   };
 
-  const handleUnfix = (entries) => {
-    console.log("unfixing");
-    console.log(entries);
-    console.log(entries[0].intersectionRatio);
+  const handleUnfix: IntersectionObserverCallback = (entries) => {
     if (entries[0].intersectionRatio > 0) {
       setMenuFixed(false);
     } else {
@@ -41,18 +40,27 @@ const BlogMain = ({ menuFixed, setMenuFixed }) => {
   return (
     <Container ref={heroRef}>
       <Latest>
-        <div id="main">
-          <h1 className="title">Understanding the useLayoutEffect hook</h1>
-          <p>Publish date</p>
-          <Image src={lp} />
-        </div>
+        <Link href={`/blog/${featuredPost.slug}`}>
+          <div id="main">
+            <h6>Featured Post</h6>
+            <h1 className="title">{featuredPost.title}</h1>
+            <ImgWrapper>
+              <Image src={`https:${featuredPost.featuredImage.fields.file.url}`} layout="fill" objectFit="cover" />
+            </ImgWrapper>
+          </div>
+        </Link>
         <div id="list">
-          {dummyPosts.map((post, index, arr) => {
+          <h6>Latest</h6>
+          {firstFour.map((post: IPost, index: number, arr: IPost[]) => {
             return (
-              <SmallCard key={post.title} bottomBorder={index !== arr.length - 1}>
-                <h2 className="title">{post.title}</h2>
-                <p>Publish date</p>
-              </SmallCard>
+              <Link href={`/blog/${post.fields.slug}`} key={post.fields.title}>
+                <SmallCard bottomBorder={index !== arr.length - 1}>
+                  <h2 className="title">{post.fields.title}</h2>
+                  <p>
+                    <time>{moment.utc(post.fields.date).format("Do MMMM YYYY")}</time>
+                  </p>
+                </SmallCard>
+              </Link>
             );
           })}
         </div>
@@ -88,10 +96,16 @@ const Latest = styled.section`
   padding-top: 50px;
 
   p {
-    margin: 10px 0 20px 0;
+    margin: 20px 0 20px 0;
     font-size: 15px !important;
     line-height: 15px !important;
     color: ${({ theme }) => theme.secondary_text};
+  }
+
+  h6 {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
   }
 
   #main {
@@ -111,7 +125,8 @@ const Latest = styled.section`
     h1 {
       font-size: 50px;
       line-height: 50px;
-      margin: 10px 0;
+      margin: 0;
+      margin-bottom: 30px;
     }
 
     h4 {
@@ -123,7 +138,7 @@ const Latest = styled.section`
   #list {
     max-width: 25vw;
     height: 100%;
-    padding: 40px 0 0 20px;
+    padding: 20px 0 0 20px;
 
     h2 {
       font-size: 1.7vw;
@@ -160,6 +175,17 @@ const Latest = styled.section`
   }
 `;
 
+const ImgWrapper = styled.div`
+  max-width: 50vw;
+  height: 20vw;
+  position: relative;
+  @media screen and (max-width: 800px) {
+    max-width: none;
+    width: 100vw;
+    height: 300px;
+  }
+`;
+
 type SmallCardProps = {
   bottomBorder: boolean;
 };
@@ -167,6 +193,9 @@ type SmallCardProps = {
 const SmallCard = styled.div<SmallCardProps>`
   border-bottom: ${({ theme, bottomBorder }) => bottomBorder && `1px solid ${theme.disabled}`};
   margin-bottom: 15px;
+  p {
+    margin-top: 10px;
+  }
 
   &:hover {
     cursor: pointer;

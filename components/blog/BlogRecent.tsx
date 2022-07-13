@@ -1,36 +1,59 @@
-import { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
+import { useRouter } from "next/router";
+import { fetcher } from "utils";
+import moment from "moment";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { GoSearch } from "react-icons/go";
 import Topics from "./Topics";
-
-const topics = ["react", "typescript", "javascript", "aws", "compsci", "animation", "design", "css", "go", "next"];
-
-const dummyPosts2 = [
-  {
-    title: "Converting a JavaScript app to TypeScript.",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse nobis, ipsam, ducimus sint amet doloribus perspiciatis architecto ullam est fuga error? Doloremque odio a maxime magnam magni commodi consectetur",
-  },
-  {
-    title: "The amazing world of Nextjs.",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse nobis, ipsam, ducimus sint amet doloribus perspiciatis architecto ullam est fuga error? Doloremque odio a maxime magnam magni commodi consectetur",
-  },
-  {
-    title: "How to use Styled Components in a next app using SSG.",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse nobis, ipsam, ducimus sint amet doloribus perspiciatis architecto ullam est fuga error? Doloremque odio a maxime magnam magni commodi consectetur",
-  },
-  {
-    title: "Some title for the latest blog post.",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse nobis, ipsam, ducimus sint amet doloribus perspiciatis architecto ullam est fuga error? Doloremque odio a maxime magnam magni commodi consectetur",
-  },
-];
+import { IPost } from "types/generated/contentful";
+import { AiFillCloseCircle } from "react-icons/ai";
 
 type BlogRecentProps = {
   menuFixed: boolean;
+  posts: IPost[];
+  topics: string[];
 };
 
-export default function BlogRecent({ menuFixed }: BlogRecentProps) {
+export default function BlogRecent({ menuFixed, posts, topics }: BlogRecentProps) {
   const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
+  const [visiblePosts, setVisibilePosts] = useState<IPost[]>(posts);
+  const [input, setInput] = useState<string>("");
+  const [showMessage, setShowMessage] = useState<boolean>(false);
+  const router = useRouter();
+
+  const filterPosts = (topic: string) => {
+    const temp = [...posts];
+    const filteredPosts = temp.filter((post) => post.fields.topic === topic);
+    setSelectedTopic(topic);
+    setVisibilePosts(filteredPosts);
+  };
+
+  const resetAllPosts = () => {
+    setSelectedTopic(null);
+    setVisibilePosts(posts);
+  };
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    try {
+      const data = await fetcher(`/contentfulsearch?search=${input}`);
+      if (data.results.length === 0) {
+        setShowMessage(true);
+      } else {
+        setVisibilePosts(data.results);
+        setSelectedTopic(`Search results for ${input}`);
+        router.replace("#recent");
+      }
+    } catch (e) {
+      console.log(e);
+    }
+    setInput("");
+    setTimeout(() => {
+      setShowMessage(false);
+    }, 4000);
+  };
 
   return (
     <Container data-testid="hero" isMenuFixed={menuFixed}>
@@ -39,15 +62,22 @@ export default function BlogRecent({ menuFixed }: BlogRecentProps) {
           <Recent>
             <h6 className="heading">
               Recently Published <span id="selected">{selectedTopic && `${selectedTopic}`}</span>
+              {selectedTopic?.includes("Search") && (
+                <Close onClick={resetAllPosts} animate={{ transform: "rotate(360deg)" }} transition={{ duration: 1 }}>
+                  <AiFillCloseCircle size={25} />
+                </Close>
+              )}
             </h6>
-            {dummyPosts2.map((post, index) => {
+            {visiblePosts.map((post: IPost, index: number) => {
               return (
-                <LongCard key={index}>
-                  <h2 className="title">{post.title}</h2>
-                  <h4 className="date">Published date</h4>
-                  <p>{post.desc}</p>
-                  <h4>Read More</h4>
-                </LongCard>
+                <Link href={`/blog/${post.fields.slug}`} key={index}>
+                  <LongCard>
+                    <h2 className="title">{post.fields.title}</h2>
+                    <h4 className="date">{moment.utc(post.fields.date).format("Do MMMM YYYY")}</h4>
+                    <p>{post.fields.excerpt}</p>
+                    <h4>Read More</h4>
+                  </LongCard>
+                </Link>
               );
             })}
           </Recent>
@@ -61,8 +91,9 @@ export default function BlogRecent({ menuFixed }: BlogRecentProps) {
           <h6 className="heading">Common Topics</h6>
           <ul>
             <Topics
+              filterPosts={filterPosts}
+              resetAllPosts={resetAllPosts}
               selectedTopic={selectedTopic}
-              setSelectedTopic={setSelectedTopic}
               topics={topics}
               menuFixed={menuFixed}
             />
@@ -71,11 +102,21 @@ export default function BlogRecent({ menuFixed }: BlogRecentProps) {
             <div id="icon-wrapper">
               <GoSearch size={18} />
             </div>
-
-            <input type="text" placeholder="Search" />
+            <form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                placeholder="Search Topic"
+                value={input}
+                onChange={(event) => setInput(event.target.value)}
+              />
+            </form>
           </Search>
+          <h4>Hit Enter to search</h4>
         </motion.div>
       </div>
+      <Message bottom={showMessage ? "0" : "-50px"}>
+        <h4>No search results match that query</h4>
+      </Message>
     </Container>
   );
 }
@@ -89,6 +130,7 @@ const Container = styled.section<ContainerProps>`
   display: flex;
   scroll-behavior: smooth !important;
   align-items: center;
+  justify-content: center;
   padding: 0 12vw;
   position: relative;
 
@@ -110,7 +152,12 @@ const Container = styled.section<ContainerProps>`
     top: 0;
     right: 0;
     ${({ isMenuFixed }) => isMenuFixed && `position: fixed;`};
+
+    h4 {
+      font-family: var(--secondary_font);
+    }
   }
+
   #recent {
     padding-top: 50px;
     height: 300vh;
@@ -215,4 +262,30 @@ const LongCard = styled.div`
   h4 {
     margin-top: 5px;
   }
+`;
+
+const Close = styled(motion.span)`
+  margin: 0 10px;
+  margin-top: -5px;
+  position: absolute;
+  height: 25px;
+  transform-origin: center;
+`;
+
+type MessageProps = {
+  bottom: string;
+};
+const Message = styled(motion.div)<MessageProps>`
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  height: 50px;
+  transition: all 0.5s;
+  bottom: ${({ bottom }) => bottom};
+  background-color: ${({ theme }) => theme.highlight};
+  color: black;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 `;

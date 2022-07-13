@@ -65,7 +65,6 @@ export default function PostBody({ body, menuFixed, headings, liked, setLiked, l
   };
 
   const scrollIntoView = (index: number, heading: string) => {
-    console.log("headings", headingRefs);
     //handle edge case where first item has caused the page to scroll back to very top, and clicking second item doesn't hit the interesction area.
     if (headings.length > 2) {
       if (index === 1 && currentHeading === 0) {
@@ -104,7 +103,6 @@ export default function PostBody({ body, menuFixed, headings, liked, setLiked, l
     const document: any = documentToReactComponents(body, richTextOptions);
 
     document.forEach((node) => {
-      console.log("in postbody", node);
       if (node.type.target === "h1") {
         headingRefs.current.push(node.ref.current);
       }
@@ -147,7 +145,6 @@ export default function PostBody({ body, menuFixed, headings, liked, setLiked, l
               })}
             </ul>
             <Likes onClick={registerLike}>
-              {/* {liked ? <HiHeart size={30} color="red" /> : <HiOutlineHeart size={30} />} */}
               <Lottie
                 lottieRef={likeHeart}
                 animationData={floatingLike}
@@ -178,6 +175,7 @@ const Content = styled.div`
   @media screen and (max-width: 700px) {
     width: 100vw;
     padding: 0 30px;
+    overflow-x: scroll;
   }
 `;
 

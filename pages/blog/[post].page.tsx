@@ -4,6 +4,8 @@ import styled from "styled-components";
 import PostBody from "components/blog/PostBody";
 import PostHero from "components/blog/PostHero";
 import { GetStaticPropsContext } from "next";
+import { IPost, IPostFields } from "types/generated/contentful";
+import { Document } from "@contentful/rich-text-types";
 
 export async function getStaticPaths() {
   const response = await client.getEntries({ content_type: "post" });
@@ -16,32 +18,36 @@ export async function getStaticPaths() {
 
   return {
     paths: paths,
-    fallback: false,
+    fallback: "blocking",
   };
 }
-export async function getStaticProps(ctx: GetStaticPropsContext) {
-  const { items } = await client.getEntries({
+export async function getStaticProps(ctx) {
+  const response = await client.getEntries({
     content_type: "post",
     "fields.slug": ctx.params.post,
   });
 
   return {
     props: {
-      post: items[0],
+      post: response.items[0] || null,
     },
+    revalidate: 10,
   };
 }
 
-export default function Post({ post }) {
-  console.log(post);
-  const { body } = post.fields;
-  const headings = body.content
-    .filter((node) => node.nodeType.includes("heading-1"))
-    .map((node) => node.content[0].value);
-
+export default function Post({ post }: { post: IPost }) {
   const [menuFixed, setMenuFixed] = useState<boolean>(false);
   const [liked, setLiked] = useState<boolean>(false);
   const [likeNumber, setLikeNumber] = useState<number>(12);
+
+  if (!post) {
+    return <h1>Loading...</h1>;
+  }
+
+  const { body } = post.fields;
+  const headings = body.content
+    .filter((node) => node.nodeType.includes("heading-1"))
+    .map((node) => node.content[0].nodeType === "text" && node.content[0].value);
 
   return (
     <Container>

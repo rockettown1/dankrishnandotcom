@@ -4,14 +4,11 @@ import readingTime from "reading-time";
 import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
 import floatingLike from "public/floatingLikeRed.json";
 import Lottie from "lottie-react";
-
 import styled from "styled-components";
-import { HiHeart } from "react-icons/hi";
+import { IPost } from "types/generated/contentful";
 
 type PostHeroProps = {
-  post: {
-    fields: any;
-  };
+  post: IPost;
   menuFixed: boolean;
   setMenuFixed: React.Dispatch<React.SetStateAction<boolean>>;
   liked: boolean;
@@ -19,9 +16,8 @@ type PostHeroProps = {
 };
 
 export default function PostHero({ post, setMenuFixed, menuFixed, likeNumber }: PostHeroProps) {
-  const { title, date, tagId } = post.fields;
-  const [numberLikes, setNumberLikes] = useState<number>(9);
-  const [liked, setLiked] = useState<boolean>(false);
+  const { title, date, topic, tagId } = post.fields;
+
   const heroRef = useRef(null);
   const heroOptions = {
     root: null,
@@ -31,7 +27,7 @@ export default function PostHero({ post, setMenuFixed, menuFixed, likeNumber }: 
   const text = documentToPlainTextString(post.fields.body);
   const stats = readingTime(text);
 
-  const handleUnfix = (entries) => {
+  const handleUnfix: IntersectionObserverCallback = (entries) => {
     if (entries[0].intersectionRatio > 0) {
       setMenuFixed(false);
     } else {
@@ -50,30 +46,39 @@ export default function PostHero({ post, setMenuFixed, menuFixed, likeNumber }: 
 
   return (
     <Container ref={heroRef}>
-      <p>{tagId[0]}</p>
+      <p>{topic}</p>
       <h1>{title}</h1>
       <Details>
-        <h4>{moment.utc(date).format("Do MMMM YYYY")}</h4>
+        <h4>
+          <time>{moment.utc(date).format("Do MMMM YYYY")}</time>
+        </h4>
         <TextSeperator />
         <h4>{stats.text}</h4>
         <Likes>
           <Lottie
             animationData={floatingLike}
             loop={false}
-            onLoadedData={(event) => console.log(event)}
+            initialSegment={[40, 40]}
             // autoplay={false}
             style={{ height: "50px", width: "50px" }}
           />
           <h4 id="likes">{likeNumber}</h4>
         </Likes>
       </Details>
+      <Tags>
+        {tagId.map((tag: string, index: number) => (
+          <h6>{tag}</h6>
+        ))}
+      </Tags>
     </Container>
   );
 }
 
 const Container = styled.section`
-  height: 45vh;
+  min-height: 45vh;
   padding: 0 12vw;
+  padding-top: 100px;
+  padding-bottom: 60px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -103,7 +108,7 @@ const Details = styled.div`
   width: max-content;
   align-items: center;
   height: 30px;
-  margin-bottom: 80px;
+
   user-select: none;
 
   h4 {
@@ -128,4 +133,17 @@ const TextSeperator = styled.span`
   width: 15px;
   margin: 0 10px;
   border-bottom: 1px solid ${({ theme }) => theme.secondary_text};
+`;
+
+const Tags = styled.div`
+  display: flex;
+  margin-bottom: 20px;
+  h6 {
+    color: ${({ theme }) => theme.secondary_text};
+    background-color: ${({ theme }) => theme.disabled};
+    line-height: 30px;
+    margin-right: 10px;
+    padding: 0 10px;
+    border-radius: 5px;
+  }
 `;
