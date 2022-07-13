@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Divide as Hamburger } from "hamburger-react";
+import { BiLeftArrow } from "react-icons/bi";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
@@ -9,11 +10,17 @@ export default function MobileMenu() {
   const router = useRouter();
 
   const handleMenu = () => {
+    if (!isOpen) {
+      window.document.body.style.overflow = "hidden";
+    } else {
+      window.document.body.style.overflow = "scroll";
+    }
     setIsOpen((prev) => !prev);
   };
 
   const handleLink = (link: string) => {
     setIsOpen(false);
+    window.document.body.style.overflow = "scroll";
     router.push(`/${link.toLowerCase()}`, `/${link.toLowerCase()}`, { scroll: true });
   };
 
@@ -23,18 +30,22 @@ export default function MobileMenu() {
   };
   return (
     <Container isOpen={isOpen} animate={isOpen ? "open" : "closed"} variants={variants}>
+      {isOpen && <BackgroundTitle>dan krishnan .com</BackgroundTitle>}
       {isOpen && (
         <div>
           <Links>
             {["Hello", "Work", "Blog"].map((link) => (
-              <h1 onClick={() => handleLink(link)}>{link}</h1>
+              <Option key={link}>
+                <h1 onClick={() => handleLink(link)}>{link}</h1>
+                {router.pathname.includes(link.toLowerCase()) && <BiLeftArrow />}
+              </Option>
             ))}
           </Links>
           <Year>Dan Krishnan {new Date().getFullYear()}</Year>
         </div>
       )}
-      <HamburgerWrapper isOpen={isOpen}>
-        <Hamburger color="black" onToggle={handleMenu} toggled={isOpen} />
+      <HamburgerWrapper isOpen={isOpen} onClick={handleMenu}>
+        <Hamburger color="black" toggled={isOpen} />
       </HamburgerWrapper>
     </Container>
   );
@@ -47,7 +58,7 @@ type ContainerProps = {
 const Container = styled(motion.div)<ContainerProps>`
   position: fixed;
   z-index: 100;
-  bottom: 50px;
+  bottom: 20px;
   right: 20px;
   height: 75px;
   width: 75px;
@@ -67,21 +78,37 @@ const HamburgerWrapper = styled.div<HWProps>`
   ${({ isOpen }) =>
     isOpen &&
     `position: absolute;
-    bottom: 20px;
+    bottom: 15px;
     right: 30px;
     `};
 `;
 
 const Links = styled.div`
   padding-left: 20px;
+`;
+
+const Option = styled.div`
+  display: flex;
+  align-items: center;
+
   h1 {
     margin: 0;
   }
 `;
+
 const Year = styled.h6`
   position: absolute;
   bottom: 10px;
   left: 20px;
   text-transform: uppercase;
   letter-spacing: 1px;
+`;
+
+const BackgroundTitle = styled.h1`
+  position: absolute;
+  top: -50;
+  color: rgba(0, 0, 0, 0.02);
+  font-size: 300px;
+  line-height: 230px;
+  pointer-events: none;
 `;
