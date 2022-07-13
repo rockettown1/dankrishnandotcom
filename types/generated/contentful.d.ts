@@ -62,6 +62,33 @@ export interface ICodeBlock extends Entry<ICodeBlockFields> {
   };
 }
 
+export interface IFeaturedPostFields {
+  /** Post */
+  post: IPost;
+
+  /** name */
+  name?: string | undefined;
+}
+
+/** The super special post */
+
+export interface IFeaturedPost extends Entry<IFeaturedPostFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "featuredPost";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export interface IMocksFields {
   /** desktop */
   desktop?: Asset | undefined;
@@ -113,6 +140,16 @@ export interface IPostFields {
 
   /** tag_id */
   tagId: string[];
+
+  /** topic */
+  topic:
+    | "React"
+    | "TypeScript"
+    | "JavaScript"
+    | "AWS"
+    | "Next"
+    | "Go"
+    | "CompSci";
 }
 
 export interface IPost extends Entry<IPostFields> {
@@ -316,6 +353,7 @@ export interface IVideoWithPoster extends Entry<IVideoWithPosterFields> {
 export type CONTENT_TYPE =
   | "blogPost"
   | "codeBlock"
+  | "featuredPost"
   | "mocks"
   | "post"
   | "project"

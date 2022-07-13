@@ -58,7 +58,6 @@ export const richTextOptions = {
         );
       }
       if (node.data.target.fields.type === "subText") {
-        console.log("This", this);
         return (
           <SubText>
             <div id="heading">

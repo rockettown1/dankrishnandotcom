@@ -7,3 +7,4 @@ export { useWindowSize } from "./useWindowSize";
 export { useScrollDirection } from "./useScrollDirection";
 export { richTextOptions } from "./richTextOptions";
 export { withTheme, withRouter } from "./testUtils";
+export { fetcher } from "./fetcher";
