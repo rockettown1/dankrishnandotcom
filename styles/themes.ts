@@ -13,7 +13,7 @@ export interface MyTheme extends DefaultTheme {
 export const lightTheme: MyTheme = {
   name: "light",
   background: "#fff",
-  secondary_background: "#fffaf2",
+  secondary_background: "#f7fcff",
   primary_text: "rgb(43, 43, 43)",
   secondary_text: "#515151",
   highlight: "rgb(44, 185, 232)",
@@ -24,7 +24,7 @@ export const darkTheme: MyTheme = {
   name: "dark",
   background: "#080c11",
   secondary_background: "#0b1016",
-  primary_text: "#d7e3ea",
+  primary_text: "#c5d0d6",
   secondary_text: "#97a1a8",
   highlight: "rgb(255,172,20)",
   disabled: "rgba(255,255,255,0.1)",
