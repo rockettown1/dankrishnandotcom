@@ -21,9 +21,6 @@ export async function getStaticProps() {
 function Hello({ techList }) {
   const conRef = useRef(null);
   const { width } = useWindowSize();
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   return (
     <>

@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useTheme } from "styled-components";
 import { useRouter } from "next/router";
 import { MdLightMode, MdDarkMode } from "react-icons/md";
-import { Divide as Hamburger } from "hamburger-react";
 import { handleKeyboardSelect, useWindowSize } from "utils";
 import Social from "./Social";
 import { Option } from "components/layout";

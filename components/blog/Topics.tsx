@@ -5,12 +5,13 @@ import { motion } from "framer-motion";
 
 type TopicProps = {
   selectedTopic: string;
-  setSelectedTopic: React.Dispatch<React.SetStateAction<string>>;
   topics: string[];
   menuFixed: boolean;
+  filterPosts: (topic: string) => void;
+  resetAllPosts: () => void;
 };
 
-export default function Topic({ selectedTopic, setSelectedTopic, topics, menuFixed }: TopicProps) {
+export default function Topic({ selectedTopic, topics, menuFixed, filterPosts, resetAllPosts }: TopicProps) {
   return (
     <div>
       {topics.map((topic, index) => {
@@ -18,29 +19,25 @@ export default function Topic({ selectedTopic, setSelectedTopic, topics, menuFix
           <Wrapper key={index} selected={topic === selectedTopic}>
             {menuFixed ? (
               <Link href="#recent" replace={true}>
-                <h4 id="topic" onClick={() => setSelectedTopic(topic)}>
+                <h4 id="topic" onClick={() => filterPosts(topic)}>
                   {topic}
                 </h4>
               </Link>
             ) : (
-              <h4 id="topic" onClick={() => setSelectedTopic(topic)}>
+              <h4 id="topic" onClick={() => filterPosts(topic)}>
                 {topic}
               </h4>
             )}
             {topic === selectedTopic &&
               (menuFixed ? (
                 <Link href="#recent" replace={true}>
-                  <Close
-                    onClick={() => setSelectedTopic(null)}
-                    animate={{ transform: "rotate(360deg)" }}
-                    transition={{ duration: 1 }}
-                  >
+                  <Close onClick={resetAllPosts} animate={{ transform: "rotate(360deg)" }} transition={{ duration: 1 }}>
                     <AiFillCloseCircle size={25} />
                   </Close>
                 </Link>
               ) : (
                 <Close
-                  onClick={() => setSelectedTopic(null)}
+                  onClick={resetAllPosts}
                   animate={selectedTopic && { transform: "rotate(360deg)" }}
                   transition={{ duration: 1 }}
                 >
