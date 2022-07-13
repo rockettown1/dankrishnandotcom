@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.4.0](https://github.com/rockettown1/dankrishnandotcom/compare/v1.3.0...v1.4.0) (2022-07-13)
+
+
+### Features
+
+* **blog:** connected contentful to main blog page and implemented full text search ([37b9fb3](https://github.com/rockettown1/dankrishnandotcom/commit/37b9fb37330e7fb8dbc6067362040f82070af06d))
+* **blog:** implemented full text search with Contentful ([e60de13](https://github.com/rockettown1/dankrishnandotcom/commit/e60de13c26319a252f70720a6674c17fd3f32a6e))
+* **mobile:** added Mobile menu component ([bf48095](https://github.com/rockettown1/dankrishnandotcom/commit/bf4809552ef35802e33c2ef8e71502d6466c1333))
+
 ## [1.3.0](https://github.com/rockettown1/dankrishnandotcom/compare/v1.2.0...v1.3.0) (2022-07-09)
 
 
