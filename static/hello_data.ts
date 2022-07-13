@@ -38,7 +38,7 @@ export const data = [
     sec: "03",
     subsec: "iii",
     title: "What I do",
-    name: "Other creative stuff",
+    name: "Other random stuff",
     desc: ` In the (near) future I hope to have a page dedicated to artwork, but for now here's a watercolour pheasant 🤷‍♂️`,
   },
 ];

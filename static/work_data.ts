@@ -4,7 +4,7 @@ import laptop3 from "../public/laptop3.jpg";
 export const data = [
   {
     item: "01",
-    title: "Front-end stuff",
+    title: "Front-end",
     desc: `Projects that focus specifically on front-end development`,
     link: "/work/frontend",
     img: laptop3,
@@ -12,7 +12,7 @@ export const data = [
   },
   {
     item: "02",
-    title: "Full stack stuff",
+    title: "Full stack",
     desc: `Projects that involve work across the whole stack and usually some devops/architecture considerations`,
     link: "/work/fullstack",
     img: laptop1,
@@ -20,7 +20,7 @@ export const data = [
   },
   {
     item: "03",
-    title: "Tooling stuff",
+    title: "Tooling",
     desc: `Projects that involve tooling or processes, mainly CLI development or design systems`,
     link: "/work/tooling",
     img: laptop1,
@@ -28,7 +28,7 @@ export const data = [
   },
   {
     item: "04",
-    title: "Design stuff",
+    title: "Design",
     desc: `Any projects that involve design work`,
     link: "/work/design",
     img: laptop1,
@@ -37,7 +37,7 @@ export const data = [
 
   {
     item: "05",
-    title: "Random stuff",
+    title: "Random",
     desc: `Just random projects, like creating new fonts or npm packages`,
     link: "/work/random",
     img: laptop1,
