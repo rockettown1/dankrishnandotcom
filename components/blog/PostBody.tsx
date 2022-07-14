@@ -4,6 +4,7 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { useWindowSize, richTextOptions, useScrollDirection } from "utils";
 import floatingLike from "public/floatingLikeRed.json";
 import Lottie, { LottieRef } from "lottie-react";
+import { Comments, MobileLike } from "components/blog";
 
 type Props = {
   body: any;
@@ -109,14 +110,14 @@ export default function PostBody({ body, menuFixed, headings, liked, setLiked, l
     });
   }, [headingRefs]);
 
-  const registerLike = () => {
-    if (likeHeart.current && !liked) {
-      likeHeart.current.setDirection(1);
-      likeHeart.current.play();
+  const registerLike = (ref) => {
+    if (ref.current && !liked) {
+      ref.current.setDirection(1);
+      ref.current.play();
       setLikeNumber((prev) => prev + 1);
       setLiked(true);
     } else {
-      likeHeart.current.goToAndStop(0);
+      ref.current.goToAndStop(0);
       setLiked(false);
       setLikeNumber((prev) => prev - 1);
     }
@@ -126,6 +127,7 @@ export default function PostBody({ body, menuFixed, headings, liked, setLiked, l
     <Container>
       <Content>
         <BodyWrapper>{documentToReactComponents(body, richTextOptions)}</BodyWrapper>
+        <Comments />
       </Content>
       {width >= 750 && (
         <Menu isMenuFixed={menuFixed}>
@@ -144,7 +146,7 @@ export default function PostBody({ body, menuFixed, headings, liked, setLiked, l
                 );
               })}
             </ul>
-            <Likes onClick={registerLike}>
+            <Likes onClick={() => registerLike(likeHeart)}>
               <Lottie
                 lottieRef={likeHeart}
                 animationData={floatingLike}
@@ -157,6 +159,7 @@ export default function PostBody({ body, menuFixed, headings, liked, setLiked, l
           </Sidebar>
         </Menu>
       )}
+      {width < 750 && <MobileLike liked={liked} registerLike={registerLike} />}
     </Container>
   );
 }

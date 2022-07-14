@@ -137,11 +137,13 @@ const TextSeperator = styled.span`
 
 const Tags = styled.div`
   display: flex;
-  margin-bottom: 20px;
+  margin: 20px 0;
+  flex-wrap: wrap;
   h6 {
     color: ${({ theme }) => theme.secondary_text};
     background-color: ${({ theme }) => theme.disabled};
     line-height: 30px;
+    margin: 5px 0;
     margin-right: 10px;
     padding: 0 10px;
     border-radius: 5px;
