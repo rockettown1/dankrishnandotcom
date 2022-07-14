@@ -127,7 +127,7 @@ export default function PostBody({ body, menuFixed, headings, liked, setLiked, l
     <Container>
       <Content>
         <BodyWrapper>{documentToReactComponents(body, richTextOptions)}</BodyWrapper>
-        <Comments />
+        <Comments themeType={theme.name} />
       </Content>
       {width >= 750 && (
         <Menu isMenuFixed={menuFixed}>

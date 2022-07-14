@@ -4,20 +4,36 @@ import { MyTheme } from "styles/themes";
 
 export default function Comments() {
   const commentBox = useRef(null);
-  const theme = useTheme() as MyTheme;
+  const { name: themeType } = useTheme() as MyTheme;
 
-  useEffect(() => {
+  const createUtterancesScript = (theme: string) => {
     let scriptEl = document.createElement("script");
     scriptEl.setAttribute("src", "https://utteranc.es/client.js");
     scriptEl.setAttribute("crossorigin", "anonymous");
     scriptEl.setAttribute("async", "true");
     scriptEl.setAttribute("repo", "rockettown1/comments.dankrishnandotcom");
     scriptEl.setAttribute("issue-term", "pathname");
-    scriptEl.setAttribute("theme", theme.name === "dark" ? "github-dark" : "github-light");
+    scriptEl.setAttribute("theme", theme === "dark" ? "github-dark" : "github-light");
+    return scriptEl;
+  };
+
+  useEffect(() => {
+    /*
+    manipulate DOM (remove and re-add) when theme changes (the only time this effect re-runs)
+    Seems a bit unidiomatic doing it this way so will revisit this
+    */
+    const utteranceBox = document.getElementsByClassName("utterances")[0];
+    if (utteranceBox) {
+      commentBox.current.removeChild(utteranceBox);
+    }
+
+    let scriptEl = createUtterancesScript(themeType);
+
     if (commentBox.current.children.length === 0) {
       commentBox.current.appendChild(scriptEl);
     }
-  }, []);
+    console.log(commentBox.current);
+  }, [themeType]);
 
   return (
     <Container>
