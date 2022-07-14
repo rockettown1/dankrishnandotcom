@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.5.0](https://github.com/rockettown1/dankrishnandotcom/compare/v1.4.0...v1.5.0) (2022-07-14)
+
+
+### Features
+
+* **blog:** add api route to handle post likes ([c23e927](https://github.com/rockettown1/dankrishnandotcom/commit/c23e92750b02cd371aba0f94544a71e21d5a6a9a))
+* **blog:** add comments to blog posts via Utterances ([9a9a15a](https://github.com/rockettown1/dankrishnandotcom/commit/9a9a15aa335441d52562e40bdf8f9e231a06f26d))
+* **blog:** add prisma and connection to planetscale to store post likes ([3c3ed06](https://github.com/rockettown1/dankrishnandotcom/commit/3c3ed0692bb3b3ca0871c3680b697ae40d853e93))
+* **mobile:** add a floating like button for blog posts viewed on mobile ([19da7ba](https://github.com/rockettown1/dankrishnandotcom/commit/19da7bad6c69c57eb6e458dc403dde86b405ef85))
+
+
+### Bug Fixes
+
+* **prisma:** add prisma setup for Nextjs dev environment ([9a55f77](https://github.com/rockettown1/dankrishnandotcom/commit/9a55f77ec23e78984ecc96ba69435c9ac2e595e4))
+* **projects:** add priority prop to featured image ([588601c](https://github.com/rockettown1/dankrishnandotcom/commit/588601cae628b91a558afe72960ec2a1234a275c))
+
 ## [1.4.0](https://github.com/rockettown1/dankrishnandotcom/compare/v1.3.0...v1.4.0) (2022-07-13)
 
 
