@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React from "react";
 import Head from "next/head";
 import styled from "styled-components";
 import { motion } from "framer-motion";
@@ -19,7 +19,6 @@ export async function getStaticProps() {
 }
 
 function Hello({ techList }) {
-  const conRef = useRef(null);
   const { width } = useWindowSize();
 
   return (
@@ -28,7 +27,6 @@ function Hello({ techList }) {
         <title>Hello there...</title>
       </Head>
       <Container
-        ref={conRef}
         id="hellocontainer"
         key="hellocontainer"
         exit={{ opacity: 0, translateY: 1000 }}
@@ -86,16 +84,16 @@ function Hello({ techList }) {
 export default Hello;
 
 type ContainerProps = {
-  width: number;
+  width: number | undefined;
 };
 
 const Container = styled(motion.div)<ContainerProps>`
   width: 100vw;
 
-  height: ${({ width }) => (width > 1000 ? "100vh" : "auto")};
+  height: ${({ width }) => (width! > 1000 ? "100vh" : "auto")};
   scroll-behavior: smooth;
   overflow-y: scroll;
-  scroll-snap-type: ${({ width }) => (width > 1000 ? "y mandatory" : "none")};
+  scroll-snap-type: ${({ width }) => (width! > 1000 ? "y mandatory" : "none")};
   transition: all 0.3s;
   overflow-x: hidden;
 

@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { findAllByTestId, render, screen } from "@testing-library/react";
 import { withTheme } from "../../utils/testUtils";
 import user from "@testing-library/user-event";
 import Hello from "../hello.page";
@@ -19,12 +19,9 @@ describe("Hello Page", () => {
     expect(welcome).toBeInTheDocument();
   });
 
-  it("should render all the sections", () => {
-    expect(screen.getByText("About this site")).toBeInTheDocument();
-    expect(screen.getByText("Dan Krishnan")).toBeInTheDocument();
-    expect(screen.getByText("Technology")).toBeInTheDocument();
-    expect(screen.getByText("Education")).toBeInTheDocument();
-    expect(screen.getByText("Other creative stuff")).toBeInTheDocument();
+  it("should render all the sections", async () => {
+    const sections = await screen.findAllByTestId("hello/section");
+    expect(sections).toHaveLength(5);
   });
 
   it("should show Tech component when the link is clicked", async () => {

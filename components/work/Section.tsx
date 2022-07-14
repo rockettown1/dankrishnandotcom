@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Button from "../shared/Button";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, VariantLabels } from "framer-motion";
 import Arrow from "../layout/Arrow";
 import { StaticImageData } from "next/image";
 
@@ -17,14 +17,14 @@ type Data = {
 
 export type SectionProps = {
   data?: Data;
-  main?: boolean;
+  main: boolean;
   id?: number;
-  handleClick?: (string) => void;
+  handleClick?: (link: string) => void;
   exitToMain?: boolean;
 };
 
 export default function Section({ data, main, id, handleClick, exitToMain }: SectionProps) {
-  const { item, title, desc, link, img, available } = data;
+  const { item, title, desc, link, img, available } = data as Data;
 
   const image = {
     isMain: {
@@ -55,6 +55,7 @@ export default function Section({ data, main, id, handleClick, exitToMain }: Sec
         data-testid="image-wrapper"
         key={`imgwrapper${id}`}
         main={main}
+        // @ts-ignore: exit logic is not VariantLabel
         exit={exitToMain && (!main ? image.notMain : image.isMain)}
         transition={{ duration: 1, ease: "easeInOut" }}
       >

@@ -12,27 +12,27 @@ export default function FeaturedImage({ project }: { project: IProject }) {
       <Image
         src={`http:${featuredImage.fields.file.url}`}
         height={
-          width < 1100
-            ? featuredImage.fields.file.details.image.height / 2
-            : featuredImage.fields.file.details.image.height
+          width! < 1100
+            ? featuredImage.fields.file.details.image!.height / 2
+            : featuredImage.fields.file.details.image!.height
         }
         width={
-          width < 1100
-            ? featuredImage.fields.file.details.image.width / 2
-            : featuredImage.fields.file.details.image.width
+          width! < 1100
+            ? featuredImage.fields.file.details.image!.width / 2
+            : featuredImage.fields.file.details.image!.width
         }
         objectFit="cover"
         alt={featuredImage.fields.description}
         priority
       />
-      {featuredImage.fields.file.details.image.height < 600 && <span id="shadow"></span>}
+      {featuredImage.fields.file.details.image!.height < 600 && <span id="shadow"></span>}
     </Container>
   );
 }
 
 type ContainerProps = {
   project: IProject;
-  width: number;
+  width: number | undefined;
 };
 
 const Container = styled.div<ContainerProps>`
@@ -49,9 +49,9 @@ const Container = styled.div<ContainerProps>`
     height: 80px;
     width: ${({ project, width }) =>
       `${
-        width < 1100
-          ? project.fields.featuredImage.fields.file.details.image.width / 2
-          : project.fields.featuredImage.fields.file.details.image.width
+        width! < 1100
+          ? project.fields.featuredImage.fields.file.details.image!.width / 2
+          : project.fields.featuredImage.fields.file.details.image!.width
       }px`};
     background: radial-gradient(rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.05) 60%);
     border-radius: 50%;

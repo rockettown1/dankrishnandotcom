@@ -9,22 +9,22 @@ import WorkTracker from "components/layout/WorkTracker";
 
 export default function Work() {
   const [activeLine, setActiveLine] = useState(0);
-  const [position, setPosition] = useState(null);
+  const [position, setPosition] = useState<string | null>(null);
   const { width } = useWindowSize();
   const router = useRouter();
-  const container = useRef(null);
+  const container = useRef<HTMLDivElement>(null);
   const element = container.current;
 
   useLayoutEffect(() => {
     setPosition(sessionStorage.getItem("scrollPosition"));
     if (element && position) {
-      element.scrollTo(0, position);
+      element.scrollTo(0, parseInt(position));
     }
   }, [position]);
 
   const handleFindMore = (link: string) => {
     router.push(link, link, { scroll: false });
-    sessionStorage.setItem("scrollPosition", container.current.scrollTop);
+    sessionStorage.setItem("scrollPosition", container.current!.scrollTop.toString());
   };
 
   const watchScroll = () => {
@@ -60,17 +60,17 @@ export default function Work() {
     <Container width={width} ref={container}>
       <motion.div>
         {data.map((data, index) => (
-          <Section data={data} key={index} id={index + 1} handleClick={handleFindMore} exitToMain={true} />
+          <Section main={false} data={data} key={index} id={index + 1} handleClick={handleFindMore} exitToMain={true} />
         ))}
       </motion.div>
-      {width >= 1100 && <WorkTracker activeLine={activeLine} />}
+      {width! >= 1100 && <WorkTracker activeLine={activeLine} />}
       <div style={{ height: "500px" }}></div>
     </Container>
   );
 }
 
 type ContainerProps = {
-  width: number;
+  width: number | undefined;
 };
 
 const Container = styled.div<ContainerProps>`

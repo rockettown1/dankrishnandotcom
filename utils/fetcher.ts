@@ -1,6 +1,6 @@
 import { ContentfulSearchResult } from "types/ContentfulSearch";
 
-export async function fetcher(url: string, data = undefined) {
+export async function fetcher(url: string, data: any = undefined) {
   const response = await fetch(`${window.location.origin}/api${url}`, {
     method: data ? "POST" : "GET",
     headers: {

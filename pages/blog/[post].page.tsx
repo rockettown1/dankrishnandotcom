@@ -7,9 +7,18 @@ import { prisma } from "prisma";
 import Router from "next/router";
 import { IPost, IPostFields } from "types/generated/contentful";
 import { fetcher } from "utils";
+import { GetStaticPropsContext } from "next";
+import * as z from "zod";
+import { PostSchema } from "types/Contenful";
+
+const LikesSchema = z.object({
+  likes: z.number(),
+});
+
+type Likes = z.infer<typeof LikesSchema>;
 
 export async function getStaticPaths() {
-  const response = await client.getEntries({ content_type: "post" });
+  const response = await client.getEntries<IPost>({ content_type: "post" });
 
   const paths = response.items.map((item: any) => ({
     params: {
@@ -22,18 +31,18 @@ export async function getStaticPaths() {
     fallback: "blocking",
   };
 }
-export async function getStaticProps(ctx) {
+export async function getStaticProps(ctx: GetStaticPropsContext) {
   const response = await client.getEntries<IPostFields>({
     content_type: "post",
-    "fields.slug": ctx.params.post,
+    "fields.slug": ctx.params!.post,
   });
 
   const post = response.items[0];
-  let data: { likes: number } = { likes: 0 };
+  let data: Likes | null = { likes: 0 };
 
-  //adding migrated like count to the post database when a new post is added to Contentful
   if (post) {
     try {
+      //if the post is new (picked up during ISR) then add it to the database to store the migrated like count.
       await prisma.posts.upsert({
         where: { contentfulId: post.sys.id },
         update: {},
@@ -44,6 +53,7 @@ export async function getStaticProps(ctx) {
         },
       });
 
+      //if it exists we want the updated post count when the post revalidates
       data = await prisma.posts.findUnique({
         where: {
           contentfulId: post.sys.id,
@@ -62,7 +72,7 @@ export async function getStaticProps(ctx) {
   return {
     props: {
       post: post || null,
-      likes: data.likes,
+      likes: LikesSchema.parse(data).likes,
     },
     revalidate: 10,
   };
@@ -106,7 +116,7 @@ export default function Post({ post, likes }: { post: IPost; likes: number }) {
         <PostBody
           body={body}
           menuFixed={menuFixed}
-          headings={headings}
+          headings={headings as string[]}
           liked={liked}
           setLiked={setLiked}
           likeNumber={likeNumber}

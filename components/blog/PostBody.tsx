@@ -1,9 +1,9 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, RefObject, MutableRefObject } from "react";
 import styled from "styled-components";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { useWindowSize, richTextOptions, useScrollDirection } from "utils";
 import floatingLike from "public/floatingLikeRed.json";
-import Lottie, { LottieRef } from "lottie-react";
+import Lottie, { LottieRefCurrentProps } from "lottie-react";
 import { Comments, MobileLike } from "components/blog";
 
 type Props = {
@@ -17,7 +17,7 @@ type Props = {
 };
 
 /*
-Well this is a slight embarrasing component. I will try to abstract out all the logic for observing intersections when I get around to refactoring.
+Well this is a slighty embarrasing component. I will try to abstract out all the logic for observing intersections when I get around to refactoring.
 */
 
 export default function PostBody({ body, menuFixed, headings, liked, setLiked, likeNumber, setLikeNumber }: Props) {
@@ -26,16 +26,16 @@ export default function PostBody({ body, menuFixed, headings, liked, setLiked, l
   const { height, width } = useWindowSize();
   const { scrollDirection } = useScrollDirection();
   const headingRefs = useRef<HTMLHeadingElement[]>([]);
-  let likeHeart: LottieRef = useRef();
+  let likeHeart = useRef<LottieRefCurrentProps>(null);
 
   /*
   root margins needs to be different on different sized screens because we are tracking heading elements in the rich text document, and we can't be certain how spaced out they will be. Trying to keep the ratio of observable viewport roughly aligned with the overall screen height.
   */
   const setRootMargin = () => {
     switch (true) {
-      case height < 700:
+      case height! < 700:
         return "-100px";
-      case height < 920:
+      case height! < 920:
         return "-200px";
       default:
         return "-300px";
@@ -56,12 +56,12 @@ export default function PostBody({ body, menuFixed, headings, liked, setLiked, l
     /* if the top of the element is in the viewport and we're scrolling up then it must be entering from the bottom.
      */
     if (entry.boundingClientRect.top > 0 && scrollDirection === "up") {
-      setCurrentHeading(headings.indexOf(entry.target.textContent));
+      setCurrentHeading(headings.indexOf(entry.target.textContent as string));
     }
     /* if the bottom of the element is in the viewport and we're scrolling down then it must be entering from the top.
      */
     if (entry.boundingClientRect.bottom > 0 && scrollDirection === "down") {
-      setCurrentHeading(headings.indexOf(entry.target.textContent));
+      setCurrentHeading(headings.indexOf(entry.target.textContent as string));
     }
   };
 
@@ -69,7 +69,7 @@ export default function PostBody({ body, menuFixed, headings, liked, setLiked, l
     //handle edge case where first item has caused the page to scroll back to very top, and clicking second item doesn't hit the interesction area.
     if (headings.length > 2) {
       if (index === 1 && currentHeading === 0) {
-        window.scrollTo(0, height - height / 10);
+        window.scrollTo(0, height! - height! / 10);
         setCurrentHeading(headings.indexOf(heading));
         return;
       }
@@ -110,16 +110,18 @@ export default function PostBody({ body, menuFixed, headings, liked, setLiked, l
     });
   }, [headingRefs]);
 
-  const registerLike = (ref) => {
-    if (ref.current && !liked) {
-      ref.current.setDirection(1);
-      ref.current.play();
-      setLikeNumber((prev) => prev + 1);
-      setLiked(true);
-    } else {
-      ref.current.goToAndStop(0);
-      setLiked(false);
-      setLikeNumber((prev) => prev - 1);
+  const registerLike = (ref: RefObject<LottieRefCurrentProps>) => {
+    if (ref.current) {
+      if (!liked) {
+        ref.current.setDirection(1);
+        ref.current.play();
+        setLikeNumber((prev) => prev + 1);
+        setLiked(true);
+      } else {
+        ref.current.goToAndStop(0);
+        setLiked(false);
+        setLikeNumber((prev) => prev - 1);
+      }
     }
   };
 
@@ -129,7 +131,7 @@ export default function PostBody({ body, menuFixed, headings, liked, setLiked, l
         <BodyWrapper>{documentToReactComponents(body, richTextOptions)}</BodyWrapper>
         <Comments />
       </Content>
-      {width >= 750 && (
+      {width! >= 750 && (
         <Menu isMenuFixed={menuFixed}>
           <Sidebar>
             <h4 id="title">Contents</h4>
@@ -159,7 +161,7 @@ export default function PostBody({ body, menuFixed, headings, liked, setLiked, l
           </Sidebar>
         </Menu>
       )}
-      {width < 750 && <MobileLike liked={liked} registerLike={registerLike} />}
+      {width! < 750 && <MobileLike liked={liked} registerLike={registerLike} />}
     </Container>
   );
 }

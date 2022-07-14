@@ -1,9 +1,9 @@
-import { useEffect, useRef } from "react";
+import { RefObject, useEffect, useRef } from "react";
 import styled, { useTheme } from "styled-components";
 import { MyTheme } from "styles/themes";
 
 export default function Comments() {
-  const commentBox = useRef(null);
+  const commentBox = useRef<HTMLDivElement>(null);
   const { name: themeType } = useTheme() as MyTheme;
 
   const createUtterancesScript = (theme: string) => {
@@ -24,13 +24,13 @@ export default function Comments() {
     */
     const utteranceBox = document.getElementsByClassName("utterances")[0];
     if (utteranceBox) {
-      commentBox.current.removeChild(utteranceBox);
+      commentBox.current!.removeChild(utteranceBox);
     }
 
     let scriptEl = createUtterancesScript(themeType);
 
-    if (commentBox.current.children.length === 0) {
-      commentBox.current.appendChild(scriptEl);
+    if (commentBox.current!.children.length === 0) {
+      commentBox.current!.appendChild(scriptEl);
     }
     console.log(commentBox.current);
   }, [themeType]);

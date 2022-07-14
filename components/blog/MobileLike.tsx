@@ -1,10 +1,10 @@
 import { useRef } from "react";
 import styled from "styled-components";
-import Lottie, { LottieRef } from "lottie-react";
+import Lottie, { LottieRefCurrentProps } from "lottie-react";
 import floatingLike from "public/floatingLikeRed.json";
 
 export default function MobileLike({ liked, registerLike }) {
-  let likeHeart: LottieRef = useRef();
+  let likeHeart = useRef<LottieRefCurrentProps>(null);
   return (
     <Container $liked={liked} onClick={() => registerLike(likeHeart)}>
       <Lottie

@@ -9,6 +9,10 @@ import { GoSearch } from "react-icons/go";
 import Topics from "./Topics";
 import { IPost } from "types/generated/contentful";
 import { AiFillCloseCircle } from "react-icons/ai";
+import * as z from "zod";
+
+const InputSchema = z.string().min(2);
+type Input = z.infer<typeof InputSchema>;
 
 type BlogRecentProps = {
   menuFixed: boolean;
@@ -17,9 +21,10 @@ type BlogRecentProps = {
 };
 
 export default function BlogRecent({ menuFixed, posts, topics }: BlogRecentProps) {
-  const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
+  const [selectedTopic, setSelectedTopic] = useState<string>("");
   const [visiblePosts, setVisibilePosts] = useState<IPost[]>(posts);
-  const [input, setInput] = useState<string>("");
+  const [input, setInput] = useState<Input>("");
+  const [message, setMessage] = useState<string>("");
   const [showMessage, setShowMessage] = useState<boolean>(false);
   const router = useRouter();
 
@@ -33,24 +38,33 @@ export default function BlogRecent({ menuFixed, posts, topics }: BlogRecentProps
   };
 
   const resetAllPosts = () => {
-    setSelectedTopic(null);
+    setSelectedTopic("");
     setVisibilePosts(posts);
   };
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    try {
-      const data = await fetcher(`/contentfulsearch?search=${input}`);
-      if (data.results.length === 0) {
-        setShowMessage(true);
-      } else {
-        setVisibilePosts(data.results);
-        setSelectedTopic(`Search results for ${input}`);
-        router.replace("#recent");
+
+    //check if input adheres to the schema (min length 2)
+    if (!InputSchema.safeParse(input).success) {
+      setMessage("Must search with at least 2 letters");
+      setShowMessage(true);
+    } else {
+      try {
+        const data = await fetcher(`/contentfulsearch?search=${input}`);
+        if (data.results.length === 0) {
+          setMessage("No results returned for that query");
+          setShowMessage(true);
+        } else {
+          setVisibilePosts(data.results);
+          setSelectedTopic(`Search results for ${input}`);
+          router.replace("#recent");
+        }
+      } catch (e) {
+        console.log(e);
       }
-    } catch (e) {
-      console.log(e);
     }
+
     setInput("");
     setTimeout(() => {
       setShowMessage(false);
@@ -117,7 +131,7 @@ export default function BlogRecent({ menuFixed, posts, topics }: BlogRecentProps
         </motion.div>
       </div>
       <Message $showMessage={showMessage} opacity={showMessage ? 1 : 0}>
-        <h4>No search results match that query</h4>
+        <h4>{message}</h4>
       </Message>
     </Container>
   );

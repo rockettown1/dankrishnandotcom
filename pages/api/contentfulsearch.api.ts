@@ -2,8 +2,17 @@ import client from "cms/contentfulClient";
 import { NextApiRequest, NextApiResponse } from "next";
 import { IPost } from "types/generated/contentful";
 import { Entry } from "contentful";
+import * as z from "zod";
+
+const QuerySchema = z.object({
+  search: z.string(),
+});
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  if (!QuerySchema.safeParse(req.query).success) {
+    res.status(400).send({ results: null, msg: "Bad Request" });
+  }
+
   try {
     //query the string in post title
     const titleResponse = await client.getEntries<IPost>({

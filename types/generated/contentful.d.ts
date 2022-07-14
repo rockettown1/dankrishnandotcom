@@ -121,35 +121,28 @@ export interface IMocks extends Entry<IMocksFields> {
 
 export interface IPostFields {
   /** title */
-  title?: string | undefined;
+  title: string;
 
   /** excerpt */
-  excerpt?: string | undefined;
+  excerpt: string;
 
   /** date */
-  date?: string | undefined;
+  date: string;
 
   /** featured image */
   featuredImage?: Asset | undefined;
 
   /** body */
-  body?: Document | undefined;
+  body: Document;
 
   /** slug */
-  slug?: string | undefined;
+  slug: string;
 
   /** tag_id */
   tagId: string[];
 
   /** topic */
-  topic:
-    | "React"
-    | "TypeScript"
-    | "JavaScript"
-    | "AWS"
-    | "Next"
-    | "Go"
-    | "CompSci";
+  topic: "React" | "TypeScript" | "JavaScript" | "AWS" | "Next" | "Go" | "CompSci";
 
   /** migrated likes */
   migratedLikes?: number | undefined;
