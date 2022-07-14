@@ -13,7 +13,7 @@ export default function Option({ linkName }: Props) {
   return (
     <Link href={`/${linkName.toLowerCase()}`} scroll={false}>
       <Heading
-        active={router.pathname.includes(linkName.toLowerCase())}
+        $active={router.pathname.includes(linkName.toLowerCase())}
         tabIndex={1}
         role="link"
         onKeyDown={(e) => handleKeyboardSelect(e, () => router.push(`/${linkName.toLowerCase()}`))}
@@ -25,11 +25,11 @@ export default function Option({ linkName }: Props) {
 }
 
 type HeadingProps = {
-  active: boolean;
+  $active: boolean;
 };
 
 const Heading = styled(motion.h2)<HeadingProps>`
-  color: ${({ theme, active }) => (active ? theme.primary_text : theme.secondary_text)};
-  border-bottom: 1px solid ${({ theme, active }) => (active ? theme.primary_text : "none")};
+  color: ${({ theme, $active }) => ($active ? theme.primary_text : theme.secondary_text)};
+  border-bottom: 1px solid ${({ theme, $active }) => ($active ? theme.primary_text : "none")};
   font-size: 3vh;
 `;

@@ -29,7 +29,7 @@ export default function MobileMenu() {
     closed: { borderRadius: "50%", height: "75px", width: "75px", right: "20px" },
   };
   return (
-    <Container isOpen={isOpen} animate={isOpen ? "open" : "closed"} variants={variants}>
+    <Container $isOpen={isOpen} animate={isOpen ? "open" : "closed"} variants={variants}>
       {isOpen && <BackgroundTitle>dan krishnan .com</BackgroundTitle>}
       {isOpen && (
         <div>
@@ -52,7 +52,7 @@ export default function MobileMenu() {
 }
 
 type ContainerProps = {
-  isOpen: boolean;
+  $isOpen: boolean;
 };
 
 const Container = styled(motion.div)<ContainerProps>`
@@ -66,7 +66,7 @@ const Container = styled(motion.div)<ContainerProps>`
   color: black;
   border-radius: 50%;
   display: flex;
-  justify-content: ${({ isOpen }) => (isOpen ? "flex-start" : "center")};
+  justify-content: ${({ $isOpen }) => ($isOpen ? "flex-start" : "center")};
   align-items: center;
 `;
 

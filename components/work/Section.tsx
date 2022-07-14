@@ -58,7 +58,7 @@ export default function Section({ data, main, id, handleClick, exitToMain }: Sec
         exit={exitToMain && (!main ? image.notMain : image.isMain)}
         transition={{ duration: 1, ease: "easeInOut" }}
       >
-        <Image src={img} layout="fill" objectFit="cover" />
+        <Image src={img} layout="fill" objectFit="cover" priority />
       </ImgWrapper>
       {main && (
         <ScrollPrompt initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
