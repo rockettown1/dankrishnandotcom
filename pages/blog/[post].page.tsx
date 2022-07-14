@@ -29,28 +29,34 @@ export async function getStaticProps(ctx) {
   });
 
   const post = response.items[0];
-  let data: { likes: number };
+  let data: { likes: number } = { likes: 0 };
 
   //adding migrated like count to the post database when a new post is added to Contentful
   if (post) {
-    await prisma.posts.upsert({
-      where: { contentfulId: post.sys.id },
-      update: {},
-      create: {
-        likes: post.fields.migratedLikes || 0,
-        title: post.fields.title,
-        contentfulId: post.sys.id,
-      },
-    });
+    try {
+      await prisma.posts.upsert({
+        where: { contentfulId: post.sys.id },
+        update: {},
+        create: {
+          likes: post.fields.migratedLikes || 0,
+          title: post.fields.title,
+          contentfulId: post.sys.id,
+        },
+      });
 
-    data = await prisma.posts.findUnique({
-      where: {
-        contentfulId: post.sys.id,
-      },
-      select: {
-        likes: true,
-      },
-    });
+      data = await prisma.posts.findUnique({
+        where: {
+          contentfulId: post.sys.id,
+        },
+        select: {
+          likes: true,
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    } finally {
+      prisma.$disconnect();
+    }
   }
 
   return {
