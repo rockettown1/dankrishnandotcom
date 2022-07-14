@@ -11,18 +11,24 @@ export async function getStaticProps() {
   });
   const featuredPost = await client.getEntry<IFeaturedPostFields>("7wj3RCdFgxPSHX3OMTnpc9");
 
-  const collectTopics = items.map((post) => post.fields.topic);
-  console.log(collectTopics);
+  //make a list of all the unique topics
+  const collectTopics: { [k: string]: boolean } = {};
+  for (let post of items) {
+    if (!collectTopics[post.fields.topic]) {
+      collectTopics[post.fields.topic] = true;
+    }
+  }
 
-  const firstFourPosts = items.splice(0, 4);
+  const firstFourPosts = [...items].splice(0, 4);
 
   return {
     props: {
       posts: items,
       featuredPost: featuredPost.fields.post.fields,
       firstFourPosts: firstFourPosts,
-      topics: collectTopics,
+      topics: Object.keys(collectTopics),
     },
+    revalidate: 10,
   };
 }
 

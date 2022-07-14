@@ -1,11 +1,12 @@
-import { useRef, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import client from "cms/contentfulClient";
 import styled from "styled-components";
 import PostBody from "components/blog/PostBody";
 import PostHero from "components/blog/PostHero";
-import { GetStaticPropsContext } from "next";
+import { prisma } from "prisma";
+import Router from "next/router";
 import { IPost, IPostFields } from "types/generated/contentful";
-import { Document } from "@contentful/rich-text-types";
+import { fetcher } from "utils";
 
 export async function getStaticPaths() {
   const response = await client.getEntries({ content_type: "post" });
@@ -22,23 +23,49 @@ export async function getStaticPaths() {
   };
 }
 export async function getStaticProps(ctx) {
-  const response = await client.getEntries({
+  const response = await client.getEntries<IPostFields>({
     content_type: "post",
     "fields.slug": ctx.params.post,
   });
 
+  const post = response.items[0];
+  let data: { likes: number };
+
+  //adding migrated like count to the post database when a new post is added to Contentful
+  if (post) {
+    await prisma.posts.upsert({
+      where: { contentfulId: post.sys.id },
+      update: {},
+      create: {
+        likes: post.fields.migratedLikes || 0,
+        title: post.fields.title,
+        contentfulId: post.sys.id,
+      },
+    });
+
+    data = await prisma.posts.findUnique({
+      where: {
+        contentfulId: post.sys.id,
+      },
+      select: {
+        likes: true,
+      },
+    });
+  }
+
   return {
     props: {
-      post: response.items[0] || null,
+      post: post || null,
+      likes: data.likes,
     },
     revalidate: 10,
   };
 }
 
-export default function Post({ post }: { post: IPost }) {
+export default function Post({ post, likes }: { post: IPost; likes: number }) {
   const [menuFixed, setMenuFixed] = useState<boolean>(false);
   const [liked, setLiked] = useState<boolean>(false);
-  const [likeNumber, setLikeNumber] = useState<number>(12);
+  const [likeNumber, setLikeNumber] = useState<number>(likes);
 
   if (!post) {
     return <h1>Loading...</h1>;
@@ -48,6 +75,23 @@ export default function Post({ post }: { post: IPost }) {
   const headings = body.content
     .filter((node) => node.nodeType.includes("heading-1"))
     .map((node) => node.content[0].nodeType === "text" && node.content[0].value);
+
+  useEffect(() => {
+    // POST request to updated likes in the database
+    const updatePostLikes = async () => {
+      if (liked) {
+        await fetcher("/liked", { id: post.sys.id, likes: likeNumber });
+      }
+    };
+
+    //handle cases where user navigates away from this page
+    window.addEventListener("beforeunload", updatePostLikes);
+    Router.events.on("routeChangeStart", updatePostLikes);
+    return () => {
+      window.removeEventListener("beforeunload", updatePostLikes);
+      Router.events.off("routeChangeStart", updatePostLikes);
+    };
+  }, [liked]);
 
   return (
     <Container>
