@@ -1,7 +1,7 @@
 import { DefaultTheme } from "styled-components";
 
 export interface MyTheme extends DefaultTheme {
-  name: string;
+  name: "light" | "dark";
   background: string;
   secondary_background: string;
   primary_text: string;
