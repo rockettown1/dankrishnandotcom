@@ -23,6 +23,7 @@ export default function FeaturedImage({ project }: { project: IProject }) {
         }
         objectFit="cover"
         alt={featuredImage.fields.description}
+        priority
       />
       {featuredImage.fields.file.details.image.height < 600 && <span id="shadow"></span>}
     </Container>
