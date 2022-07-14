@@ -16,8 +16,6 @@ type BlogRecentProps = {
   topics: string[];
 };
 
-
-
 export default function BlogRecent({ menuFixed, posts, topics }: BlogRecentProps) {
   const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
   const [visiblePosts, setVisibilePosts] = useState<IPost[]>(posts);
@@ -27,7 +25,9 @@ export default function BlogRecent({ menuFixed, posts, topics }: BlogRecentProps
 
   const filterPosts = (topic: string) => {
     const temp = [...posts];
+    console.log(temp);
     const filteredPosts = temp.filter((post) => post.fields.topic === topic);
+    console.log(filteredPosts);
     setSelectedTopic(topic);
     setVisibilePosts(filteredPosts);
   };
@@ -116,7 +116,7 @@ export default function BlogRecent({ menuFixed, posts, topics }: BlogRecentProps
           <h4>Hit Enter to search</h4>
         </motion.div>
       </div>
-      <Message bottom={showMessage ? "0" : "-50px"}>
+      <Message $showMessage={showMessage} opacity={showMessage ? 1 : 0}>
         <h4>No search results match that query</h4>
       </Message>
     </Container>
@@ -143,7 +143,7 @@ const Container = styled.section<ContainerProps>`
   }
   #wrapper {
     display: flex;
-    width: 80vw;
+    /* width: 80vw; */
   }
 
   #col1 {
@@ -163,8 +163,8 @@ const Container = styled.section<ContainerProps>`
   #recent {
     padding-top: 50px;
     height: 300vh;
-    width: 60vw;
-    padding-right: 150px;
+    width: 75vw;
+    padding-right: 200px;
 
     h1 {
       font-size: 5vh;
@@ -193,7 +193,8 @@ const Container = styled.section<ContainerProps>`
       position: relative;
       order: 1;
       width: 100vw;
-      padding: 10px 40px;
+      padding: 10px 20px;
+      padding-left: 50px !important;
       height: max-content;
 
       ul {
@@ -237,6 +238,7 @@ const Search = styled.div`
 const Recent = styled.section`
   min-height: 100vh;
   width: 100%;
+  padding-right: 10vw;
 
   #selected {
     color: ${({ theme }) => theme.highlight};
@@ -275,7 +277,8 @@ const Close = styled(motion.span)`
 `;
 
 type MessageProps = {
-  bottom: string;
+  $showMessage: boolean;
+  opacity: number;
 };
 const Message = styled(motion.div)<MessageProps>`
   position: fixed;
@@ -283,11 +286,16 @@ const Message = styled(motion.div)<MessageProps>`
   align-items: center;
   justify-content: center;
   width: 400px;
-  height: 50px;
-  transition: all 0.5s;
-  bottom: ${({ bottom }) => bottom};
+  height: 60px;
+  transition: all 1s;
+  bottom: ${({ $showMessage }) => ($showMessage ? "0" : "-50px")};
+  opacity: ${({ opacity }) => opacity};
   background-color: ${({ theme }) => theme.highlight};
   color: black;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  @media screen and (max-width: 800px) {
+    bottom: none;
+    top: ${({ $showMessage }) => ($showMessage ? 0 : "-50px")};
+  }
 `;

@@ -45,7 +45,12 @@ const BlogMain = ({ menuFixed, setMenuFixed, firstFour, featuredPost }: Props) =
             <h6>Featured Post</h6>
             <h1 className="title">{featuredPost.title}</h1>
             <ImgWrapper>
-              <Image src={`https:${featuredPost.featuredImage.fields.file.url}`} layout="fill" objectFit="cover" />
+              <Image
+                src={`https:${featuredPost.featuredImage.fields.file.url}`}
+                layout="fill"
+                objectFit="cover"
+                priority
+              />
             </ImgWrapper>
           </div>
         </Link>

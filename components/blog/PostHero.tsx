@@ -67,7 +67,7 @@ export default function PostHero({ post, setMenuFixed, menuFixed, likeNumber }: 
       </Details>
       <Tags>
         {tagId.map((tag: string, index: number) => (
-          <h6>{tag}</h6>
+          <h6 key={index}>{tag}</h6>
         ))}
       </Tags>
     </Container>
@@ -78,7 +78,7 @@ const Container = styled.section`
   min-height: 45vh;
   padding: 0 12vw;
   padding-top: 100px;
-  padding-bottom: 60px;
+  padding-bottom: 20px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
