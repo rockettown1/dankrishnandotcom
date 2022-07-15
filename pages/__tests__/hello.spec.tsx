@@ -4,11 +4,6 @@ import user from "@testing-library/user-event";
 import Hello from "../hello.page";
 import { mockTechList } from "../../__mocks__/fixtures";
 
-// jest.mock("../../cms/contentfulClient", () => ({
-//   ...jest.requireActual("../../cms/contentfulClient"),
-//   getEntries: jest.fn(),
-//   //other functions you want
-// }));
 describe("Hello Page", () => {
   beforeEach(() => {
     render(withTheme(() => <Hello techList={mockTechList} />));

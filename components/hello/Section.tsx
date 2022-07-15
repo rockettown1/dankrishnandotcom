@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Tech from "./Tech";
 import { motion } from "framer-motion";
-import { TechList } from "utils/sortTech";
+import { ITechList } from "types/generated/contentful";
 
 type Props = {
   section: {
@@ -12,7 +12,7 @@ type Props = {
     name: string;
     desc: string;
   };
-  techList: TechList;
+  techList: ITechList;
 };
 
 export default function Section({ section, techList }: Props) {

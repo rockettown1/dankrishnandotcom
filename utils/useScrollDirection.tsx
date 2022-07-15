@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export const useScrollDirection = (): { scrollDirection: string; isScrolling: boolean } => {
+export const useScrollDirection = (): { scrollDirection: string | null; isScrolling: boolean } => {
   const [direction, setDirection] = useState<string | null>(null);
   const [isScrolling, setIsScrolling] = useState<boolean>(false);
   let oldVal: number;

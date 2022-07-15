@@ -2,10 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { AiFillCloseCircle } from "react-icons/ai";
-import { sortTech, TechList } from "utils/sortTech";
+import { sortTech } from "utils/sortTech";
+import { ITechList } from "types/generated/contentful";
+import { Asset } from "contentful";
 
 type Props = {
-  techList: TechList;
+  techList: ITechList;
   setTech: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
@@ -27,7 +29,7 @@ export default function Tech({ techList, setTech }: Props) {
         {new Array(6).fill(0).map((_, index) => {
           return (
             <div key={index} id={`mid${index}`}>
-              {tech[index].map((item) => (
+              {tech[index].map((item: Asset) => (
                 <Image key={item.fields.description} src={item.fields.file.url} />
               ))}
             </div>

@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState, RefObject, MutableRefObject } from "react";
 import styled from "styled-components";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { NodeData } from "@contentful/rich-text-types";
 import { useWindowSize, richTextOptions, useScrollDirection } from "utils";
 import floatingLike from "public/floatingLikeRed.json";
 import Lottie, { LottieRefCurrentProps } from "lottie-react";
@@ -12,7 +13,7 @@ type Props = {
   headings: string[];
   liked: boolean;
   setLiked: React.Dispatch<React.SetStateAction<boolean>>;
-  likeNumber: number;
+  likeNumber: number | null;
   setLikeNumber: React.Dispatch<React.SetStateAction<number>>;
 };
 
@@ -103,7 +104,7 @@ export default function PostBody({ body, menuFixed, headings, liked, setLiked, l
   useEffect(() => {
     const document: any = documentToReactComponents(body, richTextOptions);
 
-    document.forEach((node) => {
+    document.forEach((node: NodeData) => {
       if (node.type.target === "h1") {
         headingRefs.current.push(node.ref.current);
       }

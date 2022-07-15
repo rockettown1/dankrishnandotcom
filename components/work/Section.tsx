@@ -19,7 +19,7 @@ export type SectionProps = {
   data?: Data;
   main: boolean;
   id?: number;
-  handleClick?: (link: string) => void;
+  handleClick?: (link: string | undefined) => void;
   exitToMain?: boolean;
 };
 
@@ -46,7 +46,7 @@ export default function Section({ data, main, id, handleClick, exitToMain }: Sec
         <h1 id="title">{title}</h1>
         <p>{desc}</p>
         {!main && (
-          <Button primary link={link} handleClick={handleClick} toDisable={!available}>
+          <Button primary link={link} handleClick={handleClick!} toDisable={!available}>
             {available ? "Find out more" : "Coming soon"}
           </Button>
         )}

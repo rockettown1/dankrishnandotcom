@@ -1,17 +1,17 @@
-import React from "react";
+import React, { ReactNode, RefObject } from "react";
 import { BLOCKS, MARKS } from "@contentful/rich-text-types";
 import styled from "styled-components";
 import NextImage from "next/image";
 import ReactMarkdown from "react-markdown";
-import { Node } from "@contentful/rich-text-types";
+import { NodeData } from "@contentful/rich-text-types";
 // import "prismjs/components/prism-jsx";
 // import "prismjs/components/prism-typescript";
 import renderRichText from "./renderRichText";
 
-const Bold = ({ children }) => <BoldMark>{children}</BoldMark>;
-const Underline = ({ children }) => <UnderlineMark>{children}</UnderlineMark>;
-const Italic = ({ children }) => <ItalicMark>{children}</ItalicMark>;
-const Text = ({ children }) => <TextBlock>{children}</TextBlock>;
+const Bold = ({ children }: { children: ReactNode }) => <BoldMark>{children}</BoldMark>;
+const Underline = ({ children }: { children: ReactNode }) => <UnderlineMark>{children}</UnderlineMark>;
+const Italic = ({ children }: { children: ReactNode }) => <ItalicMark>{children}</ItalicMark>;
+const Text = ({ children }: { children: ReactNode }) => <TextBlock>{children}</TextBlock>;
 
 export const richTextOptions = {
   renderMark: {
@@ -20,28 +20,28 @@ export const richTextOptions = {
     [MARKS.ITALIC]: (text: string) => <Italic>{text}</Italic>,
   },
   renderNode: {
-    [BLOCKS.PARAGRAPH]: (_, children) => <Text>{children}</Text>,
-    [BLOCKS.HEADING_1]: (node, children) => {
+    [BLOCKS.PARAGRAPH]: (_: NodeData, children: ReactNode) => <Text>{children}</Text>,
+    [BLOCKS.HEADING_1]: (node: NodeData, children: any) => {
       if (children[0] === "Technical Discussion") {
         return (
-          <Heading1 ref={node} id="discuss">
+          <Heading1 ref={node as RefObject<HTMLHeadingElement>} id="discuss">
             {children}
           </Heading1>
         );
       }
 
-      return <Heading1 ref={node}>{children}</Heading1>;
+      return <Heading1 ref={node as RefObject<HTMLHeadingElement>}>{children}</Heading1>;
     },
-    [BLOCKS.HEADING_2]: (_, children) => <Heading2>{children}</Heading2>,
-    [BLOCKS.HEADING_3]: (_, children) => <Heading3>{children}</Heading3>,
-    [BLOCKS.HEADING_4]: (_, children) => <Heading4>{children}</Heading4>,
-    [BLOCKS.HEADING_5]: (_, children) => <Heading5>{children}</Heading5>,
-    [BLOCKS.HEADING_6]: (_, children) => <Heading6>{children}</Heading6>,
-    [BLOCKS.OL_LIST]: (_, children) => <Ol>{children}</Ol>,
-    [BLOCKS.UL_LIST]: (_, children) => <Ul>{children}</Ul>,
-    [BLOCKS.LIST_ITEM]: (_, children) => <li>{children}</li>,
-    [BLOCKS.QUOTE]: (_, children) => <Quote>{children}</Quote>,
-    [BLOCKS.EMBEDDED_ENTRY]: (node) => {
+    [BLOCKS.HEADING_2]: (_: NodeData, children: ReactNode) => <Heading2>{children}</Heading2>,
+    [BLOCKS.HEADING_3]: (_: NodeData, children: ReactNode) => <Heading3>{children}</Heading3>,
+    [BLOCKS.HEADING_4]: (_: NodeData, children: ReactNode) => <Heading4>{children}</Heading4>,
+    [BLOCKS.HEADING_5]: (_: NodeData, children: ReactNode) => <Heading5>{children}</Heading5>,
+    [BLOCKS.HEADING_6]: (_: NodeData, children: ReactNode) => <Heading6>{children}</Heading6>,
+    [BLOCKS.OL_LIST]: (_: NodeData, children: ReactNode) => <Ol>{children}</Ol>,
+    [BLOCKS.UL_LIST]: (_: NodeData, children: ReactNode) => <Ul>{children}</Ul>,
+    [BLOCKS.LIST_ITEM]: (_: NodeData, children: ReactNode) => <li>{children}</li>,
+    [BLOCKS.QUOTE]: (_: NodeData, children: ReactNode) => <Quote>{children}</Quote>,
+    [BLOCKS.EMBEDDED_ENTRY]: (node: NodeData) => {
       if (node.data.target.fields.code) {
         return <Markdown className="line-numbers">{node.data.target.fields.code}</Markdown>;
       }
@@ -99,7 +99,7 @@ export const richTextOptions = {
         );
       }
     },
-    [BLOCKS.EMBEDDED_ASSET]: (node) => {
+    [BLOCKS.EMBEDDED_ASSET]: (node: NodeData) => {
       const assetType = node.data.target.fields.file.contentType;
       switch (assetType) {
         case "video/mp4":

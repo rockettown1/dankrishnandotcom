@@ -6,13 +6,15 @@ import floatingLike from "public/floatingLikeRed.json";
 import Lottie from "lottie-react";
 import styled from "styled-components";
 import { IPost } from "types/generated/contentful";
+import useSWR from "swr";
+import { fetcher } from "utils";
 
 type PostHeroProps = {
   post: IPost;
   menuFixed: boolean;
   setMenuFixed: React.Dispatch<React.SetStateAction<boolean>>;
   liked: boolean;
-  likeNumber: number;
+  likeNumber: number | null;
 };
 
 export default function PostHero({ post, setMenuFixed, menuFixed, likeNumber }: PostHeroProps) {
@@ -24,6 +26,7 @@ export default function PostHero({ post, setMenuFixed, menuFixed, likeNumber }: 
     rootMargin: "25px",
     threshold: 0,
   };
+
   const text = documentToPlainTextString(post.fields.body);
   const stats = readingTime(text);
 

@@ -1,8 +1,9 @@
+import { ReactNode } from "react";
 import styled from "styled-components";
-const Contents = ({ children }) => {
+
+export default function Contents({ children }: { children: ReactNode }) {
   return <Index>{children}</Index>;
-};
-export default Contents;
+}
 
 const Index = styled.section`
   height: 100vh;

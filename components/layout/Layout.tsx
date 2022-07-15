@@ -21,7 +21,7 @@ export default function Layout({ children, toggleTheme }: Props) {
     <Container data-testid="layout">
       <Nav toggleTheme={toggleTheme} />
       {children}
-      {width < 1100 && <MobileMenu />}
+      {width! < 1100 && <MobileMenu />}
     </Container>
   );
 }

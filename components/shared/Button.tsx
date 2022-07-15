@@ -9,7 +9,7 @@ interface Props {
   secondary?: boolean;
   link?: string;
   children: string | any[];
-  handleClick?: (link: string) => void;
+  handleClick: (link: string | undefined) => void;
   toDisable?: boolean;
 }
 
