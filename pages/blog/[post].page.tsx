@@ -8,14 +8,7 @@ import Router from "next/router";
 import { IPost, IPostFields } from "types/generated/contentful";
 import { fetcher } from "utils";
 import { GetStaticPropsContext } from "next";
-import * as z from "zod";
 import useSWR from "swr";
-
-const LikesSchema = z.object({
-  likes: z.number(),
-});
-
-type Likes = z.infer<typeof LikesSchema>;
 
 export async function getStaticPaths() {
   const response = await client.getEntries<IPost>({ content_type: "post" });
@@ -38,11 +31,10 @@ export async function getStaticProps(ctx: GetStaticPropsContext) {
   });
 
   const post = response.items[0];
-  let data: Likes | null = { likes: 0 };
 
   if (post) {
     try {
-      //if the post is new (picked up during ISR) then add it to the database to store the migrated like count.
+      //if the post is new (picked up during ISR) then add it to the database
       await prisma.posts.upsert({
         where: { contentfulId: post.sys.id },
         update: {},
@@ -72,6 +64,7 @@ export default function Post({ post }: { post: IPost }) {
   const [liked, setLiked] = useState<boolean>(false);
   const [likeNumber, setLikeNumber] = useState<number | null>(null);
 
+  // GET request for post likes on render
   const { data } = useSWR(`/getlikes?id=${post.sys.id}`, fetcher);
 
   useEffect(() => {
@@ -80,15 +73,14 @@ export default function Post({ post }: { post: IPost }) {
     }
   }, [data]);
 
+  // POST request to update likes in the database when user navigates away
   useEffect(() => {
-    // POST request to updated likes in the database
     const updatePostLikes = async () => {
       if (liked) {
         await fetcher("/updatelikes", { id: post.sys.id, likes: likeNumber });
       }
     };
 
-    //handle cases where user navigates away from this page
     window.addEventListener("beforeunload", updatePostLikes);
     Router.events.on("routeChangeStart", updatePostLikes);
     return () => {
@@ -98,6 +90,8 @@ export default function Post({ post }: { post: IPost }) {
   }, [liked]);
 
   const { body } = post.fields;
+
+  //Collect headings from post body
   const headings = body.content
     .filter((node) => node.nodeType.includes("heading-1"))
     .map((node) => node.content[0].nodeType === "text" && node.content[0].value);

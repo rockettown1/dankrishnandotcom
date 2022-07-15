@@ -1,3 +1,5 @@
+import { IProject } from "./generated/contentful";
+
 export type DeepPartial<T> = T extends Function
   ? T
   : T extends Array<infer InferredArrayMember>
@@ -12,33 +14,34 @@ type DeepPartialObject<T> = {
   [Key in keyof T]?: DeepPartial<T[Key]>;
 };
 
-export type Project = {
-  fields: {
-    name: string;
-    body?: {
-      content: [
-        {
-          content: [{ data: any; marks: []; nodeType: string; value: string }];
-          data: any;
-          nodeType: string;
-        }
-      ];
-      data: any;
-      nodeType: string;
-    };
-    featuredImage?: ContentfulFeaturedImage;
-    headline: string;
-    description: string;
-    slug: string;
-    type: string;
-    tech: {
-      data: ProjectTech[];
-    };
-    textblock: TextBlock;
-  };
-  metadata: {};
-  sys: {};
-};
+export type Project = Pick<IProject, "fields" | "metadata" | "sys">;
+// export type Project = {
+//   fields: {
+//     name: string;
+//     body?: {
+//       content: [
+//         {
+//           content: [{ data: any; marks: []; nodeType: string; value: string }];
+//           data: any;
+//           nodeType: string;
+//         }
+//       ];
+//       data: any;
+//       nodeType: string;
+//     };
+//     featuredImage?: ContentfulFeaturedImage;
+//     headline: string;
+//     description: string;
+//     slug: string;
+//     type: string;
+//     tech: {
+//       data: ProjectTech[];
+//     };
+//     textblock: TextBlock;
+//   };
+//   metadata: {};
+//   sys: {};
+// };
 
 type ProjectTech = {
   type: string;

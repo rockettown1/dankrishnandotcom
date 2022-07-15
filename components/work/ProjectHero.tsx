@@ -5,10 +5,10 @@ import { BsArrowDown } from "react-icons/bs";
 import Button from "../shared/Button";
 import Link from "next/link";
 import { BsGithub } from "react-icons/bs";
-import { IProject } from "types/generated/contentful";
+import { Project } from "types/Project";
 
 type Props = {
-  project: IProject;
+  project: Project;
 };
 
 const ProjectHero = ({ project }: Props) => {

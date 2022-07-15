@@ -3,8 +3,13 @@ import styled from "styled-components";
 import NextImage from "next/image";
 import { IProject } from "types/generated/contentful";
 import { useWindowSize } from "utils";
+import { Project } from "types/Project";
 
-export default function FeaturedImage({ project }: { project: IProject }) {
+type Props = {
+  project: Project;
+};
+
+export default function FeaturedImage({ project }: Props) {
   const { featuredImage } = project.fields;
   const { width } = useWindowSize();
   return (
@@ -31,7 +36,7 @@ export default function FeaturedImage({ project }: { project: IProject }) {
 }
 
 type ContainerProps = {
-  project: IProject;
+  project: Project;
   width: number | undefined;
 };
 

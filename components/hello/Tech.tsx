@@ -3,11 +3,11 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { sortTech } from "utils/sortTech";
-import { ITechList } from "types/generated/contentful";
+import { ITechListFields } from "types/generated/contentful";
 import { Asset } from "contentful";
 
 type Props = {
-  techList: ITechList;
+  techList: ITechListFields;
   setTech: React.Dispatch<React.SetStateAction<boolean>>;
 };
 

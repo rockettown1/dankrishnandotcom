@@ -42,7 +42,7 @@ export async function getStaticProps(ctx: GetStaticPropsContext) {
 }
 
 type Props = {
-  project: IProject;
+  project: Pick<IProject, "fields" | "sys" | "metadata">;
 };
 
 export default function ProjectPage({ project }: Props) {

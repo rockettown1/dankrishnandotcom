@@ -8,19 +8,19 @@ import client from "cms/contentfulClient";
 import { useWindowSize } from "utils";
 import Footer from "components/layout/Footer";
 import Arrow from "components/layout/Arrow";
-import { ITechList } from "types/generated/contentful";
+import { ITechList, ITechListFields } from "types/generated/contentful";
 
 export async function getStaticProps() {
   const response = await client.getEntries<ITechList>({ content_type: "techList" });
   return {
     props: {
-      techList: response.items[0],
+      techList: response.items[0].fields,
     },
   };
 }
 
 type Props = {
-  techList: ITechList;
+  techList: ITechListFields;
 };
 
 export default function Hello({ techList }: Props) {
