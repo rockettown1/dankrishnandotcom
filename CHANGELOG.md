@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.1](https://github.com/rockettown1/dankrishnandotcom/compare/v1.5.0...v1.5.1) (2022-07-15)
+
+
+### Bug Fixes
+
+* **blog:** Utterances comment boxes now rerender when theme changes ([d915685](https://github.com/rockettown1/dankrishnandotcom/commit/d9156855a1e99bddaed73c6f55c50270d248046f))
+
 ## [1.5.0](https://github.com/rockettown1/dankrishnandotcom/compare/v1.4.0...v1.5.0) (2022-07-14)
 
 
