@@ -1,5 +1,3 @@
-import { ContentfulSearchResult } from "types/ContentfulSearch";
-
 export async function fetcher(url: string, data: any = undefined) {
   const response = await fetch(`${window.location.origin}/api${url}`, {
     method: data ? "POST" : "GET",
@@ -9,6 +7,6 @@ export async function fetcher(url: string, data: any = undefined) {
     body: JSON.stringify(data),
   });
 
-  const responseData: ContentfulSearchResult = await response.json();
+  const responseData = await response.json();
   return responseData;
 }

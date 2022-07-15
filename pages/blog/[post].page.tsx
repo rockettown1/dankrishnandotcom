@@ -9,7 +9,7 @@ import { IPost, IPostFields } from "types/generated/contentful";
 import { fetcher } from "utils";
 import { GetStaticPropsContext } from "next";
 import * as z from "zod";
-import { PostSchema } from "types/Contenful";
+import useSWR from "swr";
 
 const LikesSchema = z.object({
   likes: z.number(),
@@ -52,16 +52,6 @@ export async function getStaticProps(ctx: GetStaticPropsContext) {
           contentfulId: post.sys.id,
         },
       });
-
-      //if it exists we want the updated post count when the post revalidates
-      data = await prisma.posts.findUnique({
-        where: {
-          contentfulId: post.sys.id,
-        },
-        select: {
-          likes: true,
-        },
-      });
     } catch (error) {
       console.log(error);
     } finally {
@@ -72,31 +62,29 @@ export async function getStaticProps(ctx: GetStaticPropsContext) {
   return {
     props: {
       post: post || null,
-      likes: LikesSchema.parse(data).likes,
     },
     revalidate: 10,
   };
 }
 
-export default function Post({ post, likes }: { post: IPost; likes: number }) {
+export default function Post({ post }: { post: IPost }) {
   const [menuFixed, setMenuFixed] = useState<boolean>(false);
   const [liked, setLiked] = useState<boolean>(false);
-  const [likeNumber, setLikeNumber] = useState<number>(likes);
+  const [likeNumber, setLikeNumber] = useState<number | null>(null);
 
-  if (!post) {
-    return <h1>Loading...</h1>;
-  }
+  const { data } = useSWR(`/getlikes?id=${post.sys.id}`, fetcher);
 
-  const { body } = post.fields;
-  const headings = body.content
-    .filter((node) => node.nodeType.includes("heading-1"))
-    .map((node) => node.content[0].nodeType === "text" && node.content[0].value);
+  useEffect(() => {
+    if (data) {
+      setLikeNumber(data.payload);
+    }
+  }, [data]);
 
   useEffect(() => {
     // POST request to updated likes in the database
     const updatePostLikes = async () => {
       if (liked) {
-        await fetcher("/liked", { id: post.sys.id, likes: likeNumber });
+        await fetcher("/updatelikes", { id: post.sys.id, likes: likeNumber });
       }
     };
 
@@ -108,6 +96,11 @@ export default function Post({ post, likes }: { post: IPost; likes: number }) {
       Router.events.off("routeChangeStart", updatePostLikes);
     };
   }, [liked]);
+
+  const { body } = post.fields;
+  const headings = body.content
+    .filter((node) => node.nodeType.includes("heading-1"))
+    .map((node) => node.content[0].nodeType === "text" && node.content[0].value);
 
   return (
     <Container>
