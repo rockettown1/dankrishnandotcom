@@ -8,9 +8,10 @@ import client from "cms/contentfulClient";
 import { useWindowSize } from "utils";
 import Footer from "components/layout/Footer";
 import Arrow from "components/layout/Arrow";
+import { ITechList } from "types/generated/contentful";
 
 export async function getStaticProps() {
-  const response = await client.getEntries({ content_type: "techList" });
+  const response = await client.getEntries<ITechList>({ content_type: "techList" });
   return {
     props: {
       techList: response.items[0],
@@ -18,7 +19,11 @@ export async function getStaticProps() {
   };
 }
 
-function Hello({ techList }) {
+type Props = {
+  techList: ITechList;
+};
+
+export default function Hello({ techList }: Props) {
   const { width } = useWindowSize();
 
   return (
@@ -80,8 +85,6 @@ function Hello({ techList }) {
     </>
   );
 }
-
-export default Hello;
 
 type ContainerProps = {
   width: number | undefined;

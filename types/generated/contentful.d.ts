@@ -193,7 +193,7 @@ export interface IProjectFields {
   /** Body */
   body?: Document | undefined;
 
-  /** textblock */
+  /** textblock this needs looking at*/
   textblock?: Entry<{ [fieldId: string]: unknown }>[] | undefined;
 
   /** link */

@@ -1,4 +1,4 @@
-import { useLayoutEffect } from "react";
+import { ReactNode, useLayoutEffect } from "react";
 import styled from "styled-components";
 import ProjectHero from "components/work/ProjectHero";
 import client from "cms/contentfulClient";
@@ -6,7 +6,8 @@ import { richTextOptions } from "utils";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import Markdown from "react-markdown";
 import FeaturedImage from "components/work/project/FeaturedImage";
-import { IProjectFields } from "types/generated/contentful";
+import { IProject, IProjectFields } from "types/generated/contentful";
+import { GetStaticPropsContext } from "next";
 
 export async function getStaticPaths() {
   const response = await client.getEntries<IProjectFields>({ content_type: "project", "fields.type": "fullstack" });
@@ -22,10 +23,10 @@ export async function getStaticPaths() {
     fallback: false,
   };
 }
-export async function getStaticProps(ctx) {
+export async function getStaticProps(ctx: GetStaticPropsContext) {
   const { items } = await client.getEntries<IProjectFields>({
     content_type: "project",
-    "fields.slug": ctx.params.project,
+    "fields.slug": ctx.params!.project,
   });
 
   return {
@@ -35,7 +36,11 @@ export async function getStaticProps(ctx) {
   };
 }
 
-export default function ProjectPage({ project }) {
+type Props = {
+  project: IProject;
+};
+
+export default function ProjectPage({ project }: Props) {
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -47,13 +52,13 @@ export default function ProjectPage({ project }) {
         {featuredImage && <FeaturedImage project={project} />}
         <TextSection>
           <div id="heading">
-            <h2>{textblock[0].fields.heading}</h2>
+            <h2>{textblock![0].fields.heading as ReactNode}</h2>
           </div>
           <div id="paragraph">
-            <Markdown>{textblock[0].fields.paragraph}</Markdown>
+            <Markdown>{textblock![0].fields.paragraph as string}</Markdown>
           </div>
         </TextSection>
-        <Body>{documentToReactComponents(body, richTextOptions)}</Body>
+        <Body>{documentToReactComponents(body!, richTextOptions)}</Body>
       </div>
     </Container>
   );

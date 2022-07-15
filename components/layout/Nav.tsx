@@ -33,9 +33,10 @@ export default function Nav({ toggleTheme }: Props) {
 
   const handleThemeToggle = (e: React.KeyboardEvent | React.MouseEvent) => {
     if (e.type === "keydown") {
-      const isEnterKey = handleKeyboardSelect(e, toggleTheme);
+      const isEnterKey = handleKeyboardSelect(e as React.KeyboardEvent, toggleTheme);
       if (!isEnterKey) return;
     }
+
     theme.name === "dark" ? toggleTheme("light") : toggleTheme("dark");
     setRotation((prev) => prev + 180);
   };
@@ -50,7 +51,7 @@ export default function Nav({ toggleTheme }: Props) {
       </div>
 
       <div id="right">
-        {width >= 1100 && (
+        {width! >= 1100 && (
           <Link href="/">
             <a>
               <HomeSVG use={notHome} />
