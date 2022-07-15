@@ -1,64 +1,62 @@
-import { TechList } from "../utils/sortTech";
-import { Project, ContentfulFeaturedImage } from "../types/Project";
+import { Project, ContentfulFeaturedImage } from "types/Project";
+import { ITechListFields } from "types/generated/contentful";
 
-export const mockTechList: TechList = {
-  fields: {
-    tech: [
-      {
-        fields: {
-          title: "",
-          description: "",
-          file: { url: "" },
-        },
-        metadata: {
-          tags: [{ sys: { id: "tech2" } }],
-        },
+export const mockTechList = {
+  tech: [
+    {
+      fields: {
+        title: "",
+        description: "",
+        file: { url: "" },
       },
-      {
-        fields: {
-          title: "",
-          description: "",
-          file: { url: "" },
-        },
-        metadata: {
-          tags: [{ sys: { id: "tech3" } }],
-        },
+      metadata: {
+        tags: [{ sys: { id: "tech2" } }],
       },
-      {
-        fields: {
-          title: "",
-          description: "",
-          file: { url: "" },
-        },
-        metadata: {
-          tags: [{ sys: { id: "tech1" } }],
-        },
+    },
+    {
+      fields: {
+        title: "",
+        description: "",
+        file: { url: "" },
       },
-      {
-        fields: {
-          title: "",
-          description: "",
-          file: { url: "" },
-        },
-        metadata: {
-          tags: [{ sys: { id: "tech2" } }],
-        },
+      metadata: {
+        tags: [{ sys: { id: "tech3" } }],
       },
-      {
-        fields: {
-          title: "",
-          description: "",
-          file: { url: "" },
-        },
-        metadata: {
-          tags: [{ sys: { id: "tech5" } }],
-        },
+    },
+    {
+      fields: {
+        title: "",
+        description: "",
+        file: { url: "" },
       },
-    ],
-  },
-};
+      metadata: {
+        tags: [{ sys: { id: "tech1" } }],
+      },
+    },
+    {
+      fields: {
+        title: "",
+        description: "",
+        file: { url: "" },
+      },
+      metadata: {
+        tags: [{ sys: { id: "tech2" } }],
+      },
+    },
+    {
+      fields: {
+        title: "",
+        description: "",
+        file: { url: "" },
+      },
+      metadata: {
+        tags: [{ sys: { id: "tech5" } }],
+      },
+    },
+  ],
+} as unknown as ITechListFields;
 
-export const mockProjects: Project[] = [
+export const mockProjects = [
   {
     fields: {
       name: "Project 1",
@@ -314,4 +312,4 @@ export const mockProjects: Project[] = [
     metadata: {},
     sys: {},
   },
-];
+] as unknown as Project[];

@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import Section from "../hello/Section";
+import Section, { Props } from "../hello/Section";
 import { withTheme } from "utils";
 
 describe("hello/Section Component", () => {
@@ -12,9 +12,8 @@ describe("hello/Section Component", () => {
       desc: "This is a paragraph about testing components",
     },
     techList: {
-      fields: {
-        tech: [],
-      },
+      tech: [],
+      name: "",
     },
   };
 

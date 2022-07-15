@@ -12,7 +12,7 @@ describe("Project Page", () => {
   });
 
   it("should render the featured image", () => {
-    expect(screen.getByAltText(mockProjects[0].fields.featuredImage.fields.description)).toBeInTheDocument();
+    expect(screen.getByAltText(mockProjects[0].fields.featuredImage!.fields.description)).toBeInTheDocument();
   });
 
   it("should render the main text block", () => {
