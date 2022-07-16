@@ -4,8 +4,6 @@ import styled from "styled-components";
 import NextImage from "next/image";
 import ReactMarkdown from "react-markdown";
 import { NodeData } from "@contentful/rich-text-types";
-// import "prismjs/components/prism-jsx";
-// import "prismjs/components/prism-typescript";
 import renderRichText from "./renderRichText";
 
 const Bold = ({ children }: { children: ReactNode }) => <BoldMark>{children}</BoldMark>;
@@ -42,8 +40,12 @@ export const richTextOptions = {
     [BLOCKS.LIST_ITEM]: (_: NodeData, children: ReactNode) => <li>{children}</li>,
     [BLOCKS.QUOTE]: (_: NodeData, children: ReactNode) => <Quote>{children}</Quote>,
     [BLOCKS.EMBEDDED_ENTRY]: (node: NodeData) => {
-      if (node.data.target.fields.code) {
-        return <Markdown className="line-numbers">{node.data.target.fields.code}</Markdown>;
+      if (node.data.target.sys.contentType.sys.id === "codeBlock") {
+        return (
+          <pre style={{ backgroundColor: "#272B2D", borderRadius: "5px" }}>
+            <code className={`language-${node.data.target.fields.language}`}>{node.data.target.fields.code}</code>
+          </pre>
+        );
       }
       if (node.data.target.fields.type === "mainText") {
         return (
@@ -183,10 +185,6 @@ const Quote = styled.h4`
   padding-left: 20px;
   box-sizing: border-box;
   border-left: 2px solid black;
-`;
-
-const Markdown = styled(ReactMarkdown)`
-  width: 700px;
 `;
 
 const Video = styled.video`

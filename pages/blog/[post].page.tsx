@@ -30,6 +30,8 @@ export async function getStaticProps(ctx: GetStaticPropsContext) {
     "fields.slug": ctx.params!.post,
   });
 
+  console.log("RESPONSE", response);
+
   const post = response.items[0];
 
   if (post) {
@@ -63,9 +65,9 @@ export default function Post({ post }: { post: IPost }) {
   const [menuFixed, setMenuFixed] = useState<boolean>(false);
   const [liked, setLiked] = useState<boolean>(false);
   const [likeNumber, setLikeNumber] = useState<number | null>(null);
-
+  console.log(post);
   // GET request for post likes on render
-  const { data } = useSWR(`/getlikes?id=${post.sys.id}`, fetcher);
+  const { data, error } = useSWR(`/getlikes?id=${post.sys.id}`, fetcher);
 
   useEffect(() => {
     if (data) {

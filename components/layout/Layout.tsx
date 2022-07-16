@@ -2,8 +2,11 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Nav, MobileMenu } from "components/layout";
 import { useWindowSize } from "utils";
-import Prism from "prismjs";
-import "prismjs/themes/prism-okaidia.css";
+import hljs from "highlight.js/lib/core";
+import "highlight.js/styles/base16/zenburn.css";
+import "highlight.js/lib/common";
+
+// import "prismjs/themes/prism-okaidia.css";
 
 type Props = {
   children: any;
@@ -14,7 +17,7 @@ export default function Layout({ children, toggleTheme }: Props) {
   const { width } = useWindowSize();
 
   useEffect(() => {
-    Prism.highlightAll();
+    hljs.highlightAll();
   }, []);
 
   return (
