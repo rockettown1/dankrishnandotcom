@@ -42,8 +42,8 @@ export const richTextOptions = {
     [BLOCKS.EMBEDDED_ENTRY]: (node: NodeData) => {
       if (node.data.target.sys.contentType.sys.id === "codeBlock") {
         return (
-          <pre style={{ backgroundColor: "#272B2D", borderRadius: "5px" }}>
-            <code className={`language-${node.data.target.fields.language}`}>{node.data.target.fields.code}</code>
+          <pre>
+            <Code className={`language-${node.data.target.fields.language}`}>{node.data.target.fields.code}</Code>
           </pre>
         );
       }
@@ -290,4 +290,10 @@ const MocksContainer = styled.section`
   @media screen and (max-width: 700px) {
     flex-direction: column;
   }
+`;
+
+const Code = styled.code`
+  background-color: #25292d;
+  border-radius: 5px;
+  font-size: 17px;
 `;

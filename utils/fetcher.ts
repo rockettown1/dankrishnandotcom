@@ -7,6 +7,5 @@ export async function fetcher(url: string, data: any = undefined) {
     body: JSON.stringify(data),
   });
 
-  const responseData = await response.json();
-  return responseData;
+  return await response.json();
 }
