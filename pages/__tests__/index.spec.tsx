@@ -5,7 +5,8 @@ import { withTheme } from "utils";
 
 describe("Home", () => {
   it("renders main titles", () => {
-    const { getByText } = render(withTheme(Home));
+    const TestComponent = withTheme(Home);
+    const { getByText } = render(<TestComponent />);
     const hello = getByText("Hello");
 
     expect(hello).toBeInTheDocument();

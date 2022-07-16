@@ -1,22 +1,21 @@
 import { render, screen } from "@testing-library/react";
-import { Layout } from "../layout/";
-import { withTheme, withRouter } from "../../utils/testUtils";
+import { Layout } from "..";
+import { withTheme, withRouter } from "../../../utils/testUtils";
 import { compose } from "ramda";
 
 describe("Layout Component", () => {
   const mockToggle = jest.fn();
 
   beforeEach(() => {
-    render(
-      compose(
-        withTheme,
-        withRouter
-      )(() => (
-        <Layout toggleTheme={mockToggle}>
-          <h1>I'm a child</h1>
-        </Layout>
-      ))
-    );
+    const TestComponent = compose(
+      withTheme,
+      withRouter
+    )(() => (
+      <Layout toggleTheme={mockToggle}>
+        <h1>I'm a child</h1>
+      </Layout>
+    ));
+    render(<TestComponent />);
   });
 
   it("should render without crashing", () => {

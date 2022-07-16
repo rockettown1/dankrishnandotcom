@@ -1,11 +1,12 @@
 import { render, screen } from "@testing-library/react";
-import { Nav } from "../layout";
+import { Nav } from "..";
 import { withTheme, withRouter } from "utils";
 import { compose } from "ramda";
 
 describe("Nav Component", () => {
   beforeEach(() => {
-    render(compose(withTheme, withRouter)(Nav));
+    const TestComponent = compose(withTheme, withRouter)(Nav);
+    render(<TestComponent />);
   });
 
   it("should render", () => {

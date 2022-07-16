@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import Section, { Props } from "../hello/Section";
+import Section, { Props } from "../Section";
 import { withTheme } from "utils";
 
 describe("hello/Section Component", () => {
@@ -18,7 +18,8 @@ describe("hello/Section Component", () => {
   };
 
   beforeEach(() => {
-    render(withTheme(() => <Section {...testProps} />));
+    const TestComponent = withTheme(() => <Section {...testProps} />);
+    render(<TestComponent />);
   });
 
   it("should render without crashing", () => {

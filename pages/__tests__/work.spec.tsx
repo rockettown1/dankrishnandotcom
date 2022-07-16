@@ -5,7 +5,8 @@ import { compose } from "ramda";
 
 describe("Work Page", () => {
   beforeEach(() => {
-    render(compose(withTheme, withRouter)(Work));
+    const TestComponent = compose(withTheme, withRouter)(Work);
+    render(<TestComponent />);
   });
 
   it("Should render 5 sections", () => {

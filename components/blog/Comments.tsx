@@ -44,4 +44,5 @@ export default function Comments() {
 
 const Container = styled.div`
   width: 100%;
+  margin-bottom: 100px;
 `;

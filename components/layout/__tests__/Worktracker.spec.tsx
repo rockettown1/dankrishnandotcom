@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import WorkTracker from "../layout/WorkTracker";
+import WorkTracker from "../WorkTracker";
 
 describe("Worktracker Component", () => {
   it("should have a visible difference between an active line and non active line", () => {

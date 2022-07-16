@@ -5,7 +5,10 @@ import { mockProjects } from "__mocks__/fixtures";
 import { compose } from "ramda";
 
 describe("Project Page", () => {
-  beforeEach(() => render(compose(withTheme, withRouter)(() => <Project project={mockProjects[0]} />)));
+  beforeEach(() => {
+    const TestComponent = compose(withTheme, withRouter)(() => <Project project={mockProjects[0]} />);
+    render(<TestComponent />);
+  });
 
   it("should render the project hero component", () => {
     expect(screen.getByTestId("hero")).toBeInTheDocument();

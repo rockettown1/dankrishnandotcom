@@ -7,7 +7,11 @@ import { compose } from "ramda";
 const fullstackProjects = mockProjects.filter((project) => project.fields.type === "fullstack");
 
 describe("Fullstack Page", () => {
-  beforeEach(() => render(compose(withTheme, withRouter)(() => <FullStack projects={fullstackProjects} />)));
+  beforeEach(() => {
+    const TestComponent = compose(withTheme, withRouter)(() => <FullStack projects={fullstackProjects} />);
+
+    render(<TestComponent />);
+  });
 
   it("Render a title 'selected projects'", () => {
     expect(screen.getByText("Selected Projects")).toBeVisible();

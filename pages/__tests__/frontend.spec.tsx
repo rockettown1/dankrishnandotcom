@@ -7,7 +7,10 @@ import { compose } from "ramda";
 const frontendProjects = mockProjects.filter((project) => project.fields.type === "frontend");
 
 describe("Frontend Page", () => {
-  beforeEach(() => render(compose(withTheme, withRouter)(() => <Frontend projects={frontendProjects} />)));
+  beforeEach(() => {
+    const TestComponent = compose(withTheme, withRouter)(() => <Frontend projects={frontendProjects} />);
+    render(<TestComponent />);
+  });
 
   it("Render a title 'selected projects'", () => {
     expect(screen.getByText("Selected Projects")).toBeVisible();
