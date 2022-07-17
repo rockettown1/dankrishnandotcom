@@ -6,8 +6,8 @@ import { mockTechList } from "../../__mocks__/fixtures";
 
 describe("Hello Page", () => {
   beforeEach(() => {
-    const TestComponent = withTheme(() => <Hello techList={mockTechList} />);
-    render(<TestComponent />);
+    const Hello_Test = withTheme(Hello);
+    render(<Hello_Test techList={mockTechList} />);
   });
 
   it("renders without crashing", async () => {

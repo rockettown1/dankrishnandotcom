@@ -8,8 +8,8 @@ const frontendProjects = mockProjects.filter((project) => project.fields.type ==
 
 describe("Frontend Page", () => {
   beforeEach(() => {
-    const TestComponent = compose(withTheme, withRouter)(() => <Frontend projects={frontendProjects} />);
-    render(<TestComponent />);
+    const Frontend_Test = compose(withTheme, withRouter)(Frontend);
+    render(<Frontend_Test projects={frontendProjects} />);
   });
 
   it("Render a title 'selected projects'", () => {

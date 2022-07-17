@@ -7,8 +7,8 @@ describe("Tech Component", () => {
   const mockSetTech = jest.fn();
 
   beforeEach(() => {
-    const TestComponent = withTheme(() => <Tech techList={mockTechList} setTech={mockSetTech} />);
-    render(<TestComponent />);
+    const Tech_Test = withTheme(Tech);
+    render(<Tech_Test techList={mockTechList} setTech={mockSetTech} />);
   });
 
   it("should render without crashing", () => {

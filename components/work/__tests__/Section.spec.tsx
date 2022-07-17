@@ -20,16 +20,16 @@ describe("work/Section Component", () => {
 
   it("should render without crashing", () => {
     const testProps = setup();
-    const TestComponent = compose(withTheme, withRouter)(() => <WorkSection {...testProps} />);
-    render(<TestComponent />);
+    const WorkSection_Test = compose(withTheme, withRouter)(WorkSection);
+    render(<WorkSection_Test {...testProps} />);
     const section = screen.getByTestId("work/section");
     expect(section).toBeInTheDocument();
   });
 
   it("should have a visible button if main is false", () => {
     const testProps = setup();
-    const TestComponent = compose(withTheme, withRouter)(() => <WorkSection {...testProps} />);
-    render(<TestComponent />);
+    const WorkSection_Test = compose(withTheme, withRouter)(WorkSection);
+    render(<WorkSection_Test {...testProps} />);
     const button = screen.getByRole("button");
     expect(button).toBeVisible();
   });
@@ -37,26 +37,26 @@ describe("work/Section Component", () => {
   it("should disable the button if available is set to false", () => {
     const testProps = setup();
     testProps.data.available = false;
-    const TestComponent = compose(withTheme, withRouter)(() => <WorkSection {...testProps} />);
-    render(<TestComponent />);
+    const WorkSection_Test = compose(withTheme, withRouter)(WorkSection);
+    render(<WorkSection_Test {...testProps} />);
     const button = screen.getByRole("button");
     expect(button).toBeDisabled();
   });
 
   it("should not render a button if main is set to true", () => {
     const testProps = setup();
-    const TestComponent = compose(withTheme, withRouter)(() => <WorkSection {...testProps} />);
-    const { rerender } = render(<TestComponent />);
+    const WorkSection_Test = compose(withTheme, withRouter)(WorkSection);
+    const { rerender } = render(<WorkSection_Test {...testProps} />);
     const button = screen.getByRole("button");
     testProps.main = true;
-    rerender(<TestComponent />);
+    rerender(<WorkSection_Test {...testProps} />);
     expect(button).not.toBeInTheDocument();
   });
 
   it("should display the number of the section and the title", () => {
     const testProps = setup();
-    const TestComponent = compose(withTheme, withRouter)(() => <WorkSection {...testProps} />);
-    render(<TestComponent />);
+    const WorkSection_Test = compose(withTheme, withRouter)(WorkSection);
+    render(<WorkSection_Test {...testProps} />);
     expect(screen.getByText("07")).toBeVisible();
     expect(screen.getByText("Test Section")).toBeVisible();
   });
@@ -64,8 +64,8 @@ describe("work/Section Component", () => {
   it("should render the image at full screen height if main is set to true", () => {
     const testProps = setup();
     testProps.main = true;
-    const TestComponent = compose(withTheme, withRouter)(() => <WorkSection {...testProps} />);
-    render(<TestComponent />);
+    const WorkSection_Test = compose(withTheme, withRouter)(WorkSection);
+    render(<WorkSection_Test {...testProps} />);
     expect(screen.getByTestId("image-wrapper")).toHaveStyle({ height: "100vh" });
   });
 });

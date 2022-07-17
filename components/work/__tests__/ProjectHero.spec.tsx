@@ -18,8 +18,8 @@ describe("ProjectHero Component", () => {
   } as unknown as Project;
 
   it("Should render given props", () => {
-    const TestComponent = withTheme(() => <ProjectHero project={mockProject} />);
-    render(<TestComponent />);
+    const ProjectHero_Test = withTheme(ProjectHero);
+    render(<ProjectHero_Test project={mockProject} />);
 
     const heading = screen.getByRole("heading", { level: 1 });
     const description = screen.getByText(mockProject.fields.description);
@@ -28,8 +28,8 @@ describe("ProjectHero Component", () => {
   });
 
   it("Should render a Launch Project button if a link is provided otherwise not", async () => {
-    const TestComponent = withTheme(() => <ProjectHero project={mockProject} />);
-    const { rerender } = render(<TestComponent />);
+    const ProjectHero_Test = withTheme(ProjectHero);
+    const { rerender } = render(<ProjectHero_Test project={mockProject} />);
 
     //wait for buttons to animate. Prefer to check visibility (toBeVisible) rather than simply if it's in the document (toBeInTheDocument) as that's what matters to a user
     await waitFor(() => {
@@ -37,17 +37,17 @@ describe("ProjectHero Component", () => {
     });
 
     mockProject.fields.link = "";
-    rerender(<TestComponent />);
+    rerender(<ProjectHero_Test project={mockProject} />);
     expect(screen.queryByText("Launch Project")).not.toBeInTheDocument();
   });
 
   it("should not render a View Source button if no github url is provided, but should otherwise", async () => {
-    const TestComponent = withTheme(() => <ProjectHero project={mockProject} />);
-    const { rerender } = render(<TestComponent />);
+    const ProjectHero_Test = withTheme(ProjectHero);
+    const { rerender } = render(<ProjectHero_Test project={mockProject} />);
     expect(screen.queryByText("View Source")).not.toBeInTheDocument();
 
     mockProject.fields.github = "https://examplegithub.com";
-    rerender(<TestComponent />);
+    rerender(<ProjectHero_Test project={mockProject} />);
     await waitFor(() => {
       expect(screen.getByText("View Source")).toBeVisible();
     });

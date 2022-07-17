@@ -3,30 +3,35 @@ import { ThemeProvider } from "styled-components";
 import NextRouter from "next/router";
 import { darkTheme, lightTheme } from "../styles/themes";
 
-export const withTheme = (Component: React.FunctionComponent, theme?: string) => {
-  return () => (
-    <ThemeProvider theme={theme === "dark" ? darkTheme : lightTheme}>
-      <Component />
-    </ThemeProvider>
-  );
+export const withTheme = (Component: React.FunctionComponent, theme?: "dark") => {
+  return (props: any) => {
+    console.log("withTheme", props);
+    return (
+      <ThemeProvider theme={theme === "dark" ? darkTheme : lightTheme}>
+        <Component {...props} />
+      </ThemeProvider>
+    );
+  };
 };
 
 export const withRouter = (Component: React.FunctionComponent): React.FunctionComponent => {
-  const useRouter = jest.spyOn(NextRouter, "useRouter" as any);
+  return (props) => {
+    const useRouter = jest.spyOn(NextRouter, "useRouter" as any);
 
-  useRouter.mockImplementation(() => ({
-    route: "/",
-    pathname: "",
-    query: "",
-    asPath: "",
-    push: jest.fn(),
-    events: {
-      on: jest.fn(),
-      off: jest.fn(),
-    },
-    beforePopState: jest.fn(() => null),
-    prefetch: jest.fn(() => null),
-  }));
+    useRouter.mockImplementation(() => ({
+      route: "/",
+      pathname: "",
+      query: "",
+      asPath: "",
+      push: jest.fn(),
+      events: {
+        on: jest.fn(),
+        off: jest.fn(),
+      },
+      beforePopState: jest.fn(() => null),
+      prefetch: jest.fn(() => null),
+    }));
 
-  return () => <Component />;
+    return <Component {...props} />;
+  };
 };

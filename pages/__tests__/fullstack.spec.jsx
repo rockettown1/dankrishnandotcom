@@ -8,9 +8,8 @@ const fullstackProjects = mockProjects.filter((project) => project.fields.type =
 
 describe("Fullstack Page", () => {
   beforeEach(() => {
-    const TestComponent = compose(withTheme, withRouter)(() => <FullStack projects={fullstackProjects} />);
-
-    render(<TestComponent />);
+    const FullStack_Test = compose(withTheme, withRouter)(FullStack);
+    render(<FullStack_Test projects={fullstackProjects} />);
   });
 
   it("Render a title 'selected projects'", () => {

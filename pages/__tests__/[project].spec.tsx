@@ -6,8 +6,8 @@ import { compose } from "ramda";
 
 describe("Project Page", () => {
   beforeEach(() => {
-    const TestComponent = compose(withTheme, withRouter)(() => <Project project={mockProjects[0]} />);
-    render(<TestComponent />);
+    const Project_Test = compose(withTheme, withRouter)(Project);
+    render(<Project_Test project={mockProjects[0]} />);
   });
 
   it("should render the project hero component", () => {
