@@ -29,8 +29,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
         env: 
-          CONTENTFUL_SPACE=${{secrets.CONTENTFUL_SPACE}}
-          CONTENTFUL_ACCESS_TOKEN=${{secrets.CONTENTFUL_ACCESS_TOKEN}}
+          CONTENTFUL_SPACE: ${{secrets.CONTENTFUL_SPACE}}
+          CONTENTFUL_ACCESS_TOKEN: {{secrets.CONTENTFUL_ACCESS_TOKEN}}
       - run: npm ci
       - run: npm run build --if-present        
       - run: npm test
