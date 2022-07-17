@@ -9,12 +9,14 @@ on:
   pull_request:
     branches: ["main"]
 
+env: 
+  CONTENTFUL_SPACE=${{secrets.CONTENTFUL_SPACE}}
+  CONTENTFUL_ACCESS_TOKEN=${{secrets.CONTENTFUL_ACCESS_TOKEN}}
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    env: 
-      CONTENTFUL_SPACE=${{secrets.CONTENTFUL_SPACE}}
-      CONTENTFUL_ACCESS_TOKEN=${{secrets.CONTENTFUL_ACCESS_TOKEN}}
+    
 
     strategy:
       matrix:
