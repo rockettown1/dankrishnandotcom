@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState, RefObject } from "react";
 import styled from "styled-components";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+
 import { NodeData } from "@contentful/rich-text-types";
 import { useWindowSize, richTextOptions, useScrollDirection } from "utils";
 import floatingLike from "public/floatingLikeRed.json";

@@ -3,6 +3,8 @@ import client from "cms/contentfulClient";
 import styled from "styled-components";
 import PostBody from "components/blog/PostBody";
 import PostHero from "components/blog/PostHero";
+import hljs from "utils/highlightLanguages";
+import "highlight.js/styles/base16/zenburn.css";
 import { prisma } from "prisma";
 import Router from "next/router";
 import { IPost, IPostFields } from "types/generated/contentful";
@@ -30,28 +32,25 @@ export async function getStaticProps(ctx: GetStaticPropsContext) {
     "fields.slug": ctx.params!.post,
   });
 
-  console.log("RESPONSE", response);
-
   const post = response.items[0];
 
-  if (post) {
-    try {
-      //if the post is new (picked up during ISR) then add it to the database
-      await prisma.posts.upsert({
-        where: { contentfulId: post.sys.id },
-        update: {},
-        create: {
-          likes: post.fields.migratedLikes || 0,
-          title: post.fields.title,
-          contentfulId: post.sys.id,
-        },
-      });
-    } catch (error) {
-      console.log(error);
-    } finally {
-      prisma.$disconnect();
-    }
+  if (!post) {
+    return {
+      notFound: true,
+    };
   }
+  //if the post is new (picked up during ISR) then add it to the database
+  await prisma.posts.upsert({
+    where: { contentfulId: post.sys.id },
+    update: {},
+    create: {
+      likes: post.fields.migratedLikes || 0,
+      title: post.fields.title,
+      contentfulId: post.sys.id,
+    },
+  });
+
+  await prisma.$disconnect();
 
   return {
     props: {
@@ -65,7 +64,7 @@ export default function Post({ post }: { post: IPost }) {
   const [menuFixed, setMenuFixed] = useState<boolean>(false);
   const [liked, setLiked] = useState<boolean>(false);
   const [likeNumber, setLikeNumber] = useState<number | null>(null);
-  console.log(post);
+
   // GET request for post likes on render
   const { data, error } = useSWR(`/getlikes?id=${post.sys.id}`, fetcher);
 
@@ -90,6 +89,10 @@ export default function Post({ post }: { post: IPost }) {
       Router.events.off("routeChangeStart", updatePostLikes);
     };
   }, [liked]);
+
+  useEffect(() => {
+    hljs.highlightAll();
+  });
 
   const { body } = post.fields;
 

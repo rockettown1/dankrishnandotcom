@@ -176,7 +176,6 @@ const Ol = styled.ol`
 const Ul = styled.ul`
   width: 100%;
   p {
-    color: red;
     margin: 0;
   }
 `;

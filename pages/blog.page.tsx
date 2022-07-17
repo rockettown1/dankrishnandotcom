@@ -12,10 +12,15 @@ export async function getStaticProps() {
   const featuredPost = await client.getEntry<IFeaturedPostFields>("7wj3RCdFgxPSHX3OMTnpc9");
 
   //make a list of all the unique topics
-  const collectTopics: { [k: string]: boolean } = {};
+
+  console.log(items.length);
+  const mySet = new Set(items);
+  console.log(mySet.size);
+
+  const getTopics: Map<string, boolean> = new Map();
   for (let post of items) {
-    if (!collectTopics[post.fields.topic]) {
-      collectTopics[post.fields.topic] = true;
+    if (!getTopics.has(post.fields.topic)) {
+      getTopics.set(post.fields.topic, true);
     }
   }
 
@@ -26,7 +31,7 @@ export async function getStaticProps() {
       posts: items,
       featuredPost: featuredPost.fields.post.fields,
       firstFourPosts: firstFourPosts,
-      topics: Object.keys(collectTopics),
+      topics: Array.from(getTopics.keys()),
     },
     revalidate: 10,
   };
