@@ -11,7 +11,8 @@
     "cypress:open": "cypress open",
     "generate:types": "contentful-typescript-codegen --output types/generated/contentful.d.ts",
     "start:devdb": "pscale connect dankrishnandotcom main --port 3309",
-    "start:shadowdb": "pscale connect dankrishnandotcom shadow --port 3310"
+    "start:shadowdb": "pscale connect dankrishnandotcom shadow --port 3310",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@contentful/rich-text-plain-text-renderer": "^15.12.1",
