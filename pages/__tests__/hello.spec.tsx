@@ -23,7 +23,7 @@ describe("Hello Page", () => {
   it("should show Tech component when the link is clicked", async () => {
     const link = screen.getByText("click here");
     await user.click(link);
-    expect(screen.getByText("Accurate as of June 2021")).toBeVisible();
+    expect(screen.getByText("Accurate as of June 2022")).toBeVisible();
   });
 
   it("should not show Tech component after Tech element is closed", async () => {
