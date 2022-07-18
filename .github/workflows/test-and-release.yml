@@ -13,7 +13,7 @@ on:
 
 jobs:
   test:
-    if: ${{ (github.event_name == "push") && (startsWith(github.ref, 'refs/heads/release-please')) || (github.event_name == "pull_request") && (!startsWith(github.ref, 'refs/heads/release-please')) }}
+    if: ${{ (github.event_name == "push") && (startsWith(github.ref, 'refs/heads/release-please')) }}
     runs-on: ubuntu-latest
     env: 
       CONTENTFUL_SPACE: ${{secrets.CONTENTFUL_SPACE}}
