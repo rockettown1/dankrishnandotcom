@@ -1,21 +1,25 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+# IF the pull request comes from a branch other than a release-please branch, this workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests. If passed successfully, will run the release-please job to update the changelog and updated the release number and create a pull request.
+# IF the pull request comes from a release-please branch, it will skip the build and test jobs, a run the release-please job
+
 
 name: Build, Test and Release
 
 on:
+  push:
+    branches: ["main"]
   pull_request:
     branches: ["main"]
 
 
 jobs:
   test:
+    if: startsWith(github.head_ref, 'release-please') != true
     runs-on: ubuntu-latest
     env: 
       CONTENTFUL_SPACE: ${{secrets.CONTENTFUL_SPACE}}
       CONTENTFUL_ACCESS_TOKEN: ${{secrets.CONTENTFUL_ACCESS_TOKEN}}
       DATABASE_URL: ${{secrets.DATABASE_URL}}
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+    
 
     steps:
       - uses: actions/checkout@v3
