@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.1](https://github.com/rockettown1/dankrishnandotcom/compare/v1.6.0...v1.6.1) (2022-07-18)
+
+
+### Bug Fixes
+
+* **ci:** update flow to only run build and test job when the pull request isn't automated by release-please ([59fbb0f](https://github.com/rockettown1/dankrishnandotcom/commit/59fbb0fe6891f25f579799a9fc81ed5179ace979))
+
 ## [1.6.0](https://github.com/rockettown1/dankrishnandotcom/compare/v1.5.1...v1.6.0) (2022-07-18)
 
 
