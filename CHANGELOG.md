@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.6.0](https://github.com/rockettown1/dankrishnandotcom/compare/v1.5.1...v1.6.0) (2022-07-18)
+
+
+### Features
+
+* **blog:** add code blocks to posts with syntax highlighting using highlight.js ([409a793](https://github.com/rockettown1/dankrishnandotcom/commit/409a793baffee4d3f3938802d5aa15d36905eb9e))
+
+
+### Bug Fixes
+
+* **blog:** fix highlightjs error in production build ([2b6c893](https://github.com/rockettown1/dankrishnandotcom/commit/2b6c893fd82133df5ae40b19506cc67a1a1d98b8))
+* refactored deps for importing prisma to fix failing CI ([500a813](https://github.com/rockettown1/dankrishnandotcom/commit/500a81329bebf61fbfb1220993eadf8afe4a89cd))
+
 ## [1.5.1](https://github.com/rockettown1/dankrishnandotcom/compare/v1.5.0...v1.5.1) (2022-07-15)
 
 
