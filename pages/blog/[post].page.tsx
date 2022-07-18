@@ -5,7 +5,7 @@ import PostBody from "components/blog/PostBody";
 import PostHero from "components/blog/PostHero";
 import hljs from "utils/highlightLanguages";
 import "highlight.js/styles/base16/zenburn.css";
-import { prisma } from "prisma";
+import { prisma } from "../../prisma/index";
 import Router from "next/router";
 import { IPost, IPostFields } from "types/generated/contentful";
 import { fetcher } from "utils";
