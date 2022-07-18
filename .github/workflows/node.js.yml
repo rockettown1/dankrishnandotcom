@@ -17,7 +17,6 @@ jobs:
       CONTENTFUL_SPACE: ${{secrets.CONTENTFUL_SPACE}}
       CONTENTFUL_ACCESS_TOKEN: ${{secrets.CONTENTFUL_ACCESS_TOKEN}}
       DATABASE_URL: ${{secrets.DATABASE_URL}}
-      NODE_ENV: "production"
     strategy:
       matrix:
         node-version: [14, 16]
