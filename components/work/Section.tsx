@@ -40,7 +40,7 @@ export default function Section({ data, main, id, handleClick, exitToMain }: Sec
   };
 
   return (
-    <Container main={main} id={`section${id}`} data-testid="work/section">
+    <Container id={`section${id}`} data-testid="work/section">
       <Details>
         <h1 id="number">{item}</h1>
         <h1 id="title">{title}</h1>
@@ -73,10 +73,7 @@ export default function Section({ data, main, id, handleClick, exitToMain }: Sec
   );
 }
 
-type ContainerProps = {
-  main: boolean;
-};
-const Container = styled.section<ContainerProps>`
+const Container = styled.section`
   padding-left: 20px;
   display: flex;
   align-items: center;

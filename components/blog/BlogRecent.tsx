@@ -30,9 +30,7 @@ export default function BlogRecent({ menuFixed, posts, topics }: BlogRecentProps
 
   const filterPosts = (topic: string) => {
     const temp = [...posts];
-    console.log(temp);
     const filteredPosts = temp.filter((post) => post.fields.topic === topic);
-    console.log(filteredPosts);
     setSelectedTopic(topic);
     setVisibilePosts(filteredPosts);
   };

@@ -134,7 +134,7 @@ const Container = styled.nav<ContainerProps>`
     #right {
       position: absolute;
       top: 10;
-      right: 10px;
+      right: 0;
     }
   }
 `;

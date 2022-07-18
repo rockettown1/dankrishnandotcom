@@ -5,6 +5,7 @@ import { lightTheme, darkTheme } from "styles/themes";
 import { Layout } from "components/layout";
 import { AnimatePresence } from "framer-motion";
 import { clearScrollposition } from "utils";
+
 import "public/fonts.css";
 import "public/global.css";
 
