@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.6.2](https://github.com/rockettown1/dankrishnandotcom/compare/v1.6.1...v1.6.2) (2022-07-18)
+
+
+### Bug Fixes
+
+* **ci:** testing Build, Test and Release workflow ([a09232c](https://github.com/rockettown1/dankrishnandotcom/commit/a09232ce5ec492e4f4dbd003374f7d026566c8ad))
+* **ci:** testing workflow with readme file ([4369f4b](https://github.com/rockettown1/dankrishnandotcom/commit/4369f4beedcbb0b8fed3bc00cbbdc546c608356e))
+* **ci:** update flow to only run build and test job when the pull request isn't automated by release-please ([6f4e57f](https://github.com/rockettown1/dankrishnandotcom/commit/6f4e57f54571429254b035722b3095ab281e33d0))
+* **ci:** update flow to only run build and test job when the pull request isn't automated by release-please ([ab405b7](https://github.com/rockettown1/dankrishnandotcom/commit/ab405b78db7d7a4eed85b0948751cb96cea34f23))
+* **ci:** update flow to only run build and test job when the pull request isn't automated by release-please ([4b402cc](https://github.com/rockettown1/dankrishnandotcom/commit/4b402cc7b3d25fc8782f3a4788e64ca8323268bb))
+* **ci:** update flow to only run build and test job when the pull request isn't automated by release-please ([76e5bc1](https://github.com/rockettown1/dankrishnandotcom/commit/76e5bc19e44e10ba60582a2e5ea7565f122b1adc))
+* **ci:** update flow to only run build and test job when the pull request isn't automated by release-please ([a37796b](https://github.com/rockettown1/dankrishnandotcom/commit/a37796b83fe017fafafb6200f308887864bd3a91))
+* **ci:** update flow to only run build and test job when the pull request isn't automated by release-please ([f28ef27](https://github.com/rockettown1/dankrishnandotcom/commit/f28ef270f8f167844a681d41c85490cbeefc295c))
+* **ci:** update flow to only run build and test job when the pull request isn't automated by release-please ([dd3c77e](https://github.com/rockettown1/dankrishnandotcom/commit/dd3c77ed23ded9d58984798e73d32d870d52d1d6))
+* **ci:** update flow to only run build and test job when the pull request isn't automated by release-please ([33ff014](https://github.com/rockettown1/dankrishnandotcom/commit/33ff014f148ac702b5091e311c7c02da2056608b))
+* **ci:** update flow to only run build and test job when the pull request isn't automated by release-please ([065c429](https://github.com/rockettown1/dankrishnandotcom/commit/065c429ea6e006670d7f807bc0194ec0eba91ee1))
+* **ci:** update flow to only run build and test job when the pull request isn't automated by release-please ([bdeb199](https://github.com/rockettown1/dankrishnandotcom/commit/bdeb199424572e01820b21110e96a3658a0978b4))
+
 ## [1.6.1](https://github.com/rockettown1/dankrishnandotcom/compare/v1.6.0...v1.6.1) (2022-07-18)
 
 
