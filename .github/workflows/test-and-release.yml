@@ -13,8 +13,8 @@ on:
 
 jobs:
   test:
-    if: startsWith(github.head_ref, 'release-please') != true
     runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && !startsWith(github.ref, 'refs/heads/release-please')
     env: 
       CONTENTFUL_SPACE: ${{secrets.CONTENTFUL_SPACE}}
       CONTENTFUL_ACCESS_TOKEN: ${{secrets.CONTENTFUL_ACCESS_TOKEN}}
@@ -34,6 +34,7 @@ jobs:
   
   release-please:
     runs-on: ubuntu-latest
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/heads/release-please')
     needs: [test]
     steps:
       - uses: google-github-actions/release-please-action@v3
