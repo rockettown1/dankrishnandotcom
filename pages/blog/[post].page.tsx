@@ -39,6 +39,7 @@ export async function getStaticProps(ctx: GetStaticPropsContext) {
       notFound: true,
     };
   }
+  console.log("PRISMA", prisma);
   //if the post is new (picked up during ISR) then add it to the database
   await prisma.posts.upsert({
     where: { contentfulId: post.sys.id },
