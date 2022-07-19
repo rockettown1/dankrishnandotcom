@@ -1,10 +1,11 @@
-import React, { ReactNode, RefObject } from "react";
+import React, { ReactNode, RefObject, useState } from "react";
 import { BLOCKS, MARKS } from "@contentful/rich-text-types";
 import styled from "styled-components";
 import NextImage from "next/image";
 import ReactMarkdown from "react-markdown";
 import { NodeData } from "@contentful/rich-text-types";
 import renderRichText from "./renderRichText";
+import { Code } from "components/blog";
 
 const Bold = ({ children }: { children: ReactNode }) => <BoldMark>{children}</BoldMark>;
 const Underline = ({ children }: { children: ReactNode }) => <UnderlineMark>{children}</UnderlineMark>;
@@ -42,9 +43,9 @@ export const richTextOptions = {
     [BLOCKS.EMBEDDED_ENTRY]: (node: NodeData) => {
       if (node.data.target.sys.contentType.sys.id === "codeBlock") {
         return (
-          <pre>
-            <Code className={`language-${node.data.target.fields.language}`}>{node.data.target.fields.code}</Code>
-          </pre>
+          <div>
+            <Code node={node} />
+          </div>
         );
       }
       if (node.data.target.fields.type === "mainText") {
@@ -289,10 +290,4 @@ const MocksContainer = styled.section`
   @media screen and (max-width: 700px) {
     flex-direction: column;
   }
-`;
-
-const Code = styled.code`
-  background-color: #25292d;
-  border-radius: 5px;
-  font-size: 17px;
 `;

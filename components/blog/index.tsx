@@ -5,3 +5,4 @@ export { default as PostHero } from "./PostHero";
 export { default as Topics } from "./Topics";
 export { default as Comments } from "./Comments";
 export { default as MobileLike } from "./MobileLike";
+export { default as Code } from "./Code";
