@@ -66,6 +66,7 @@
     "eslint-config-next": "12.1.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^28.1.1",
+    "jest-canvas-mock": "^2.4.0",
     "jest-environment-jsdom": "^28.1.1",
     "jest-styled-components": "^7.0.8",
     "msw": "^0.42.3",
