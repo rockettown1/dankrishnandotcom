@@ -242,6 +242,8 @@ const BodyWrapper = styled.section`
   p {
     font-size: 20px !important;
   }
+  #lang1 {
+  }
 `;
 
 const Likes = styled.div`

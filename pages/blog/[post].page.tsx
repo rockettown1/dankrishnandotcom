@@ -39,14 +39,14 @@ export async function getStaticProps(ctx: GetStaticPropsContext) {
       notFound: true,
     };
   }
-  console.log("PRISMA", prisma);
+
   //if the post is new (picked up during ISR) then add it to the database
   await prisma.posts.upsert({
     where: { contentfulId: post.sys.id },
     update: {},
     create: {
       likes: post.fields.migratedLikes || 0,
-      title: post.fields.title,
+      title: post.fields.title!,
       contentfulId: post.sys.id,
     },
   });
@@ -55,7 +55,7 @@ export async function getStaticProps(ctx: GetStaticPropsContext) {
 
   return {
     props: {
-      post: post || null,
+      post: post,
     },
     revalidate: 10,
   };
@@ -69,8 +69,13 @@ export default function Post({ post }: { post: IPost }) {
   // GET request for post likes on render
   const { data, error } = useSWR(`/getlikes?id=${post.sys.id}`, fetcher);
 
+  if (error) {
+    console.log(error);
+  }
+
   useEffect(() => {
     if (data) {
+      console.log(data);
       setLikeNumber(data.payload);
     }
   }, [data]);

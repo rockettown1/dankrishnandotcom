@@ -43,6 +43,18 @@ export interface ICodeBlockFields {
 
   /** code */
   code: string;
+
+  /** language */
+  language: "javascript" | "typescript" | "go" | "css" | "jsx" | "tsx" | "json" | "graphql" | "yaml" | "sql";
+
+  /**  pair */
+  pair?: boolean | undefined;
+
+  /** code2 */
+  code2?: string | undefined;
+
+  /** language2 */
+  language2?: "javascript" | "typescript" | undefined;
 }
 
 export interface ICodeBlock extends Entry<ICodeBlockFields> {
@@ -124,10 +136,10 @@ export interface IPostFields {
   title: string;
 
   /** excerpt */
-  excerpt: string;
+  excerpt?: string | undefined;
 
   /** date */
-  date: string;
+  date?: string | undefined;
 
   /** featured image */
   featuredImage?: Asset | undefined;
@@ -136,7 +148,7 @@ export interface IPostFields {
   body: Document;
 
   /** slug */
-  slug: string;
+  slug?: string | undefined;
 
   /** tag_id */
   tagId: string[];
@@ -193,7 +205,7 @@ export interface IProjectFields {
   /** Body */
   body?: Document | undefined;
 
-  /** textblock this needs looking at*/
+  /** textblock */
   textblock?: Entry<{ [fieldId: string]: unknown }>[] | undefined;
 
   /** link */
