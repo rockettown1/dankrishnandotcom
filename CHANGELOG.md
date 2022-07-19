@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.7.0](https://github.com/rockettown1/dankrishnandotcom/compare/v1.6.2...v1.7.0) (2022-07-19)
+
+
+### Features
+
+* **blog:** can now detect if there's a JS/TS pair and add tabs to the code block ([111a5fa](https://github.com/rockettown1/dankrishnandotcom/commit/111a5facbc855c4c4eb0656f408a3d3f5d5d649b))
+* **blog:** detect whether there's a second code block pair (JS and TS) and add tabs to the code block to toggle between them ([ad10629](https://github.com/rockettown1/dankrishnandotcom/commit/ad10629c2c18c86880e0c6c1bc16a0e994b07f7f))
+
+
+### Bug Fixes
+
+* **test:** jest failing because of lottie -> add jest-canvas-mock to setup file ([072eab8](https://github.com/rockettown1/dankrishnandotcom/commit/072eab8ebb9c51b93024bd973c806afdd620d64c))
+
 ## [1.6.2](https://github.com/rockettown1/dankrishnandotcom/compare/v1.6.1...v1.6.2) (2022-07-18)
 
 
