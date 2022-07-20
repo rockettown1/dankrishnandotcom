@@ -184,7 +184,7 @@ const Quote = styled.h4`
   font-style: italic;
   padding-left: 20px;
   box-sizing: border-box;
-  border-left: 2px solid black;
+  border-left: 2px solid ${({ theme }) => theme.primary_text};
 `;
 
 const Video = styled.video`
