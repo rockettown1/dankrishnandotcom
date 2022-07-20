@@ -7,7 +7,7 @@ export default function Code({ node }: { node: NodeData }) {
   const { code, language, code2, language2, pair } = node.data.target.fields;
 
   return (
-    <TabsContainer $check={check}>
+    <TabsContainer $check={check} pair={pair}>
       {pair && (
         <Tabs $check={check}>
           <h4
@@ -50,18 +50,22 @@ type SyntaxProps = {
 
 const Syntax = styled.code<SyntaxProps>`
   background-color: #25292d;
-  border-radius: 5px;
-  border-top-left-radius: ${({ pair }) => (pair ? "0px" : "5px")};
+
   font-size: 17px;
 `;
 
 type TabsContainerProps = {
   $check: boolean;
+  pair: boolean;
 };
 const TabsContainer = styled.div<TabsContainerProps>`
   margin: 30px 0;
   pre {
     margin: 0;
+    padding: 30px 0;
+    background-color: #25292d;
+    border-radius: 5px;
+    border-top-left-radius: ${({ pair }) => (pair ? "0px" : "5px")};
   }
   h4 {
     padding: 10px;
@@ -87,13 +91,13 @@ const Tabs = styled.div<TabsProps>`
   #lang1 {
     ${({ theme, $check }) =>
       $check
-        ? `background-color: #25292d; color: ${theme.secondary_background};`
+        ? `background-color: #25292d; color: rgba(255,255,255,0.7);`
         : `background-color: ${theme.secondary_background}; color: ${theme.primary_text};`}
   }
   #lang2 {
     ${({ theme, $check }) =>
       !$check
-        ? `background-color: #25292d; color: ${theme.secondary_background};`
+        ? `background-color: #25292d; color:  rgba(255,255,255,0.7);`
         : `background-color: ${theme.secondary_background}; color: ${theme.primary_text};`}
   }
 `;

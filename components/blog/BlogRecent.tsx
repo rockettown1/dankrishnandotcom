@@ -1,5 +1,6 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import readingTime from "reading-time";
 import { useRouter } from "next/router";
 import { fetcher } from "utils";
 import moment from "moment";
@@ -10,6 +11,7 @@ import Topics from "./Topics";
 import { IPost } from "types/generated/contentful";
 import { AiFillCloseCircle } from "react-icons/ai";
 import * as z from "zod";
+import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
 
 const InputSchema = z.string().min(2);
 type Input = z.infer<typeof InputSchema>;
@@ -87,7 +89,11 @@ export default function BlogRecent({ menuFixed, posts, topics }: BlogRecentProps
                 <Link href={`/blog/${post.fields.slug}`} key={index}>
                   <LongCard>
                     <h2 className="title">{post.fields.title}</h2>
-                    <h4 className="date">{moment.utc(post.fields.date).format("Do MMMM YYYY")}</h4>
+                    <div id="info-container">
+                      <h4 className="info">{moment.utc(post.fields.date).format("Do MMMM YYYY")}</h4>
+
+                      <h4 className="info">{readingTime(documentToPlainTextString(post.fields.body)).text}</h4>
+                    </div>
                     <p>{post.fields.excerpt}</p>
                     <h4>Read More</h4>
                   </LongCard>
@@ -269,6 +275,16 @@ const LongCard = styled.div`
     .title {
       color: ${({ theme }) => theme.highlight};
     }
+  }
+
+  #info-container {
+    display: flex;
+  }
+
+  .info {
+    opacity: 0.5;
+    margin-right: 20px;
+    font-family: "SF-Display-Light";
   }
 
   h2 {
