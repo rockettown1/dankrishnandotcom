@@ -8,7 +8,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { GoSearch } from "react-icons/go";
 import Topics from "./Topics";
-import { IPost } from "types/generated/contentful";
+import { IPost, IPostFields } from "types/generated/contentful";
 import { AiFillCloseCircle } from "react-icons/ai";
 import * as z from "zod";
 import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
@@ -16,10 +16,12 @@ import { documentToPlainTextString } from "@contentful/rich-text-plain-text-rend
 const InputSchema = z.string().min(2);
 type Input = z.infer<typeof InputSchema>;
 
+type Topics = IPostFields["topic"];
+
 type BlogRecentProps = {
   menuFixed: boolean;
   posts: IPost[];
-  topics: string[];
+  topics: Topics[];
 };
 
 export default function BlogRecent({ menuFixed, posts, topics }: BlogRecentProps) {

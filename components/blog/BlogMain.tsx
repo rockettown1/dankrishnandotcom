@@ -141,7 +141,7 @@ const Latest = styled.section`
   }
 
   #list {
-    max-width: 25vw;
+    max-width: 35vw;
     height: 100%;
     padding: 20px 0 0 20px;
 

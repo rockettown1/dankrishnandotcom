@@ -116,12 +116,14 @@ export const richTextOptions = {
         case "image/jpg":
         case "image/gif":
           return (
-            <Image
-              src={`https:${node.data.target.fields.file.url}`}
-              height={node.data.target.fields.file.details.image.height}
-              width={node.data.target.fields.file.details.image.width}
-              alt={node.data.target.fields.description}
-            />
+            <ImageWrapper>
+              <Image
+                src={`https:${node.data.target.fields.file.url}`}
+                height={node.data.target.fields.file.details.image.height}
+                width={node.data.target.fields.file.details.image.width}
+                alt={node.data.target.fields.description}
+              />
+            </ImageWrapper>
           );
         default:
           return "Nothing to see here...";
@@ -290,4 +292,12 @@ const MocksContainer = styled.section`
   @media screen and (max-width: 700px) {
     flex-direction: column;
   }
+`;
+
+//come back and consider this
+const ImageWrapper = styled.div`
+  height: auto;
+  width: 100%;
+  display: flex;
+  /* justify-content: center; */
 `;

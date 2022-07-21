@@ -49,8 +49,7 @@ type SyntaxProps = {
 };
 
 const Syntax = styled.code<SyntaxProps>`
-  background-color: #25292d;
-
+  background-color: #080c11;
   font-size: 17px;
 `;
 
@@ -63,7 +62,7 @@ const TabsContainer = styled.div<TabsContainerProps>`
   pre {
     margin: 0;
     padding: 30px 0;
-    background-color: #25292d;
+    background-color: #080c11;
     border-radius: 5px;
     border-top-left-radius: ${({ pair }) => (pair ? "0px" : "5px")};
   }

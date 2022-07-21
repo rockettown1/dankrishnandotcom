@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, ReactElement } from "react";
 import client from "cms/contentfulClient";
 import styled from "styled-components";
 import PostBody from "components/blog/PostBody";
 import PostHero from "components/blog/PostHero";
 import hljs from "utils/highlightLanguages";
-import "highlight.js/styles/base16/zenburn.css";
+import "highlight.js/styles/base16/railscasts.css";
 import { prisma } from "../../prisma/index";
 import Router from "next/router";
 import { IPost, IPostFields } from "types/generated/contentful";

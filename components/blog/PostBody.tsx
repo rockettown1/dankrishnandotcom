@@ -69,13 +69,6 @@ export default function PostBody({ body, menuFixed, headings, liked, setLiked, l
 
   const scrollIntoView = (index: number, heading: string) => {
     //handle edge case where first item has caused the page to scroll back to very top, and clicking second item doesn't hit the interesction area.
-    if (headings.length > 2) {
-      if (index === 1 && currentHeading === 0) {
-        window.scrollTo(0, height! - height! / 10);
-        setCurrentHeading(headings.indexOf(heading));
-        return;
-      }
-    }
     //element.scrollIntoView will take care of all other cases
     headingRefs.current[index].scrollIntoView({ block: "center" });
   };
