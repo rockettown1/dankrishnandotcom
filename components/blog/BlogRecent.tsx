@@ -2,16 +2,18 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import readingTime from "reading-time";
 import { useRouter } from "next/router";
-import { fetcher } from "utils";
+import { deDupPosts, fetcher, matchTagId } from "utils";
 import moment from "moment";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { GoSearch } from "react-icons/go";
 import Topics from "./Topics";
 import { IPost, IPostFields } from "types/generated/contentful";
+import { Entry } from "contentful";
 import { AiFillCloseCircle } from "react-icons/ai";
 import * as z from "zod";
 import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
+import { postFilter } from "utils/postFilter";
 
 const InputSchema = z.string().min(2);
 type Input = z.infer<typeof InputSchema>;
@@ -26,15 +28,14 @@ type BlogRecentProps = {
 
 export default function BlogRecent({ menuFixed, posts, topics }: BlogRecentProps) {
   const [selectedTopic, setSelectedTopic] = useState<string>("");
-  const [visiblePosts, setVisibilePosts] = useState<IPost[]>(posts);
+  const [visiblePosts, setVisibilePosts] = useState<(Entry<IPost> | IPost)[]>(posts);
   const [input, setInput] = useState<Input>("");
   const [message, setMessage] = useState<string>("");
   const [showMessage, setShowMessage] = useState<boolean>(false);
   const router = useRouter();
 
   const filterPosts = (topic: string) => {
-    const temp = [...posts];
-    const filteredPosts = temp.filter((post) => post.fields.topic === topic);
+    const filteredPosts = postFilter(posts, topic);
     setSelectedTopic(topic);
     setVisibilePosts(filteredPosts);
   };
@@ -281,6 +282,7 @@ const LongCard = styled.div`
 
   #info-container {
     display: flex;
+    height: 30px;
   }
 
   .info {

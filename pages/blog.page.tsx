@@ -24,7 +24,10 @@ export async function getStaticProps() {
     }
   }
 
-  const firstFourPosts = [...items].splice(0, 4);
+  //filter to get the first four, but ignoring the featured post while doing it.
+  const firstFourPosts = [
+    ...items.filter((post) => post.fields.title !== featuredPost.fields.post.fields.title),
+  ].splice(0, 4);
 
   return {
     props: {
