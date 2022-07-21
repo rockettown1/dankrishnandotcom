@@ -3,6 +3,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { IPost } from "types/generated/contentful";
 import { Entry } from "contentful";
 import * as z from "zod";
+import { deDupPosts } from "utils";
 
 const QuerySchema = z.object({
   search: z.string(),
@@ -25,20 +26,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       "fields.body[match]": req.query.search,
     });
 
-    const combinedResponse = [...titleResponse.items, ...bodyResponse.items];
+    //query the string in post tags
 
-    /*
-    post objects are referentially differnt so can't use standard strategies for removing duplicate:s Sets, comparison and filter etc
-    Creating a hashMap using post id's as strings will only add unique posts, then using Object.values to convert back to an array and return in the response
-    */
-    const hashMap: { [k: string]: Entry<IPost> } = {};
-    for (let post of combinedResponse) {
-      if (!hashMap[post.sys.id]) {
-        hashMap[post.sys.id] = post;
-      }
-    }
+    const tagResponse = await client.getEntries<IPost>({
+      content_type: "post",
+      "fields.tagId[match]": req.query.search,
+    });
 
-    const response = Object.values(hashMap);
+    const combinedResponse = [...titleResponse.items, ...bodyResponse.items, ...tagResponse.items];
+
+    const response = deDupPosts(combinedResponse);
 
     if (response.length === 0) {
       res.status(200).send({ results: [], msg: "No posts matched that search query" });
