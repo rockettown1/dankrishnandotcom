@@ -37,11 +37,13 @@ export async function getStaticProps() {
   };
 }
 
+type Topics = IPostFields["topic"];
+
 type Props = {
   posts: IPost[];
   featuredPost: IPostFields;
   firstFourPosts: IPost[];
-  topics: string[];
+  topics: Topics[];
 };
 
 export default function Blog({ posts, featuredPost, firstFourPosts, topics }: Props) {
