@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.1](https://github.com/rockettown1/dankrishnandotcom/compare/v1.7.0...v1.7.1) (2022-07-21)
+
+
+### Bug Fixes
+
+* **blog:** add filter by tagId ([7d7e72b](https://github.com/rockettown1/dankrishnandotcom/commit/7d7e72bbecd3b81c8b3630b410a70af697538488))
+
 ## [1.7.0](https://github.com/rockettown1/dankrishnandotcom/compare/v1.6.2...v1.7.0) (2022-07-19)
 
 
