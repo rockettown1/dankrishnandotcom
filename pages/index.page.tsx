@@ -87,7 +87,7 @@ function Home() {
             {[x1, x1, x2, x2].map((pic, index) => {
               return (
                 <ImgContainer className="dog" key={index} focus={index === current.image}>
-                  <Img src={pic} height="600px" objectFit="contain" alt="A picture of my dog" placeholder="blur" />
+                  <Img src={pic} height="600px" objectFit="contain" alt="A picture of my dog" />
                 </ImgContainer>
               );
             })}

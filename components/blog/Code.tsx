@@ -79,6 +79,9 @@ const TabsContainer = styled.div<TabsContainerProps>`
   #code2 {
     display: ${({ $check }) => (!$check ? "block" : "none")};
   }
+  @media screen and (max-width: 800px) {
+    padding: 0;
+  }
 `;
 
 type TabsProps = {

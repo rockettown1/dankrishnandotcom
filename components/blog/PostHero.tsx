@@ -99,7 +99,7 @@ const Container = styled.section`
   @media screen and (max-width: 700px) {
     padding: 0 30px;
     h1 {
-      font-size: 30px;
+      font-size: 25px;
     }
   }
 `;

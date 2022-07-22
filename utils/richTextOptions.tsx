@@ -217,7 +217,7 @@ const MainText = styled.section`
   }
   @media screen and (max-width: 1000px) {
     width: 100vw;
-    padding: 50px;
+    padding: 50px 30px;
   }
   @media screen and (max-width: 700px) {
     flex-direction: column;
