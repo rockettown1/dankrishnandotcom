@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.7.2](https://github.com/rockettown1/dankrishnandotcom/compare/v1.7.1...v1.7.2) (2022-07-22)
+
+
+### Bug Fixes
+
+* add loading spinners for client side data fetching ([ebb9cb6](https://github.com/rockettown1/dankrishnandotcom/commit/ebb9cb6c0e60c85ff3f189ff31d626d3e15a817d))
+* **blog:** mobile styling for blog page ([555955c](https://github.com/rockettown1/dankrishnandotcom/commit/555955c4abfa722b8d570d0b898d03c40cefe2c9))
+
 ## [1.7.1](https://github.com/rockettown1/dankrishnandotcom/compare/v1.7.0...v1.7.1) (2022-07-21)
 
 
