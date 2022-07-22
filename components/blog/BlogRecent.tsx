@@ -164,6 +164,7 @@ const Container = styled.section<ContainerProps>`
   }
   #wrapper {
     display: flex;
+    width: 80vw;
     /* width: 80vw; */
   }
 
@@ -171,10 +172,10 @@ const Container = styled.section<ContainerProps>`
     height: 100vh;
     padding-top: 50px;
     width: 30vw;
-    position: absolute;
+    position: relative;
     top: 0;
     right: 0;
-    ${({ isMenuFixed }) => isMenuFixed && `position: fixed;`};
+    ${({ isMenuFixed }) => isMenuFixed && `position: sticky;`};
 
     h4 {
       font-family: var(--secondary_font);
@@ -185,7 +186,7 @@ const Container = styled.section<ContainerProps>`
     padding-top: 50px;
     height: 300vh;
     width: 75vw;
-    padding-right: 200px;
+    /* padding-right: 200px; */
 
     h1 {
       font-size: 5vh;
@@ -258,7 +259,7 @@ const Search = styled.div`
 
 const Recent = styled.section`
   min-height: 100vh;
-  width: 100%;
+  width: 60vw;
   padding-right: 10vw;
 
   #selected {
