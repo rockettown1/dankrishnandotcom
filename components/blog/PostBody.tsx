@@ -99,7 +99,6 @@ export default function PostBody({ body, menuFixed, headings, liked, setLiked, l
     const document: any = documentToReactComponents(body, richTextOptions);
 
     document.forEach((node: NodeData) => {
-      console.log(node);
       if (node?.type.target === "h1") {
         headingRefs.current.push(node.ref.current);
       }

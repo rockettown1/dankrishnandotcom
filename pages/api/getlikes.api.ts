@@ -3,7 +3,6 @@ import { prisma } from "prisma";
 import * as z from "zod";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  console.log(req.query);
   try {
     const response = await prisma.posts.findUnique({
       where: { contentfulId: req.query.id as string },
@@ -11,8 +10,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         likes: true,
       },
     });
-
-    console.log("RESPONSE", response!.likes);
 
     res.status(200).json({ status: "SUCCESS", payload: response!.likes });
   } catch (error) {

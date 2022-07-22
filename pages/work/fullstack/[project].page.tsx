@@ -13,8 +13,6 @@ import { Project } from "types/Project";
 export async function getStaticPaths() {
   const response = await client.getEntries<IProjectFields>({ content_type: "project", "fields.type": "fullstack" });
 
-  console.log(response.errors);
-
   const paths = response.items.map((item) => ({
     params: {
       project: item.fields.slug,
@@ -48,7 +46,7 @@ export default function ProjectPage({ project }: Props) {
     window.scrollTo(0, 0);
   }, []);
   const { featuredImage, textblock, body } = project.fields;
-  console.log(project);
+
   return (
     <Container>
       <ProjectHero project={project} />

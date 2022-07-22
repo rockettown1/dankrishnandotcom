@@ -13,9 +13,7 @@ export async function getStaticProps() {
 
   //make a list of all the unique topics
 
-  console.log(items.length);
   const mySet = new Set(items);
-  console.log(mySet.size);
 
   const getTopics: Map<string, boolean> = new Map();
   for (let post of items) {

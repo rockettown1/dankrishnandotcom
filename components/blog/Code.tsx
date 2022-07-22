@@ -90,13 +90,13 @@ const Tabs = styled.div<TabsProps>`
   #lang1 {
     ${({ theme, $check }) =>
       $check
-        ? `background-color: #25292d; color: rgba(255,255,255,0.7);`
+        ? `background-color: #080c11; color: rgba(255,255,255,0.7);`
         : `background-color: ${theme.secondary_background}; color: ${theme.primary_text};`}
   }
   #lang2 {
     ${({ theme, $check }) =>
       !$check
-        ? `background-color: #25292d; color:  rgba(255,255,255,0.7);`
+        ? `background-color: #080c11; color:  rgba(255,255,255,0.7);`
         : `background-color: ${theme.secondary_background}; color: ${theme.primary_text};`}
   }
 `;
