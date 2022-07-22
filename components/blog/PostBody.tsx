@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState, RefObject } from "react";
 import styled from "styled-components";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-
+import { PuffLoader } from "react-spinners";
 import { NodeData } from "@contentful/rich-text-types";
 import { useWindowSize, richTextOptions, useScrollDirection } from "utils";
 import floatingLike from "public/floatingLikeRed.json";
@@ -151,7 +151,7 @@ export default function PostBody({ body, menuFixed, headings, liked, setLiked, l
                 loop={false}
                 style={{ height: "50px", marginLeft: "-12px", width: "50px" }}
               />
-              <h5>{likeNumber}</h5>
+              {likeNumber ? <h5>{likeNumber}</h5> : <PuffLoader size={20} loading={true} />}
             </Likes>
           </Sidebar>
         </Menu>

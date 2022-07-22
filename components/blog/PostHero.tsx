@@ -6,6 +6,7 @@ import floatingLike from "public/floatingLikeRed.json";
 import Lottie from "lottie-react";
 import styled from "styled-components";
 import { IPost } from "types/generated/contentful";
+import { PuffLoader } from "react-spinners";
 
 type PostHeroProps = {
   post: IPost;
@@ -63,7 +64,7 @@ export default function PostHero({ post, setMenuFixed, menuFixed, likeNumber }: 
             // autoplay={false}
             style={{ height: "50px", width: "50px" }}
           />
-          <h4 id="likes">{likeNumber}</h4>
+          {likeNumber ? <h4 id="likes">{likeNumber}</h4> : <PuffLoader id="likes" size={20} loading={true} />}
         </Likes>
       </Details>
       <Tags>
@@ -109,6 +110,7 @@ const Details = styled.div`
   width: max-content;
   align-items: center;
   height: 30px;
+  margin-top: 10px;
 
   user-select: none;
 
