@@ -207,9 +207,10 @@ const Container = styled.section<ContainerProps>`
   }
 
   @media screen and (max-width: 800px) {
-    padding: 0;
+    padding: 0 20px;
     #wrapper {
       flex-direction: column;
+      width: 100vw;
     }
     #col1 {
       position: relative;
@@ -227,7 +228,6 @@ const Container = styled.section<ContainerProps>`
     #recent {
       order: 2;
       width: 100vw;
-      padding: 20px;
     }
   }
 `;
@@ -269,6 +269,10 @@ const Recent = styled.section`
   h3 {
     text-transform: uppercase;
   }
+  @media screen and (max-width: 800px) {
+    width: 100vw;
+    padding: 0 20px;
+  }
 `;
 
 const LongCard = styled.div`
@@ -299,6 +303,12 @@ const LongCard = styled.div`
   h4 {
     margin-top: 5px;
   }
+  p {
+    font-size: 17px !important;
+  }
+  /* @media screen and (max-width: 800px) {
+    padding: 0 20px
+  } */
 `;
 
 const Close = styled(motion.span)`
