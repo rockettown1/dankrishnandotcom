@@ -185,12 +185,12 @@ type MenuProps = {
 
 const Menu = styled.div<MenuProps>`
   width: 40vw;
-  position: absolute;
+  position: relative;
   height: 100vh;
   top: 0;
   right: 0;
   padding: 50px 0 0 70px;
-  ${({ isMenuFixed }) => isMenuFixed && `position: fixed;`};
+  ${({ isMenuFixed }) => isMenuFixed && `position: sticky;`};
   #title {
     text-transform: uppercase;
     letter-spacing: 2px;
