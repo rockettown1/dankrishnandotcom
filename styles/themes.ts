@@ -16,7 +16,8 @@ export const lightTheme: MyTheme = {
   secondary_background: "#fffcf7",
   primary_text: "rgb(43, 43, 43)",
   secondary_text: "#515151",
-  highlight: "rgb(44, 185, 232)",
+  // highlight: "rgb(44, 185, 232)",
+  highlight: "#d88c9a",
   disabled: "rgba(0,0,0,0.1)",
 };
 
@@ -29,3 +30,11 @@ export const darkTheme: MyTheme = {
   highlight: "rgb(255,172,20)",
   disabled: "rgba(255,255,255,0.1)",
 };
+
+/**
+ likes:
+ #59c3c3
+
+  
+  
+ */

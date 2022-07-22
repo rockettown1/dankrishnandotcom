@@ -19,6 +19,8 @@ export default function Work() {
     setPosition(sessionStorage.getItem("scrollPosition"));
     if (element && position) {
       element.scrollTo(0, parseInt(position));
+    } else {
+      window.scrollTo(0, 0);
     }
   }, [position]);
 
