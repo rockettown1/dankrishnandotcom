@@ -70,12 +70,11 @@ export default function Post({ post }: { post: IPost }) {
   const { data, error } = useSWR(`/getlikes?id=${post.sys.id}`, fetcher);
 
   if (error) {
-    console.log(error);
+    console.error(error);
   }
 
   useEffect(() => {
     if (data) {
-      console.log(data);
       setLikeNumber(data.payload);
     }
   }, [data]);

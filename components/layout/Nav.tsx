@@ -32,7 +32,6 @@ export default function Nav({ toggleTheme }: Props) {
   }
 
   const handleThemeToggle = (e: React.KeyboardEvent<HTMLDivElement> | React.MouseEvent<HTMLDivElement>) => {
-    console.log(typeof e);
     if (e.type === "keydown") {
       const isEnterKey = handleKeyboardSelect(e as React.KeyboardEvent, toggleTheme);
       if (!isEnterKey) return;

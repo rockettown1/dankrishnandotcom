@@ -5,7 +5,6 @@ import { darkTheme, lightTheme } from "../styles/themes";
 
 export const withTheme = (Component: React.FunctionComponent, theme?: "dark") => {
   return (props: any) => {
-    console.log("withTheme", props);
     return (
       <ThemeProvider theme={theme === "dark" ? darkTheme : lightTheme}>
         <Component {...props} />

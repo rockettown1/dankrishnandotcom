@@ -139,6 +139,7 @@ const Container = styled.section`
       order: 2;
       padding-left: 10vw;
       height: auto;
+      width: 100vw;
     }
     #col2 {
       width: 100vw;

@@ -32,7 +32,6 @@ export default function Comments() {
     if (commentBox.current!.children.length === 0) {
       commentBox.current!.appendChild(scriptEl);
     }
-    console.log(commentBox.current);
   }, [themeType]);
 
   return (

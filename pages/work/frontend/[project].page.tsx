@@ -50,7 +50,7 @@ export default function ProjectPage({ project }: Props) {
     window.scrollTo(0, 0);
   }, []);
   const { featuredImage, textblock, body } = project.fields;
-  console.log(project);
+
   return (
     <Container>
       <ProjectHero project={project} />

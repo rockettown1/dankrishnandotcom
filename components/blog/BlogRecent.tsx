@@ -64,7 +64,7 @@ export default function BlogRecent({ menuFixed, posts, topics }: BlogRecentProps
           router.replace("#recent");
         }
       } catch (e) {
-        console.log(e);
+        console.error(e);
       }
     }
 
