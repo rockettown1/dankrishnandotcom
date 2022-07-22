@@ -83,7 +83,7 @@ function Home() {
             <Circle isHovered={isHovered} />
           </ShapeContainer>
 
-          <DogWrapper ref={imagesRef}>
+          <DogWrapper ref={imagesRef} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
             {[x1, x1, x2, x2].map((pic, index) => {
               return (
                 <ImgContainer className="dog" key={index} focus={index === current.image}>
