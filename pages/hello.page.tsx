@@ -78,9 +78,7 @@ export default function Hello({ techList }: Props) {
         {data.map((item, index) => {
           return <MainSection key={index} section={item} techList={techList} />;
         })}
-        <Section>
-          <Footer />
-        </Section>
+        <Section>{/* <Footer /> */}</Section>
       </Container>
     </>
   );
