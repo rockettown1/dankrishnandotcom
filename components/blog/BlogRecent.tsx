@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import readingTime from "reading-time";
 import { useRouter } from "next/router";
-import { deDupPosts, fetcher, matchTagId } from "utils";
+import { fetcher } from "utils";
+import { PacmanLoader } from "react-spinners";
 import moment from "moment";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -29,6 +30,7 @@ type BlogRecentProps = {
 export default function BlogRecent({ menuFixed, posts, topics }: BlogRecentProps) {
   const [selectedTopic, setSelectedTopic] = useState<string>("");
   const [visiblePosts, setVisibilePosts] = useState<(Entry<IPost> | IPost)[]>(posts);
+  const [searching, setSearching] = useState<boolean>(false);
   const [input, setInput] = useState<Input>("");
   const [message, setMessage] = useState<string>("");
   const [showMessage, setShowMessage] = useState<boolean>(false);
@@ -54,6 +56,7 @@ export default function BlogRecent({ menuFixed, posts, topics }: BlogRecentProps
       setShowMessage(true);
     } else {
       try {
+        setSearching(true);
         const data = await fetcher(`/contentfulsearch?search=${input}`);
         if (data.results.length === 0) {
           setMessage("No results returned for that query");
@@ -65,9 +68,10 @@ export default function BlogRecent({ menuFixed, posts, topics }: BlogRecentProps
         }
       } catch (e) {
         console.error(e);
+      } finally {
+        setSearching(false);
       }
     }
-
     setInput("");
     setTimeout(() => {
       setShowMessage(false);
@@ -123,12 +127,18 @@ export default function BlogRecent({ menuFixed, posts, topics }: BlogRecentProps
           </ul>
           <Search>
             <div id="icon-wrapper">
-              <GoSearch size={18} />
+              {searching ? (
+                <div style={{ marginTop: "-10px" }}>
+                  <PacmanLoader loading={searching} size={10} color="#9b9b9b" />
+                </div>
+              ) : (
+                <GoSearch size={18} />
+              )}
             </div>
             <form onSubmit={handleSubmit}>
               <input
                 type="text"
-                placeholder="Search Topic"
+                placeholder={searching ? "" : "Search Topic"}
                 value={input}
                 onChange={(event) => setInput(event.target.value)}
               />

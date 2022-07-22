@@ -1,19 +1,27 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 import { motion } from "framer-motion";
 import { IconType } from "react-icons";
 
 interface Props {
-  primary?: boolean;
-  secondary?: boolean;
   link?: string;
-  children: string | any[];
+  children: ReactNode;
   handleClick: (link: string | undefined) => void;
   toDisable?: boolean;
 }
 
-export default function Button({ primary, secondary, link, children, handleClick, toDisable }: Props) {
+type PrimaryProps = Props & { primary: boolean; secondary?: never };
+type SecondaryProps = Props & { secondary: boolean; primary?: never };
+
+export default function Button({
+  primary,
+  secondary,
+  link,
+  children,
+  handleClick,
+  toDisable,
+}: PrimaryProps | SecondaryProps) {
   if (primary) {
     return (
       <Primary
