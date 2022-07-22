@@ -78,9 +78,9 @@ const BlogMain = ({ menuFixed, setMenuFixed, firstFour, featuredPost }: Props) =
 export default BlogMain;
 
 const Container = styled.div`
-  min-height: 80vh;
+  min-height: 85vh;
   width: 100vw;
-  padding: 0 12vw;
+  padding: 0 8vw;
 
   background-color: ${({ theme }) => theme.secondary_background};
   display: flex;
@@ -116,7 +116,7 @@ const Latest = styled.section`
 
   #main {
     max-width: 50vw;
-    height: 60vh;
+    height: 70vh;
     overflow: hidden;
     padding: 10px;
     padding-right: 50px;
