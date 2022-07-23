@@ -7,6 +7,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { motion } from "framer-motion";
 import Circle from "components/hero/Circle";
+import { GoLightBulb } from "react-icons/go";
 import Arrow from "components/layout/Arrow";
 import x1 from "public/xander_logo.png";
 import x2 from "public/xander_logo2.png";
@@ -130,6 +131,10 @@ function Home() {
         <div>
           <h4>{current.image === 1 ? "Scroll up" : "Scroll down"}</h4>
           <Arrow spin={current.image === 1} />
+        </div>
+        <div id="kbar-tip">
+          <GoLightBulb />
+          <p>Tip: Use cmd+K on any page to navigate</p>
         </div>
       </Foot>
     </div>
@@ -272,5 +277,21 @@ const Foot = styled.div`
   }
   h4 {
     margin: 0;
+  }
+
+  #kbar-tip {
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    width: 500px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding-right: 50px;
+    opacity: 0.3;
+
+    p {
+      margin-left: 10px;
+    }
   }
 `;
