@@ -92,7 +92,7 @@ const Container = styled.section`
   }
   #wrapper {
     display: flex;
-    padding: 50px 0;
+    padding: 150px 0 50px 0;
   }
 
   #col1 {
@@ -134,6 +134,7 @@ const Container = styled.section`
       width: 100vw;
       flex-direction: column;
       justify-content: flex-start;
+      padding: 50px 0;
     }
     #col1 {
       order: 2;
