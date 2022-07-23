@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Nav, MobileMenu } from "components/layout";
 import { useWindowSize } from "utils";
+import CommandPalette from "./CommandPalette";
 
 // import "prismjs/themes/prism-okaidia.css";
 
@@ -18,6 +19,7 @@ export default function Layout({ children, toggleTheme }: Props) {
       <Nav toggleTheme={toggleTheme} />
       {children}
       {width! < 1100 && <MobileMenu />}
+      <CommandPalette />
     </Container>
   );
 }
