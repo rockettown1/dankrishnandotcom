@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.0](https://github.com/rockettown1/dankrishnandotcom/compare/v1.7.2...v1.8.0) (2022-07-23)
+
+
+### Features
+
+* add command palette ([78332b8](https://github.com/rockettown1/dankrishnandotcom/commit/78332b8f998c61eee0b44b60de3197643c7afaad))
+
 ## [1.7.2](https://github.com/rockettown1/dankrishnandotcom/compare/v1.7.1...v1.7.2) (2022-07-22)
 
 
