@@ -11,6 +11,8 @@ import { GoLightBulb } from "react-icons/go";
 import Arrow from "components/layout/Arrow";
 import x1 from "public/xander_logo.png";
 import x2 from "public/xander_logo2.png";
+import { useOS } from "utils";
+import { BiCommand } from "react-icons/bi";
 
 function Home() {
   const [current, setCurrent] = useState({ title: 0, image: 2 });
@@ -18,6 +20,7 @@ function Home() {
   const conRef = useRef(null);
   const titlesRef = useRef(null);
   const imagesRef = useRef(null);
+  const os = useOS();
 
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -133,8 +136,20 @@ function Home() {
           <Arrow spin={current.image === 1} />
         </div>
         <div id="kbar-tip">
-          <GoLightBulb />
-          <p>Tip: Use cmd+K on any page to navigate</p>
+          <GoLightBulb style={{ marginRight: 10 }} />
+          <p> Tip: Use</p>
+          <Command>
+            {os == "macOS" ? (
+              <span>
+                <p>
+                  <BiCommand size={15} /> K
+                </p>
+              </span>
+            ) : (
+              "ctrl + K"
+            )}
+          </Command>{" "}
+          <p>on any page to navigate</p>
         </div>
       </Foot>
     </div>
@@ -288,10 +303,20 @@ const Foot = styled.div`
     flex-direction: row;
     justify-content: flex-end;
     padding-right: 50px;
-    opacity: 0.3;
+  }
+`;
 
-    p {
-      margin-left: 10px;
-    }
+const Command = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #4c5766;
+  padding: 5px;
+  height: 30px;
+  margin: 0 10px;
+  border-radius: 3px;
+  p {
+    color: white;
+    margin: 0 !important;
   }
 `;

@@ -19,10 +19,6 @@ function MyApp({ Component, pageProps, router }) {
     themeToggle(root, theme);
   };
 
-  useEffect(() => {
-    console.log(window.navigator.userAgent);
-  });
-
   //this effect resets the stored scroll position for the work route when the user navigates to a page that doesn't include work
   useEffect(() => {
     history.scrollRestoration = "manual";
