@@ -5,7 +5,6 @@ import { lightTheme, darkTheme } from "styles/themes";
 import { Layout, CommandPalette } from "components/layout";
 import { AnimatePresence } from "framer-motion";
 import { clearScrollposition, kbarActions } from "utils";
-
 import "public/fonts.css";
 import "public/global.css";
 import { KBarProvider } from "kbar";

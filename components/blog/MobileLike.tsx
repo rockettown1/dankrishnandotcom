@@ -31,7 +31,7 @@ const Container = styled.div<ContainerProps>`
   position: fixed;
   z-index: 99;
   bottom: 110px;
-  right: 32px;
+  right: 12px;
   height: 50px;
   width: 50px;
   background-color: rgba(0, 0, 0, 0.8);

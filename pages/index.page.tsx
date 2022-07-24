@@ -91,7 +91,7 @@ function Home() {
           <DogWrapper ref={imagesRef} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
             {[x1, x1, x2, x2].map((pic, index) => {
               return (
-                <ImgContainer className="dog" key={index} focus={index === current.image}>
+                <ImgContainer className="dog" key={index} $focus={index === current.image}>
                   <Img src={pic} height="600px" objectFit="contain" alt="A picture of my dog" />
                 </ImgContainer>
               );
@@ -105,7 +105,7 @@ function Home() {
                     key={`option${index}`}
                     exit={{ scale: 0.4, translateY: "31vh" }}
                     transition={{ duration: 0.3, ease: "easeInOut", delay: 0.6 }}
-                    ready={index === current.title}
+                    $ready={index === current.title}
                   >
                     <Link scroll={false} href={`/${title.toLowerCase()}`} passHref>
                       <a>
@@ -188,7 +188,7 @@ const DogWrapper = styled(motion.div)`
 `;
 
 type SecProps = {
-  ready?: boolean;
+  $ready?: boolean;
 };
 
 const Sec = styled(motion.div)<SecProps>`
@@ -210,8 +210,8 @@ const Sec = styled(motion.div)<SecProps>`
     transition: all 0.5s;
 
     &:hover {
-      cursor: ${({ ready }) => ready && "pointer"};
-      color: ${({ theme, ready }) => ready && theme.highlight};
+      cursor: ${({ $ready }) => $ready && "pointer"};
+      color: ${({ theme, $ready }) => $ready && theme.highlight};
     }
 
     @media screen and (max-width: 1000px) {
@@ -235,7 +235,7 @@ const Sec = styled(motion.div)<SecProps>`
 `;
 
 type ImgContainerProps = {
-  focus: boolean;
+  $focus: boolean;
 };
 
 const ImgContainer = styled(motion.div)<ImgContainerProps>`
@@ -246,7 +246,7 @@ const ImgContainer = styled(motion.div)<ImgContainerProps>`
   justify-content: center;
   align-items: center;
   position: relative;
-  opacity: ${({ focus }) => (focus ? 0.5 : 0.05)};
+  opacity: ${({ $focus }) => ($focus ? 0.5 : 0.05)};
   transition: all 0.5s;
 `;
 
