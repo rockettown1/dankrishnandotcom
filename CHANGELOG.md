@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.8.1](https://github.com/rockettown1/dankrishnandotcom/compare/v1.8.0...v1.8.1) (2022-07-24)
+
+
+### Bug Fixes
+
+* check users OS ([3895240](https://github.com/rockettown1/dankrishnandotcom/commit/389524083d64b3f07fcb33c5e7073861380b2f0c))
+* check users OS ([6237941](https://github.com/rockettown1/dankrishnandotcom/commit/62379417654a26a4c7c2a3e259ea3b6644e4c88a))
+
 ## [1.8.0](https://github.com/rockettown1/dankrishnandotcom/compare/v1.7.2...v1.8.0) (2022-07-23)
 
 
