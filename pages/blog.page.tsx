@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Head from "next/head";
 import styled from "styled-components";
 import client from "cms/contentfulClient";
 import { BlogMain, BlogRecent } from "components/blog";
@@ -64,6 +65,13 @@ export default function Blog({ posts, featuredPost, firstFourPosts, topics }: Pr
 
   return (
     <Container>
+      <Head>
+        <title>DK Noise</title>
+        <meta name="description" content="DK: Blog posts" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta property="og:title" content="DK: Noise" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+      </Head>
       <BlogMain {...props} firstFour={firstFourPosts} />
       <BlogRecent {...props} posts={posts} topics={topics} />
     </Container>

@@ -1,4 +1,5 @@
-import { useState, useEffect, ReactElement } from "react";
+import { useState, useEffect } from "react";
+import Head from "next/head";
 import client from "cms/contentfulClient";
 import styled from "styled-components";
 import PostBody from "components/blog/PostBody";
@@ -108,6 +109,12 @@ export default function Post({ post }: { post: IPost }) {
 
   return (
     <Container>
+      <Head>
+        <title>{post.fields.title}</title>
+        <meta name="description" content={post.fields.excerpt} />
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+      </Head>
       <PostHero post={post} menuFixed={menuFixed} setMenuFixed={setMenuFixed} liked={liked} likeNumber={likeNumber} />
       <Body>
         <PostBody

@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useLayoutEffect } from "react";
 
 export const useOS = () => {
   const [os, setOs] = useState<string | null>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const nav = window.navigator as any;
     if (nav) {
       setOs(nav.userAgentData?.platform);

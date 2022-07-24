@@ -1,4 +1,5 @@
 import { ReactNode, useLayoutEffect } from "react";
+import Head from "next/head";
 import styled from "styled-components";
 import ProjectHero from "components/work/ProjectHero";
 import client from "cms/contentfulClient";
@@ -49,6 +50,14 @@ export default function ProjectPage({ project }: Props) {
 
   return (
     <Container>
+      <Head>
+        <title>{project.fields.name} - Project</title>
+        <meta name="description" content={project.fields.description} />
+        <meta property="og:title" content={`${project.fields.name} - Project`} />
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="robots" content="noindex,nofollow" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+      </Head>
       <ProjectHero project={project} />
       <div id="body-container">
         {featuredImage && <FeaturedImage project={project} />}
