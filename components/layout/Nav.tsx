@@ -134,6 +134,7 @@ const Container = styled.nav<ContainerProps>`
       position: absolute;
       top: 10;
       right: 0;
+      padding-right: 10px;
     }
   }
 `;

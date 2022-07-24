@@ -28,7 +28,7 @@ export default function MobileMenu() {
 
   const variants = {
     open: { borderRadius: 0, height: "100vh", width: "100vw", right: "0px" },
-    closed: { borderRadius: "50%", height: "75px", width: "75px", right: "20px" },
+    closed: { borderRadius: "50%", height: "75px", width: "75px", right: "10px" },
   };
   return (
     <Container $isOpen={isOpen} animate={isOpen ? "open" : "closed"} variants={variants}>
@@ -61,7 +61,7 @@ const Container = styled(motion.div)<ContainerProps>`
   position: fixed;
   z-index: 100;
   bottom: 20px;
-  right: 20px;
+  right: 10px;
   height: 75px;
   width: 75px;
   background-color: ${({ theme }) => theme.highlight};
