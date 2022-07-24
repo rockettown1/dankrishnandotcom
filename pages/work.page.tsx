@@ -1,3 +1,4 @@
+import Head from "next/head";
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import Section from "components/work/Section";
@@ -60,6 +61,13 @@ export default function Work() {
 
   return (
     <Container width={width} ref={container}>
+      <Head>
+        <title>DK Projects</title>
+        <meta name="description" content="DK: Work and Projects" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta property="og:title" content="DK: Projects" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+      </Head>
       <motion.div>
         {data.map((data, index) => (
           <Section main={false} data={data} key={index} id={index + 1} handleClick={handleFindMore} exitToMain={true} />

@@ -72,9 +72,10 @@ function Home() {
         transition={{ duration: 1, ease: "easeInOut" }}
       >
         <Head>
-          <title>DK Portfolio</title>
-          <meta name="description" content="DK Home" />
+          <title>DK: Home</title>
+          <meta name="description" content="DK: Home" />
           <link rel="icon" href="/favicon.ico" />
+          <meta property="og:title" content="Dan Krishnan - Home" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
         </Head>
 
@@ -316,7 +317,7 @@ const Command = styled.span`
   margin: 0 10px;
   border-radius: 3px;
   p {
-    color: white;
+    color: white !important;
     margin: 0 !important;
   }
 `;

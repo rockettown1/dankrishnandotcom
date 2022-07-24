@@ -30,6 +30,10 @@ export default function Hello({ techList }: Props) {
     <>
       <Head>
         <title>Hello there...</title>
+        <meta name="description" content="DK: About Me" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta property="og:title" content="DK: About Me" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
       </Head>
       <Container
         id="hellocontainer"

@@ -1,4 +1,5 @@
 import React from "react";
+import Head from "next/head";
 import Section from "components/work/Section";
 import Link from "next/link";
 import { data } from "static/work_data";
@@ -27,6 +28,14 @@ export default function Fullstack({ projects }: Props) {
   const router = useRouter();
   return (
     <Container>
+      <Head>
+        <title>Fullstack Projects</title>
+        <meta name="description" content="DK: Fullstack Projects" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta property="og:title" content="Fullstack Projects" />
+        <meta name="robots" content="noindex,nofollow" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+      </Head>
       <Section data={data[1]} main exitToMain={countSlash(router.pathname) < 2} />
       <Contents>
         <h6>Selected Projects</h6>
