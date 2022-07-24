@@ -4,9 +4,10 @@ import readingTime from "reading-time";
 import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
 import floatingLike from "public/floatingLikeRed.json";
 import Lottie from "lottie-react";
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
 import { IPost } from "types/generated/contentful";
 import { PuffLoader } from "react-spinners";
+import { MyTheme } from "styles/themes";
 
 type PostHeroProps = {
   post: IPost;
@@ -18,6 +19,7 @@ type PostHeroProps = {
 
 export default function PostHero({ post, setMenuFixed, menuFixed, likeNumber }: PostHeroProps) {
   const { title, date, topic, tagId } = post.fields;
+  const theme = useTheme() as MyTheme;
 
   const heroRef = useRef(null);
   const heroOptions = {
@@ -64,7 +66,11 @@ export default function PostHero({ post, setMenuFixed, menuFixed, likeNumber }: 
             // autoplay={false}
             style={{ height: "50px", width: "50px" }}
           />
-          {likeNumber ? <h4 id="likes">{likeNumber}</h4> : <PuffLoader id="likes" size={20} loading={true} />}
+          {likeNumber ? (
+            <h4 id="likes">{likeNumber}</h4>
+          ) : (
+            <PuffLoader id="likes" size={20} loading={true} color={theme.secondary_text} />
+          )}
         </Likes>
       </Details>
       <Tags>

@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState, RefObject } from "react";
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { PuffLoader } from "react-spinners";
 import { NodeData } from "@contentful/rich-text-types";
@@ -7,6 +7,7 @@ import { useWindowSize, richTextOptions, useScrollDirection } from "utils";
 import floatingLike from "public/floatingLikeRed.json";
 import Lottie, { LottieRefCurrentProps } from "lottie-react";
 import { Comments, MobileLike } from "components/blog";
+import { MyTheme } from "styles/themes";
 
 type Props = {
   body: any;
@@ -29,6 +30,7 @@ export default function PostBody({ body, menuFixed, headings, liked, setLiked, l
   const { scrollDirection } = useScrollDirection();
   const headingRefs = useRef<HTMLHeadingElement[]>([]);
   let likeHeart = useRef<LottieRefCurrentProps>(null);
+  const theme = useTheme() as MyTheme;
 
   /*
   root margins needs to be different on different sized screens because we are tracking heading elements in the rich text document, and we can't be certain how spaced out they will be. Trying to keep the ratio of observable viewport roughly aligned with the overall screen height.
@@ -151,7 +153,11 @@ export default function PostBody({ body, menuFixed, headings, liked, setLiked, l
                 loop={false}
                 style={{ height: "50px", marginLeft: "-12px", width: "50px" }}
               />
-              {likeNumber ? <h5>{likeNumber}</h5> : <PuffLoader size={20} loading={true} />}
+              {likeNumber ? (
+                <h5>{likeNumber}</h5>
+              ) : (
+                <PuffLoader size={20} loading={true} color={theme.secondary_text} />
+              )}
             </Likes>
           </Sidebar>
         </Menu>

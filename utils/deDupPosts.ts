@@ -5,8 +5,8 @@ import { IPost } from "types/generated/contentful";
     Creating a hashMap using post id's as strings will only add unique posts, then using Object.values to convert back to an array and return in the response
   */
 
-export const deDupPosts = (arr: Entry<IPost>[] | IPost[]) => {
-  const hashMap: { [k: string]: Entry<IPost> | IPost } = {};
+export function deDupPosts<T extends { sys: any }>(arr: T[]): T[] {
+  const hashMap: { [k: string]: T } = {};
   for (let post of arr) {
     if (!hashMap[post.sys.id]) {
       hashMap[post.sys.id] = post;
@@ -14,4 +14,4 @@ export const deDupPosts = (arr: Entry<IPost>[] | IPost[]) => {
   }
 
   return Object.values(hashMap);
-};
+}
