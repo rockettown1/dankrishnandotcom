@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { Divide as Hamburger } from "hamburger-react";
 import { BiLeftArrow } from "react-icons/bi";
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
+import { MyTheme } from "styles/themes";
 
 export default function MobileMenu() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const router = useRouter();
+  const theme = useTheme() as MyTheme;
 
   const handleMenu = () => {
     if (!isOpen) {
@@ -45,7 +47,7 @@ export default function MobileMenu() {
         </div>
       )}
       <HamburgerWrapper isOpen={isOpen} onClick={handleMenu}>
-        <Hamburger color="black" toggled={isOpen} />
+        <Hamburger color={theme.background} toggled={isOpen} />
       </HamburgerWrapper>
     </Container>
   );
@@ -63,7 +65,7 @@ const Container = styled(motion.div)<ContainerProps>`
   height: 75px;
   width: 75px;
   background-color: ${({ theme }) => theme.highlight};
-  color: black;
+  color: ${({ theme }) => theme.background};
   border-radius: 50%;
   display: flex;
   justify-content: ${({ $isOpen }) => ($isOpen ? "flex-start" : "center")};

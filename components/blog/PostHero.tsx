@@ -84,6 +84,7 @@ const Container = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  background-color: ${({ theme }) => theme.background};
 
   p {
     margin-bottom: 0px;

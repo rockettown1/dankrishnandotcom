@@ -11,7 +11,7 @@ import "public/global.css";
 import { KBarProvider } from "kbar";
 
 function MyApp({ Component, pageProps, router }) {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("dark");
 
   const toggleTheme = () => {
     const root = window.document.documentElement;

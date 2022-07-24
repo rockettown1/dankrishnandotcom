@@ -1,3 +1,4 @@
+import React from "react";
 import {
   KBarPortal,
   KBarPositioner,
@@ -7,12 +8,14 @@ import {
   KBarResults,
   ActionImpl,
   ActionId,
+  useRegisterActions,
 } from "kbar";
 import styled, { useTheme } from "styled-components";
 import { MyTheme } from "styles/themes";
 
 export default function CommandPalette() {
   const theme = useTheme() as MyTheme;
+
   return (
     <KBarPortal>
       <Container theme={theme}>

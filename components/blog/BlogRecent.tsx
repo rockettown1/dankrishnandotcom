@@ -166,6 +166,7 @@ const Container = styled.section<ContainerProps>`
   justify-content: center;
   padding: 0 12vw;
   position: relative;
+  background-color: ${({ theme }) => theme.background};
 
   p {
     margin: 0;
