@@ -6,7 +6,7 @@ export const useOS = () => {
   useEffect(() => {
     const nav = window.navigator as any;
     if (nav) {
-      setOs(nav.userAgentData.platform);
+      setOs(nav.userAgentData?.platform);
     }
   }, []);
 
