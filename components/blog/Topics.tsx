@@ -17,33 +17,41 @@ export default function Topic({ selectedTopic, topics, menuFixed, filterPosts, r
       {topics.map((topic, index) => {
         return (
           <Wrapper key={index} selected={topic === selectedTopic}>
-            {menuFixed ? (
-              <Link href="#recent" replace={true}>
+            <Text>
+              {menuFixed ? (
+                <Link href="#recent" replace={true}>
+                  <h4 id="topic" onClick={() => filterPosts(topic)}>
+                    {topic}
+                  </h4>
+                </Link>
+              ) : (
                 <h4 id="topic" onClick={() => filterPosts(topic)}>
                   {topic}
                 </h4>
-              </Link>
-            ) : (
-              <h4 id="topic" onClick={() => filterPosts(topic)}>
-                {topic}
-              </h4>
-            )}
-            {topic === selectedTopic &&
-              (menuFixed ? (
-                <Link href="#recent" replace={true}>
-                  <Close onClick={resetAllPosts} animate={{ transform: "rotate(360deg)" }} transition={{ duration: 1 }}>
+              )}
+            </Text>
+            <CloseButton>
+              {topic === selectedTopic &&
+                (menuFixed ? (
+                  <Link href="#recent" replace={true}>
+                    <Close
+                      onClick={resetAllPosts}
+                      animate={{ transform: "rotate(360deg)" }}
+                      transition={{ duration: 1 }}
+                    >
+                      <AiFillCloseCircle size={25} />
+                    </Close>
+                  </Link>
+                ) : (
+                  <Close
+                    onClick={resetAllPosts}
+                    animate={selectedTopic && { transform: "rotate(360deg)" }}
+                    transition={{ duration: 1 }}
+                  >
                     <AiFillCloseCircle size={25} />
                   </Close>
-                </Link>
-              ) : (
-                <Close
-                  onClick={resetAllPosts}
-                  animate={selectedTopic && { transform: "rotate(360deg)" }}
-                  transition={{ duration: 1 }}
-                >
-                  <AiFillCloseCircle size={25} />
-                </Close>
-              ))}
+                ))}
+            </CloseButton>
           </Wrapper>
         );
       })}
@@ -75,6 +83,21 @@ const Close = styled(motion.div)`
   align-items: center;
   color: ${({ theme }) => theme.highlight};
   margin-left: -30px;
-  height: 25px;
+  height: 1px;
   transform-origin: center;
+`;
+
+const Text = styled.div`
+  order: 2;
+  @media screen and (max-width: 700px) {
+    order: 1;
+  }
+`;
+
+const CloseButton = styled.div`
+  position: relative;
+  order: 1;
+  @media screen and (max-width: 700px) {
+    order: 2;
+  }
 `;

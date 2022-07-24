@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import readingTime from "reading-time";
 import { useRouter } from "next/router";
@@ -35,6 +35,7 @@ export default function BlogRecent({ menuFixed, posts, topics }: BlogRecentProps
   const [message, setMessage] = useState<string>("");
   const [showMessage, setShowMessage] = useState<boolean>(false);
   const router = useRouter();
+  const inputRef = useRef(null);
 
   const filterPosts = (topic: string) => {
     const filteredPosts = postFilter(posts, topic);
@@ -49,6 +50,10 @@ export default function BlogRecent({ menuFixed, posts, topics }: BlogRecentProps
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+
+    //closes mobile keyboard on return
+    const inputBox = inputRef!.current! as HTMLInputElement;
+    inputBox.blur();
 
     //check if input adheres to the schema (min length 2)
     if (!InputSchema.safeParse(input).success) {
@@ -72,6 +77,7 @@ export default function BlogRecent({ menuFixed, posts, topics }: BlogRecentProps
         setSearching(false);
       }
     }
+
     setInput("");
     setTimeout(() => {
       setShowMessage(false);
@@ -137,6 +143,7 @@ export default function BlogRecent({ menuFixed, posts, topics }: BlogRecentProps
             </div>
             <form onSubmit={handleSubmit}>
               <input
+                ref={inputRef}
                 type="text"
                 placeholder={searching ? "" : "Search Topic"}
                 value={input}
@@ -228,7 +235,6 @@ const Container = styled.section<ContainerProps>`
       order: 1;
       width: 100vw;
       padding: 10px 20px;
-      padding-left: 50px !important;
       height: max-content;
 
       ul {
