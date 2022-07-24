@@ -19,7 +19,7 @@ export default function Layout({ children, toggleTheme }: Props) {
       <Nav toggleTheme={toggleTheme} />
       {children}
       {width! < 1100 && <MobileMenu />}
-      <CommandPalette />
+      {/* <CommandPalette /> */}
     </Container>
   );
 }

@@ -3,7 +3,7 @@ import { Layout } from "../";
 import { withTheme, withRouter } from "utils/testUtils";
 import { compose } from "ramda";
 
-describe.skip("Layout Component", () => {
+describe("Layout Component", () => {
   const mockToggle = jest.fn();
 
   beforeEach(() => {
