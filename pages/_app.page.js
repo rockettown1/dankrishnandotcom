@@ -11,17 +11,13 @@ import "public/global.css";
 import { KBarProvider } from "kbar";
 
 function MyApp({ Component, pageProps, router }) {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("dark");
 
   const toggleTheme = () => {
     const root = window.document.documentElement;
     theme === "dark" ? setTheme("light") : setTheme("dark");
     themeToggle(root, theme);
   };
-
-  useEffect(() => {
-    console.log(window.navigator.userAgent);
-  });
 
   //this effect resets the stored scroll position for the work route when the user navigates to a page that doesn't include work
   useEffect(() => {

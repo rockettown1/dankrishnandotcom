@@ -11,7 +11,7 @@ import { Option } from "components/layout";
 import { MyTheme } from "styles/themes";
 
 type Props = {
-  toggleTheme: (mode: string) => void;
+  toggleTheme: () => void;
 };
 
 export default function Nav({ toggleTheme }: Props) {
@@ -37,7 +37,7 @@ export default function Nav({ toggleTheme }: Props) {
       if (!isEnterKey) return;
     }
 
-    theme.name === "dark" ? toggleTheme("light") : toggleTheme("dark");
+    toggleTheme();
     setRotation((prev) => prev + 180);
   };
 
@@ -152,8 +152,9 @@ const ModeContainer = styled.div<ModeProps>`
   height: 40px;
   width: 40px;
   position: relative;
-  color: black;
+  color: ${({ theme }) => theme.secondary_background};
   background-color: ${({ theme }) => theme.highlight};
+  transition: background-color 1s color 0.3s;
   #sunrise {
     display: flex;
     flex-direction: column;
@@ -162,7 +163,7 @@ const ModeContainer = styled.div<ModeProps>`
     padding: 8px 0;
     height: 125px;
     transform-origin: center;
-    transition: all 1s;
+    transition: transform 1s;
     transform: ${({ rotation }) => `rotateZ(${rotation}deg)`};
   }
 `;
