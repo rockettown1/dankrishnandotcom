@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.2](https://github.com/rockettown1/dankrishnandotcom/compare/v1.8.1...v1.8.2) (2022-07-24)
+
+
+### Bug Fixes
+
+* no synchronous script tags, deferred ([4da0756](https://github.com/rockettown1/dankrishnandotcom/commit/4da075679899d348f42678dfef28622337db575b))
+
 ## [1.8.1](https://github.com/rockettown1/dankrishnandotcom/compare/v1.8.0...v1.8.1) (2022-07-24)
 
 
