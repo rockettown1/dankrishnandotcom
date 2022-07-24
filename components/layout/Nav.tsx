@@ -15,7 +15,7 @@ type Props = {
 };
 
 export default function Nav({ toggleTheme }: Props) {
-  const [rotation, setRotation] = useState(0);
+  const [rotation, setRotation] = useState(180);
   const router = useRouter();
   const theme = useTheme() as MyTheme;
   const { width } = useWindowSize();
