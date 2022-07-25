@@ -4,13 +4,24 @@ import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "styles/themes";
 import { Layout, CommandPalette } from "components/layout";
 import { AnimatePresence } from "framer-motion";
-import { clearScrollposition, kbarActions } from "utils";
+import { clearScrollposition, kbarActions, pageview } from "utils";
 import "public/fonts.css";
 import "public/global.css";
 import { KBarProvider } from "kbar";
 
 function MyApp({ Component, pageProps, router }) {
   const [theme, setTheme] = useState("dark");
+
+  //Google Analytics Pageview callback
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      pageview(url);
+    };
+    router.events.on("routeChangeComplete", handleRouteChange);
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, [router.events]);
 
   const toggleTheme = () => {
     const root = window.document.documentElement;

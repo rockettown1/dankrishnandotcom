@@ -12,3 +12,4 @@ export { matchTagId } from "./matchTagId";
 export { deDupPosts } from "./deDupPosts";
 export { default as kbarActions } from "./actions";
 export { useOS } from "./useOS";
+export { pageview } from "./ga/";
