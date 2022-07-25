@@ -3,8 +3,6 @@ import styled from "styled-components";
 import { Nav, MobileMenu } from "components/layout";
 import { useWindowSize } from "utils";
 
-// import "prismjs/themes/prism-okaidia.css";
-
 type Props = {
   children: any;
   toggleTheme: () => void;

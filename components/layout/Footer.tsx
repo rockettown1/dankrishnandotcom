@@ -18,10 +18,6 @@ export default function Footer() {
           <li>Favourite people to follow in tech</li>
         </ul>
       </div>
-      {/* <Info>
-        <Arrow spin={isBottom} />
-        {isBottom ? "You've reached the end" : "Scroll for more"}
-      </Info> */}
     </Container>
   );
 }
@@ -40,7 +36,6 @@ const Info = styled.h4`
   position: absolute;
   display: flex;
   z-index: 120;
-  /* align-items: center; */
   flex-direction: column;
   bottom: 40px;
   left: 20px;
