@@ -19,7 +19,6 @@ const BlogMain = ({ menuFixed, setMenuFixed, firstFour, featuredPost }: Props) =
     rootMargin: "0px",
     threshold: 0,
   };
-  console.log(featuredPost);
 
   const handleUnfix: IntersectionObserverCallback = (entries) => {
     if (entries[0].intersectionRatio > 0) {

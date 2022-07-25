@@ -87,7 +87,6 @@ const Container = styled.nav<ContainerProps>`
   width: 100vw;
   height: 100px;
   z-index: 150;
-  /* background-color: rgba(0, 0, 0, 0.7); */
   display: flex;
   justify-content: space-between;
   box-sizing: border-box;

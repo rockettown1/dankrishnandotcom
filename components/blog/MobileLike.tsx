@@ -35,7 +35,6 @@ const Container = styled.div<ContainerProps>`
   height: 50px;
   width: 50px;
   background-color: rgba(0, 0, 0, 0.8);
-  /* border: 1px solid ${({ theme }) => theme.highlight}; */
   border-radius: 50%;
   display: flex;
   justify-content: center;

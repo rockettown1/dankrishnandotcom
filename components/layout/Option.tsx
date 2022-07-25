@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
-import { handleKeyboardSelect } from "../../utils/handleKeyboardSelect";
+import { handleKeyboardSelect } from "utils/handleKeyboardSelect";
 
 type Props = {
   linkName: string;

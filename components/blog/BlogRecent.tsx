@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import readingTime from "reading-time";
 import { useRouter } from "next/router";
@@ -204,7 +204,6 @@ const Container = styled.section<ContainerProps>`
     padding-top: 50px;
     height: 300vh;
     width: 75vw;
-    /* padding-right: 200px; */
 
     h1 {
       font-size: 5vh;
@@ -323,9 +322,6 @@ const LongCard = styled.div`
   p {
     font-size: 17px !important;
   }
-  /* @media screen and (max-width: 800px) {
-    padding: 0 20px
-  } */
 `;
 
 const Close = styled(motion.span)`

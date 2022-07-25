@@ -67,7 +67,6 @@ const Wrapper = styled.div<{ selected: boolean }>`
     width: 120px;
     margin: 0;
     padding: 6px;
-
     border-radius: 5px;
     font-family: var(--secondary_font);
     ${({ theme, selected }) => selected && `color: ${theme.highlight}`};

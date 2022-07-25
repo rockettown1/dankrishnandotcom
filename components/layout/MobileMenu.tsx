@@ -12,6 +12,7 @@ export default function MobileMenu() {
   const theme = useTheme() as MyTheme;
 
   const handleMenu = () => {
+    //prevent scroll when the menu is open
     if (!isOpen) {
       window.document.body.style.overflow = "hidden";
     } else {
