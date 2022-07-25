@@ -136,22 +136,24 @@ function Home() {
           <h4>{current.image === 1 ? "Scroll up" : "Scroll down"}</h4>
           <Arrow spin={current.image === 1} />
         </div>
-        <div id="kbar-tip">
-          <GoLightBulb style={{ marginRight: 10 }} />
-          <p> Tip: Use</p>
-          <Command>
-            {os == "macOS" ? (
-              <span>
-                <p>
-                  <BiCommand size={15} /> K
-                </p>
-              </span>
-            ) : (
-              "ctrl + K"
-            )}
-          </Command>{" "}
-          <p>on any page to navigate</p>
-        </div>
+        {os && (
+          <motion.div id="kbar-tip" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+            <GoLightBulb style={{ marginRight: 10 }} />
+            <p> Tip: Use</p>
+            <Command>
+              {os == "macOS" ? (
+                <span>
+                  <p>
+                    <BiCommand size={15} /> K
+                  </p>
+                </span>
+              ) : (
+                "ctrl + K"
+              )}
+            </Command>{" "}
+            <p>on any page to navigate</p>
+          </motion.div>
+        )}
       </Foot>
     </div>
   );
