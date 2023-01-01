@@ -57,7 +57,8 @@ export default function Hello({ techList }: Props) {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1, ease: "easeInOut", delay: 1 }}
               >
-                , I'm Dan. A <span className="highlight">software engineer</span> and teacher based in the UK.
+                , I'm Dan. A <span className="highlight">software engineer</span>{" "}
+                <span style={{ textDecoration: "line-through" }}>and teacher</span> based in the UK.
               </motion.span>
               <br />
               <motion.div

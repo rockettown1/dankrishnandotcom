@@ -11,18 +11,20 @@ export const data = [
     subsec: "",
     title: "Who am I",
     name: "Dan Krishnan",
-    desc: `I'm a self-taught software engineer, a qualified teacher and a bit of a maths and science geek. Sometimes I'll pick up a paintbrush and think I'm an artist, sometimes I'll pick up a skateboard and forget my knees are 36 years old, and sometimes I'll have a problem with doing too many things at once. I enjoy anything that allows me to think deeply, learn and get better. I'm currently the Technical Director at a coding bootcamp where I focus on curriculum design, lead internal software projects and work with clients on their staff training needs.<br /> <br / > I live in Chester with my wife and have a dog called Xander (a long-haired Weimaraner because I'm sure you were wondering). I spend most of my time either learning new things, solving technical problems, building software, travelling or being walked by my dog 🐶`,
+    desc: `I'm a self-taught software engineer, a qualified teacher and a bit of a maths and science geek. Sometimes I'll pick up a paintbrush and think I'm an artist, sometimes I'll pick up a skateboard and forget my knees are ${Math.abs(
+      new Date(Date.now() - new Date("10/11/1985").getTime()).getFullYear() - 1970
+    )} years old, and sometimes I'll have a problem with doing too many things at once. I enjoy anything that allows me to think deeply, learn and get better. I'm currently a software engineer for a large ecommerce company.<br /> <br / > I live in Chester with my wife and have a dog called Xander (a long-haired Weimaraner because I'm sure you were wondering). I spend most of my time either learning new things, solving technical problems, building software, travelling or being walked by my dog 🐶`,
   },
   {
     sec: "03",
     subsec: "i",
     title: "What I do",
     name: "Technology",
-    desc: ` I currently spend most of my time writing JavaScript (or TypeScript). The frontend work I currently do is almost always
+    desc: ` I currently spend most of my time writing TypeScript. The frontend work I currently do is almost always
     written with React.js and most server/API work I do is written in the Node.js ecosystem. When developing cloud systems specifically, I am
     most familiar with AWS services.
     <br /> <br />
-    That being said, I am consistently trying to learn different technologies, and in the past have touched on languages such as Go, Java, Python & Swift. My day to day however is most definitely JS/TS at the moment (I'd be happy to change that though!).`,
+    That being said, I am consistently trying to learn different technologies, and in the past have touched on languages such as Go, Java, Python & Swift. My day to day however is most definitely TS at the moment.`,
   },
   {
     sec: "03",
@@ -31,7 +33,7 @@ export const data = [
     name: "Education",
     desc: `I have spent a lot of my professional life in and around education, having worked at both university and high school level. My last teaching post (2017) was a Teacher of Physics (and sometimes Maths) at a grammar school in south Manchester (Years 7 - 13 UK == Grades 6 - 12 US).
     <br/><br/>
-    Upon deciding to change careers into software engineering I joined Code Nation (a private training school) as a Senior Software Instructor, which seemed like a natural step as I was still able to teach (which I enjoyed a lot) but would be surrounded by code on a daily basis (which is what I wanted). I then moved from a senior instructor, to the managing instructor, and then to the Technical Director role where I now primarily work on curriculum design, internal software engineering and working with clients on talent needs. 
+    Before working as a full-time software engineer I taught at a coding bootcamp where I eventually lead on curriculum for the software courses offered.  
     `,
   },
   {
