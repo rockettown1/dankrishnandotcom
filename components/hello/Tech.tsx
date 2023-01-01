@@ -16,7 +16,7 @@ export default function Tech({ techList, setTech }: Props) {
 
   return (
     <Wrapper initial={{ x: 100 }} animate={{ x: 0 }} exit={{ x: 100, opacity: 0 }}>
-      <h2>Accurate as of June 2022</h2>
+      <h2>Accurate as of Jan 2023</h2>
       <p id="desc">
         These are the technologies I've used over the years from least to most. The most used are what I work with
         daily, the least used are what I've had some exposure to (e.g. on small projects / learning).

@@ -33,7 +33,7 @@ export const data = [
     name: "Education",
     desc: `I have spent a lot of my professional life in and around education, having worked at both university and high school level. My last teaching post (2017) was a Teacher of Physics (and sometimes Maths) at a grammar school in south Manchester (Years 7 - 13 UK == Grades 6 - 12 US).
     <br/><br/>
-    Before working as a full-time software engineer I taught at a coding bootcamp where I eventually lead on curriculum for the software courses offered.  
+    Before working as a full-time software engineer I taught at a coding bootcamp where I eventually led on curriculum design for the software courses offered.  
     `,
   },
   {
