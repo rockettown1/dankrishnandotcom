@@ -59,10 +59,11 @@ const Wrapper = styled(motion.div)`
 `;
 
 const Container = styled.section`
-  height: 280px;
+  height: max-content;
   width: 100%;
   position: relative;
   display: grid;
+  padding: 3px;
   grid-template-columns: 0.4fr 1.3fr;
   grid-template-rows: repeat(6, auto);
   gap: 0px 0px;
@@ -76,6 +77,8 @@ const Container = styled.section`
 
   #mid5 {
     grid-area: mid5;
+    display: flex;
+    flex-wrap: wrap;
   }
   #mid0 {
     grid-area: mid0;
@@ -109,7 +112,7 @@ const Sidebar = styled.div`
   flex-direction: column;
   justify-content: space-between;
   grid-area: sidebar;
-  padding: 20px 0;
+  padding: 20px 3px;
   p {
     margin: 0 !important;
   }
