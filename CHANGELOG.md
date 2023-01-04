@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.8.3](https://github.com/rockettown1/dankrishnandotcom/compare/v1.8.2...v1.8.3) (2023-01-04)
+
+
+### Bug Fixes
+
+* hide command tip on small screens ([84118e7](https://github.com/rockettown1/dankrishnandotcom/commit/84118e703c62924ceeb13761e105628f1c3f3a9c))
+* update hello data ([597df72](https://github.com/rockettown1/dankrishnandotcom/commit/597df72eb470346c38317e170d114693f2d5c92f))
+* update hello data ([b517bc0](https://github.com/rockettown1/dankrishnandotcom/commit/b517bc056a55a42c4a610013f96fd965b1bcb248))
+
 ## [1.8.2](https://github.com/rockettown1/dankrishnandotcom/compare/v1.8.1...v1.8.2) (2022-07-24)
 
 
