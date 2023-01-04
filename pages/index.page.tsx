@@ -136,6 +136,7 @@ function Home() {
           <h4>{current.image === 1 ? "Scroll up" : "Scroll down"}</h4>
           <Arrow spin={current.image === 1} />
         </div>
+
         {os && (
           <motion.div id="kbar-tip" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
             <GoLightBulb style={{ marginRight: 10 }} />
@@ -306,6 +307,10 @@ const Foot = styled.div`
     flex-direction: row;
     justify-content: flex-end;
     padding-right: 50px;
+
+    @media screen and (max-width: 1100px) {
+      display: none;
+    }
   }
 `;
 

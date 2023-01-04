@@ -60,7 +60,7 @@ type ContainerProps = {
 
 const Container = styled(motion.div)<ContainerProps>`
   position: fixed;
-  z-index: 100;
+  z-index: 102;
   bottom: 20px;
   right: 10px;
   height: 75px;
@@ -96,6 +96,7 @@ const Option = styled.div`
 
   h1 {
     margin: 0;
+    cursor: pointer;
   }
 `;
 
